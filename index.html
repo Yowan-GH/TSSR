@@ -2,12 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Notes TSSR</title>
+  <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" id="docsify-theme">
+  
+  <!-- Thème clair/sombre -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 </head>
 <body>
-  <div id="app">Chargement...</div>
+  <div id="app">Chargement…</div>
 
   <script>
     window.$docsify = {
@@ -16,19 +18,34 @@
       loadSidebar: true,
       subMaxLevel: 2,
       search: 'auto',
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md'
+      darklightTheme: {
+        defaultTheme: 'dark', // ou 'light'
+        siteFont: 'Source Sans Pro',
+        codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
+        bodyFontSize: '17px',
+        dark: {
+          background: '#1c1e22',
+          textColor: '#e0e0e0',
+          linkColor: '#42b983',
+          codeBackgroundColor: '#2d2d2d',
+          sidebarBackground: '#202124',
+        },
+        light: {
+          background: '#ffffff',
+          textColor: '#34495e',
+          linkColor: '#42b983',
+          codeBackgroundColor: '#f8f8f8',
+          sidebarBackground: '#f6f8fa',
+        }
       }
     };
   </script>
 
-  <!-- Docsify core -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <!-- Core Docsify -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 
-  <!-- Search Plugin -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-
-  <!-- Dark theme toggle plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/docsify-themeable/main.min.js"></script>
+  <!-- Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 </body>
 </html>
