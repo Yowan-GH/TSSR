@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Notes TSSR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" id="docsify-theme">
+</head>
+<body>
+  <div id="app">Chargement...</div>
+
+  <script>
+    window.$docsify = {
+      name: 'TSSR Notes',
+      repo: '',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      search: 'auto',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      }
+    };
+  </script>
+
+  <!-- Docsify core -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+
+  <!-- Search Plugin -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+  <!-- Dark theme toggle plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/docsify-themeable/main.min.js"></script>
+</body>
+</html>
