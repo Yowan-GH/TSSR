@@ -43,6 +43,19 @@
     };
   </script>
 
+<script>   // Fonction pour ajouter un cache-buster aux requêtes .md
+
+  const originalFetch = window.fetch;
+  window.fetch = function(input, init) {
+    if (typeof input === 'string' && input.endsWith('.md')) {
+      const cacheBuster = Date.now(); // timestamp unique
+      input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
+    }
+    return originalFetch(input, init);
+  };
+</script> 
+
+
   <!-- Core Docsify -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 
