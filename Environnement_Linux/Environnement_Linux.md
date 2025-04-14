@@ -151,20 +151,28 @@ Il permet la correspondance entre un FQDN et une adresse IP.
 Voir le cours windows
 
 ## Mise en place
-Utilisation du paquet bind9 (service bind9) + dnsutils (commande de résolution DNS, optionnel)  
-Fichier de conf /etc/bind/named.conf  
-Commandes :  
+Utilisation du paquet ``bind9`` (service bind9) + ``dnsutils`` (commande de résolution DNS, optionnel)  
+
+- Commandes du fichier /etc/bind/named.conf  
 ```shell
 named-checkconf                         # Vérifie le fichier de configuration
 named-checkzone                         # Vérifie le fichier de zone
 rndc reload ou systemctl restart bind9  # Recharger la config
 ``` 
 
-![Image](images/Environnement_Linux_8.png)Les problèmes de services sont répertoriés dans /var/log/syslog
+- Option du fichier **/etc/bind/named.conf**
 
+```conf
+// rsxclts = réseaux des postes clients de l’entreprise
+acl rsxclts { 127.0.0.0/8; 192.168.53.0/24; 192.168.1.0/24; };
 
-Dans le fichier «named.conf.options »  
-Les options : 
+include /etc/bind/named.conf.options ;
+include /etc/bind/named.conf.local ;
+include /etc/bind/named.conf.default-zones ;
+```
+
+- Option du fichier «named.conf.options»  
+
 ```shell
 forward only;                 #  Bind n’utilisera QUE les serveurs spécifiés dans forwarders, et pas la résolution récursive classique.
 forwarders {@IP;};            # permet une redirection des requetes DNS vers l’IP spécifiée
@@ -175,11 +183,34 @@ dnssec-enable no ;            # Le serveur n’utilisera pas DNSSEC pour signer
 dnssec-validation no;         #  Il ne validera pas les réponses signées par d’autres serveurs.
 ```
 
-![Image](images/Environnement_Linux_4.png)
+- Exemple de configuration named.conf.options
+```conf
+options {
+    // Répertoire de travail de Bind9
+    directory "/var/cache/bind";
 
+    // Redirection exclusive (pas d’appel aux racines en cas d’indisponibilité)
+    // vers les serveurs Quad9
+    forward only;
+    forwarders { 9.9.9.9; };
+
+    // Restriction des hôtes auxquels répond le serveur
+    allow-query { rsxclts; };
+
+    // Restriction des hôtes autorisés à adresser des requêtes récursives
+    allow-recursion { rsxclts; };
+
+    // Communication DNSSEC désactivée
+    dnssec-enable no;
+    dnssec-validation no;
+
+    // Information de version non communiquée
+    version none;
+};
+```
 ## En pratique
-Lorsque le DNS est configuré, l’adresse IP du DNS (nameserver) se trouve dans /etc/resolv.conf  
-Si le résultat est une ipv6, il est possible de la désactiver en allant dans /etc/sysctl.conf et ajouter :  
+Lorsque le DNS est configuré, l’adresse IP du DNS (nameserver) se trouve dans ``/etc/resolv.conf``  
+Si le résultat est une ipv6, il est possible de la désactiver en allant dans ``/etc/sysctl.conf`` et ajouter :  
 ``net.ipv6.conf.all.disable_ipv6 = 1`` puis ``sysctl -p`` pour valider.  
 
 *Lors de longue reponse, rajouter le | more pour faire defiler les pages* 
@@ -195,9 +226,23 @@ Pour mettre en place le serveur DHCP, il y a deux solutions majeures :
 
 ## Mise en place d’un relai DHCP
 Un relai DHCP nous servira si le serveur DHCP n’est pas positionné sur le même réseau que nos clients.
-Paquet isc-dhcp-relay
-![Image](images/Environnement_Linux_13.png)
+Paquet ``isc-dhcp-relay``
 
+Configuration du Fichier **/etc/default/isc-dhcp-relay**
+```bash
+# vi /etc/default/isc-dhcp-relay
+
+# Defaults for isc-dhcp-relay initscript
+
+# What servers should the DHCP relay forward requests to?
+SERVERS="192.168.42.2"
+
+# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+INTERFACES="ens33 ens35"
+
+# Additional options that are passed to the DHCP relay daemon?
+OPTIONS=""
+```
 
 ## Installation en pratique
 
@@ -291,7 +336,20 @@ $TTL 86400		            # Définit le time to live (durée de conservation dans 
 ```
 
 ### 2.Enregistrements des SOA (Nom du serveur maitre) et NS (Serveur faisant autorité pour la zone)
-![Image](images/Environnement_Linux_9.png)
+
+```dns
+@  SOA dns1.eni-ecole.bzh. hostmaster.eni-ecole.bzh. (
+        2019100253 ; serial
+        86400      ; refresh 1 day
+        7200       ; retry 2 hours
+        3600000    ; expire
+        3600 )     ; negative TTL
+;
+
+@  NS dns1.eni-ecole.bzh.
+@  NS dns2.eni-ecole.bzh.
+```
+Avec
 
 ```shell
 @ SOA dns1.eni-ecole.zsh.		# FQDN du DNS principal de la zone
@@ -306,10 +364,35 @@ Expire                          # Si mon serveur secondaire n’a pas réussit �
 ```
 
 **Autres enregistrements de zone direct :**  
-Sous domaine 	/	Type d’enregistrement	/	Valeurs
-![Image](images/Environnement_Linux_6.png)
 
-![Image](images/Environnement_Linux_5.png)
+```dns
+// Sous domaine 	/	Type d’enregistrement	/	Valeurs
+
+dns1    A       44.0.5.3
+dns1    AAAA    2001:0db8::ec01:e
+dns2    AAAA    2001:0db8::ec01:e53
+
+www     A       44.0.0.80
+rdsgw   A       35.12.13.15
+smtp    A       44.0.0.25
+
+ww      CNAME   www.eni-ecole.bzh.
+wwww    CNAME   www.eni-ecole.bzh.
+
+@       MX 10   smtp.eni-ecole.bzh.
+@       MX 20   mx0.mail.ovh.net.
+```
+Avec 
+| Type d’enregistrement | Contenu                                                              |
+|------------------------|----------------------------------------------------------------------|
+| SOA                    | nom FQDN du serveur DNS disposant de la zone en **écriture**         |
+| NS                     | serveur(s) **faisant autorité** pour la zone                         |
+| A                      | Hôte IPv4                                                            |
+| AAAA                   | Hôte IPv6                                                            |
+| CNAME                  | Alias                                                                |
+| MX                     | Serveur de messagerie                                                |
+| SRV                    | Services                                                             |
+
 
 Commencer par les correspondances avec nos serveur DNS (ici 1 et 2).  
 Pour les @MX, le chiffre indique le poids. Le plus petit sera interrogé en premier. Smtp = mail  
