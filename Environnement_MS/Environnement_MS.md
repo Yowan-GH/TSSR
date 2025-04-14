@@ -535,7 +535,7 @@ Pour résumer :
 
 Pour forcer la mise en place de la stratégie (et bypasser les 90 minutes classiques), utiliser la commande cmd ``gpupdate /force``
 
-## 🗂️ Principe de redirection
+## Le Principe de redirection
 Les dossiers du **profil utilisateur** sont stockés sur un **emplacement réseau**.
 
 ### 📁 Dossiers concernés :
@@ -552,7 +552,7 @@ Les dossiers du **profil utilisateur** sont stockés sur un **emplacement résea
 
 ---
 
-## ⚙️ Paramètres & Options de redirection
+## Paramètres & Options de redirection
 
 | **Paramètres** | **Options** |
 |----------------|-------------|
@@ -691,7 +691,7 @@ Lorsqu’un réseau contient plusieurs serveurs DHCP, il est important que leurs
 
 Le DNS (Domain Name System) est un système qui traduit les noms de domaine compréhensibles par les humains (comme exemple.com) en adresses IP compréhensibles par les machines (comme 192.168.1.1). Il agit comme un annuaire téléphonique d’Internet.  
 
-## 📘 Mécanismes de résolution DNS
+## Mécanismes de résolution DNS
 
 | **Mécanismes**        | **Utilité** |
 |------------------------|-------------|

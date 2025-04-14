@@ -1,4 +1,6 @@
 # Structure du sandbox
+# Structure du sandbox
+
 ![Image](images/Environnement_Linux_1.png)
 
 Adresse IP FAI : 192.168.1.1
