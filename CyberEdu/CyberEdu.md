@@ -2,6 +2,7 @@
 
 
 # Les DICP  
+# Les DICP
 
 Les critères DICP sont des principes fondamentaux en cybersécurité qui permettent d'assurer la protection des données et des systèmes informatiques. L'acronyme DICP signifie :  
 - Disponibilité (D)
@@ -22,7 +23,6 @@ Erreurs humaines : Mauvaise configuration entraînant des interruptions.
 Redondance et sauvegardes (RAID, sauvegardes régulières).  
 Plans de reprise d’activité (PRA) et de continuité (PCA).  
 Protection contre les attaques DDoS (firewalls, filtrage de trafic).  
-
 
 
 ## Intégrité (I)
@@ -158,7 +158,7 @@ Sauvegarder régulièrement les données pour se protéger des ransomwares.
 
 # Les menaces
 
-## Phishing 🎣
+## Phishing 
 📌 Définition :  
 Le phishing (hameçonnage) est une technique où un attaquant usurpe une identité (banque, entreprise, service en ligne) pour tromper la victime et lui voler des informations sensibles (identifiants, mots de passe, numéros de carte bancaire).  
 
@@ -168,7 +168,7 @@ Faux sites web imitant des pages officielles pour récupérer des identifiants.
 SMS ou appels téléphoniques (smishing et vishing).  
 
 
-## Ingénierie Sociale 🧠🎭  
+## Ingénierie Sociale   
 📌 Définition :  
 L’ingénierie sociale est une technique de manipulation psychologique utilisée par les hackers pour pousser une personne à révéler des informations sensibles ou à exécuter une action compromettante.  
 
@@ -178,7 +178,7 @@ Exploitation de la peur ou de l’urgence : "Votre compte va être désactivé s
 Attaque en personne : Un individu entre dans une entreprise en prétendant être un technicien et branche une clé USB infectée.  
 
 
-## Attaque par Tête de Pont (Pivot Attack) 🔗
+## Attaque par Tête de Pont (Pivot Attack) 
 📌 Définition :  
 L’attaque par tête de pont consiste à compromettre un premier système faible, puis à l’utiliser comme un point d’accès pour attaquer d’autres parties du réseau.  
 
@@ -188,7 +188,7 @@ Prise de contrôle par un attaquant qui installe un malware ou un outil d’acc�
 Déplacement latéral : Il explore et attaque d’autres systèmes internes (serveurs, bases de données).  
 
 
-## 📌 Fraude Interne en Cybersécurité
+## Fraude Interne en Cybersécurité
 La fraude interne désigne les actes malveillants commis par un employé, un prestataire ou une personne interne à l’organisation pour détourner des ressources, manipuler des informations ou compromettre la sécurité.  
 
 🚨 Pourquoi est-elle dangereuse ?  
