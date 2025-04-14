@@ -388,15 +388,12 @@ Import-Csv -Path "C:\Scripts\utilisateurs.csv" | ForEach-Object {
 
 ## Les autorisations NTFS
 
-Elles permettent de définir des privilèges d’accès. Des autorisations de base et avancées.
-Les permissions NTFS sont soumises à héritage.
+Elles permettent de définir des privilèges d’accès.   
+Des autorisations de base et avancées.  
+Les permissions NTFS sont soumises à héritage.  
+
+
 ![Image](images/Environnement_MS_20.png)
-
-
-
-
-
-
 
 
 
@@ -406,9 +403,9 @@ Le partage vient en complément des autorisations NTFS.
 Comme pour les autorisations NTFS, le refus explicite est prioritaire sur le reste.
 
 Lorsqu’un user se connecte sur un dossier partagé, il est soumis :
-Aux autorisations de partage en premier
-Aux autorisations NTFS en second
-Les privilèges les plus restrictifs prévalent
+- Aux autorisations de partage en premier
+- Aux autorisations NTFS en second
+- Les privilèges les plus restrictifs prévalent
 
 
 
@@ -421,9 +418,6 @@ Les privilèges les plus restrictifs prévalent
 
 
 
-
-
-
 ## Stratégie d’imbrication des groupes
 
 Afin de gérer efficacement l’accès aux ressources partagés, Microsoft préconise l’imbrication des groupes globaux et locaux
@@ -432,15 +426,11 @@ Afin de gérer efficacement l’accès aux ressources partagés, Microsoft préc
 
 
 
-
-
-
-
-Les groupes locaux servent à définir les autorisations.
-Ex :
-Le groupe GG_marketing est membre du groupe partage_marketing_CT
-Le groupe partage_marketing_CT a le contrôle total sur le dossier de partage
-Les membres du groupe GG_marketing auront l’accès total au dossier partagé
+Les groupes locaux servent à définir les autorisations.  
+Exemple :
+- Le groupe GG_marketing est membre du groupe partage_marketing_CT
+- Le groupe partage_marketing_CT a le contrôle total sur le dossier de partage
+- Les membres du groupe GG_marketing auront l’accès total au dossier partagé
 
 Tous se fait via le partage avancé des dossiers.
 
@@ -450,35 +440,37 @@ Nécessite le rôle de serveur d’impression.
 Permet l’accès à l’outil Outil d’administration/Gestion de l’impression
 
 Pour ajouter une imprimante :
-Définir le port TCP/IP
-Ajouter l’imprimante et lui attribuer le port
-Clic droit sur l’imprimante et ajouter à l’annuaire pour l’ajouter à l’AD.
+- Définir le port TCP/IP
+- Ajouter l’imprimante et lui attribuer le port
+- Clic droit sur l’imprimante et ajouter à l’annuaire pour l’ajouter à l’AD.
 
 # Les stratégies de groupes – GPO
-![Image](images/Environnement_MS_28.png)
-GPO = Stratégie de groupe
 
 Plusieurs types de stratégie :
-Local (hors domaine, poste par poste)
-Groupe
-Domaine
-En cas de conflits, elle l’emporte sur la stratégie locale
+- Local (hors domaine, poste par poste)
+- Groupe
+- Domaine : En cas de conflits, elle l’emporte sur la stratégie locale
 
-Elle se gère via les consoles MMC.
-Lors de la mise à place d’une GPO :
-![Image](images/Environnement_MS_44.png)
+## Application d’une stratégie GPO
 
+Elle se gère via les consoles **MMC**. Lors de la mise en place d’une GPO :
 
+- **Par défaut toutes les 90 min** à plus ou moins 30 min près
+- **Pour les contrôleurs de domaine**, toutes les **5 min**
+- Possibilité de **passage en mode manuel**
+  - Via la commande : `gpupdate` sur le poste visé par les stratégies
 
+---
 
+## Deux stratégies sont configurées par défaut :
 
-Deux stratégies sont configurées par défaut :
-![Image](images/Environnement_MS_15.png)
+### 🔷 Default Domain Policy (DDP)
+- Liée à la **racine du domaine**
+- Définit les paramètres de sécurité pour les **utilisateurs du domaine**
 
-
-
-
-
+### 🔴 Default Domain Controller Policy
+- Liée à l’**UO Domain Controllers**
+- Définit les paramètres de sécurité pour les **contrôleurs de domaine**
 
 
 ## Le ciblage des stratégies
@@ -491,78 +483,93 @@ Deux stratégies sont configurées par défaut :
 
 
 Pour résumer :
-Les stratégies de groupe fonctionnent sur des UO (tous les objets hors groupe)
-Les stratégies sont héritables P->E, et sont appliquées avant celles du conteneur courant.
-Les stratégies appliquées sont prioritaires sur les héritées.
-L’ordre des stratégies est important dans un même conteneur
+- Les stratégies de groupe fonctionnent sur des UO (tous les objets hors groupe)
+- Les stratégies sont héritables P->E, et sont appliquées avant celles du conteneur courant.
+- Les stratégies appliquées sont prioritaires sur les héritées.
+- L’ordre des stratégies est important dans un même conteneur
+- Il y a possibilité de bloquer l’héritage.
 
-Il y a possibilité de bloquer l’héritage.
+Pour forcer la mise en place de la stratégie (et bypasser les 90 minutes classiques), utiliser la commande cmd ``gpupdate /force``
 
-Pour forcer la mise en place de la stratégie (et bypasser les 90 minutes classiques), utiliser la commande cmd gpupdate /force
+## 🗂️ Principe de redirection
+Les dossiers du **profil utilisateur** sont stockés sur un **emplacement réseau**.
 
-## La redirection de dossier
+### 📁 Dossiers concernés :
+- Documents
+- Bureau
+- Menu démarrer
+- Contacts
 
-Les dossiers des documents peuvent être délocalisé
-![Image](images/Environnement_MS_40.png)
+➡️ Ces dossiers sont redirigés vers un **serveur de fichiers**
 
+#### 📌 Paramètres du dossier partagé :
+- **Partage** : contrôle total pour les utilisateurs redirigés
+- **Permissions NTFS** : liste du dossier + création et obtention de dossiers dans ce dossier seulement
 
+---
 
+## ⚙️ Paramètres & Options de redirection
 
+| **Paramètres** | **Options** |
+|----------------|-------------|
+| **De base** : <br>Les dossiers redirigés de l’ensemble des utilisateurs seront stockés dans un **même emplacement réseau** | - Redirection vers le répertoire d’accueil de l’utilisateur <br> ➤ *Les nouveaux utilisateurs ne bénéficieront pas de redirection de dossiers* <br> - Créer un dossier pour chaque utilisateur sous le chemin d’accès racine <br> ➤ *Chaque utilisateur dispose de son propre sous-dossier* |
+| **Avancé** : <br>En fonction de leur **appartenance à des groupes**, les dossiers des utilisateurs seront stockés dans des **emplacements réseau différents** | - Rediriger vers l’emplacement suivant <br> ➤ *Les dossiers redirigés des utilisateurs se trouveront dans ce même sous-dossier* <br> - Redirection vers l’emplacement du profil local <br> ➤ *Arrêt de la redirection* |
 
-
-
-![Image](images/Environnement_MS_7.png)
 # Le routage
 
-Le routage permet la communication entre plusieurs réseaux logiques.
-Il peut être statique ou dynamique.
+**Le routage permet la communication entre plusieurs réseaux logiques**.  
+Il peut être statique ou dynamique.  
 
-Une route est constituée de :
-Adresse réseau de destination
-Masque de sous réseau
-Adresse de passerelle
+Une route est constituée de :  
+- Adresse réseau de destination
+- Masque de sous réseau
+- Adresse de passerelle
 
 
-![Image](images/Environnement_MS_29.png)NAT (network adress translation)
+![Image](images/Environnement_MS_29.png)
 ![Image](images/Environnement_MS_21.png)
 
+NAT (network adress translation)
 
 
 
 # Le DHCP (Dynamic Host Configuration Protocol)
 
 ## Utilité d’un DHCP
-Le DHCP permet de configurer un certain nom d’information pour les clients avec adresse dynamique donc il s’occupe d’attribuer une adresse tel que :
-✅ Adresse IP : assignée dynamiquement à partir d’une plage d’adresses définie.
-✅ Masque de sous-réseau : permet de définir la taille du réseau.
-✅ Passerelle par défaut (Gateway) : l’adresse du routeur permettant la communication hors du réseau local.
-✅ Serveurs DNS : pour la résolution des noms de domaine en adresses IP.
-✅ Durée du bail (Lease Time) : définit la durée pendant laquelle l’IP est attribuée avant d’être renouvelée.
-✅ Serveur WINS (Windows Internet Name Service) : utilisé dans les environnements Windows pour la résolution de noms NetBIOS.
-✅ Autres options spécifiques : comme les informations sur le serveur NTP (Network Time Protocol) ou encore le serveur TFTP pour le boot PXE.
+Le DHCP permet de configurer un certain nom d’information pour les clients avec adresse dynamique donc il s’occupe d’attribuer une adresse tel que :  
+✅ Adresse IP : assignée dynamiquement à partir d’une plage d’adresses définie.  
+✅ Masque de sous-réseau : permet de définir la taille du réseau.  
+✅ Passerelle par défaut (Gateway) : l’adresse du routeur permettant la communication hors du réseau local.  
+✅ Serveurs DNS : pour la résolution des noms de domaine en adresses IP.  
+✅ Durée du bail (Lease Time) : définit la durée pendant laquelle l’IP est attribuée avant d’être renouvelée.  
+✅ Serveur WINS (Windows Internet Name Service) : utilisé dans les environnements Windows pour la résolution de noms NetBIOS.  
+✅ Autres options spécifiques : comme les informations sur le serveur NTP (Network Time Protocol) ou encore le serveur TFTP pour le boot PXE.  
 
-Le bail DHCP (lease) correspond à la durée pendant laquelle une adresse IP est attribuée dynamiquement à un client.
+Le bail DHCP (lease) correspond à la durée pendant laquelle une adresse IP est attribuée dynamiquement à un client.  
+
 ## Processus DORA (Discover, Offer, Request, Ack)
-Comment un PC fait il pour se connecter au bon serveur DHCP ?
-Le PC arrive sur le réseau et fait une requête DHCP discover dans le domaine de diffusion en broadcast (255.255.255.255)
-Le serveur DHCP répond avec une requête DHCP offer
-Le PC accepte avec une requête DHCP REQUEST
-Le DHCP envoi les paramètres réseaux avec une requête DHCP ACK
-Le bail ayant une durée, le client demandera un renouvellement de bail automatiquement à 50% et 7/8eme de la durée de celui-ci
-En cas de plusieurs DHCP offer (si plusieurs serveur DHCP), le client prend toujours le plus rapide (avec le moins de latence)
+Comment un PC fait il pour se connecter au bon serveur DHCP ?  
+- Le PC arrive sur le réseau et fait une requête ``DHCP discover`` dans le domaine de diffusion en broadcast (255.255.255.255)  
+- Le serveur DHCP répond avec une requête ``DHCP offer `` 
+- Le PC accepte avec une requête ``DHCP REQUEST  ``
+- Le DHCP envoi les paramètres réseaux avec une requête ``DHCP ACK  ``
+- 
+Le bail ayant une durée, le client demandera un renouvellement de bail automatiquement à 50% et 7/8eme de la durée de celui-ci    
+En cas de plusieurs DHCP offer (si plusieurs serveur DHCP), le client prend toujours le plus rapide (avec le moins de latence)    
 
-Pour mettre fin à un bail (Release), il faut, via cmd taper la commande ipconfig /release
-Ipconfig /renew pour  déclencher DORA de nouveau
+Pour mettre fin à un bail (Release), il faut, via cmd taper la commande ``ipconfig /release `` 
+``ipconfig /renew`` pour  déclencher DORA de nouveau
 
 ## L’étendue (ou scope d’un serveur DHCP)
 L’étendue est caractérisée par :
-Une plage d’adresse IP Utilisable
-Un nom (ex : LAN_SERVEUR)
-Une durée de bail
-Des exclusions d’adresse IP
+- Une plage d’adresse IP Utilisable
+- Un nom (ex : LAN_SERVEUR)
+- Une durée de bail
+- Des exclusions d’adresse IP
 
 La réservation permet, avec l’adresse MAC d’un client, de lui attribuer toujours la même IP. Il est lié à un conteneur parent (ex : Etendue LAN_SERVEUR)
 
+--------------------- FIN DE MODIFICATION 14.04.2025 -----------------------
 ## Configuration d’un serveur DHCP
 Gérer / Ajouter des rôles / Serveur DHCP (il faut que le serveur hébergeant le serveur DHCP ai une adresse IP statique).
 Cliquer sur le flag pour terminer la configuration du serveur DHCP.
