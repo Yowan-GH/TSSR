@@ -1,22 +1,7 @@
-CyberEdu
-
-
-
 ![Image](images/CyberEdu_3.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-# DICP
+# Les DICP  
 
 Les critères DICP sont des principes fondamentaux en cybersécurité qui permettent d'assurer la protection des données et des systèmes informatiques. L'acronyme DICP signifie :  
 - Disponibilité (D)
@@ -114,7 +99,7 @@ L’évaluation DICP a permis d’identifier des faiblesses majeures en confiden
 Tu veux un exemple détaillé sur un autre type de système (routeur, cloud, base de données) ? 🔥  
 4o
 
-# Différence entre Vulnérabilité, Menace et Attaque en Cybersécurité
+# Vulnérabilité, Menace et Attaque en Cybersécurité
 
 
 
@@ -171,7 +156,7 @@ Détecter et bloquer les attaques avec des SIEM et IDS/IPS.
 Appliquer une segmentation réseau pour limiter l’impact.  
 Sauvegarder régulièrement les données pour se protéger des ransomwares.  
 
-# Quelques menaces
+# Les menaces
 
 ## Phishing 🎣
 📌 Définition :  
