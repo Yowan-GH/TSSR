@@ -1,0 +1,6 @@
+title: "TSSR Notes"
+theme: just-the-docs
+
+# Active la recherche
+just_the_docs:
+  search_enabled: true
