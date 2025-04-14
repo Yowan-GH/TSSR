@@ -12,4 +12,6 @@
 - [Environnement_Linux](Environnement_Linux/Environnement_Linux.md)
 
 ### 🪟 Environnement Microsoft
+<<<<<<< HEAD
 - [Environnement_MS](Environnement_MS/Environnement_MS.md)
+
