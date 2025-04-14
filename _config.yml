@@ -1,13 +1,17 @@
 title: "TSSR Notes"
-remote_theme: vsoch/docsy-jekyll
+remote_theme: pmarsceill/just-the-docs
 
-# Active la recherche
-just_the_docs:
-  search_enabled: true
+# Recherche full-text activée
+search_enabled: true
 
-# Active le toogle dark mode et ses dépendances
-  include:
-  - _includes
+# Thème sombre toggle
+color_scheme: dark
+
+# Arborescence dans la sidebar
+nav_sort: case_insensitive
+
+# Fichier d'accueil
+home_page: index.md
 
 
 # Bisous à ceux qui look le code source ;)
