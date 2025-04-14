@@ -1,5 +1,5 @@
 title: "TSSR Notes"
-theme: just-the-docs
+remote_theme: vsoch/docsy-jekyll
 
 # Active la recherche
 just_the_docs:
