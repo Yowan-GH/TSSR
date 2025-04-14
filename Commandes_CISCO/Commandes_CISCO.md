@@ -1,7 +1,7 @@
 
 # IOS CISCO - Generalités
 
-## ✅ Qu'est-ce que IOS ? 
+## Qu'est-ce que IOS ? 
 
 
 Cisco IOS (Internetwork Operating System) est le système d'exploitation des équipements Cisco (switches, routeurs, firewalls). Il permet de :  
@@ -9,7 +9,7 @@ Cisco IOS (Internetwork Operating System) est le système d'exploitation des éq
 ✔ Superviser le trafic et diagnostiquer les pannes.  
 ✔ Appliquer des politiques de sécurité et de routage.  
 
-## 📌 Modes d’IOS
+## Modes d’IOS
 
 Cisco IOS fonctionne en plusieurs modes :
 
@@ -26,7 +26,7 @@ Quelques commandes de bases :
 |``show interfaces status ``				|# Affiche l’état des interfaces  |
 |``show interfaces ``						|# Affiche les interfaces  |
 
-## 🔒 Sécurisation des lignes physiques et distantes
+## Sécurisation des lignes physiques et distantes
 
 Mise en place d’un mot de passe sur la ligne physique (port console) 0 :   
 ```bash
@@ -105,7 +105,7 @@ clear line vty 2  			# Déconnecte l'utilisateur sur le port VTY 2
 
 Les switches segmentent un réseau en plusieurs VLANs et transportent ces VLANs via des trunks.  
 
-## ✅ Les VLANs
+## Les VLANs
 Un VLAN (Virtual LAN) permet de séparer logiquement un réseau physique en plusieurs sous-réseaux indépendants.  
 ✔ Isolation du trafic (Ex: VLAN 10 pour les Admins, VLAN 20 pour les Étudiants)  
 ✔ Meilleure sécurité et réduction des collisions  
@@ -127,7 +127,7 @@ exit
 ```
 
 
-## ✅ Trunking : Communication entre VLANs
+## Trunking : Communication entre VLANs
 Les VLANs sur un switch ne peuvent pas communiquer entre eux sans un routeur ou un switch de niveau 3.  
 Le trunking permet de transporter plusieurs VLANs sur un même lien entre deux switches.  
 💡 Commandes pour configurer un Trunk :  
@@ -144,7 +144,7 @@ exit
 Les routeurs connectent plusieurs réseaux et permettent le routage entre VLANs.
 
 
-## ✅ Inter-VLAN Routing (Routage entre VLANs)
+## Inter-VLAN Routing (Routage entre VLANs)
 Un switch ne peut pas faire communiquer plusieurs VLANs.  
 Solution :
 - Router-on-a-stick : Un routeur utilise une seule interface en trunk pour gérer plusieurs VLANs.
