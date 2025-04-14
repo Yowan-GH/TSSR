@@ -4,3 +4,10 @@ theme: just-the-docs
 # Active la recherche
 just_the_docs:
   search_enabled: true
+
+# Active le toogle dark mode et ses dépendances
+  include:
+  - _includes
+
+
+# Bisous à ceux qui look le code source ;)

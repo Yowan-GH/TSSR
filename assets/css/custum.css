@@ -1,0 +1,28 @@
+#dark-mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+  /* Exemple de thèmes dark et light */
+  
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --link-color: #90caf9;
+  }
+  
+  [data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  [data-theme="dark"] a {
+    color: var(--link-color);
+  }
+  
