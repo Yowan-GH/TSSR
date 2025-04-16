@@ -29,6 +29,12 @@ Ce site rassemble des **résumés de cours**, des **fiches pratiques** et des **
 - DNS, DHCP, AD
 - PowerShell de base
 
+
+### 📜 Scripting Bash
+- Les algorithmes 
+- Le pseudo code
+
+
 ---
 
 ## 🚀 Objectifs
