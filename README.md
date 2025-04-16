@@ -33,6 +33,7 @@ Ce site rassemble des **résumés de cours**, des **fiches pratiques** et des **
 ### 📜 Scripting Bash
 - Les algorithmes 
 - Le pseudo code
+- Les commandes et bases du Scripting
 
 
 ---
