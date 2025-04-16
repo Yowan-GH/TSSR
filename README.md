@@ -64,3 +64,4 @@ N'hésitez pas à suivre le projet ou à proposer des suggestions !
 ---
 
 *🛠️ Ce site est propulsé par [Docsify](https://docsify.js.org), avec un thème sombre et une barre de recherche full-text.*
+*🏢 Ce site est hébergé gratuitement par GitHub et mis à jour par yowan-GH*
