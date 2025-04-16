@@ -7,6 +7,38 @@
   
   <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
+
+
+<!-- Ajout du CSS personnalisé pour le menu flottant -->
+<style>
+  /* Barre de navigation flottante */
+  #sidebar {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 200px;
+      height: 90%;
+      z-index: 1000;
+      overflow-y: auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 10px;
+  }
+
+  /* Ajuster l'espace entre la barre de navigation et le contenu */
+  body {
+      margin-left: 240px; /* Décale le contenu pour laisser de la place à la barre flottante */
+  }
+
+  /* Pour changer de couleur en mode sombre */
+  body.dark-theme #sidebar {
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+  }
+</style>
+<!--Fin du CSS personnalisé pour le menu flottant -->
+
 </head>
 <body>
   <div id="app">Chargement…</div>
