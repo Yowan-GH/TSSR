@@ -5,6 +5,12 @@
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+<!-- Ajouter le script PrismJS pour la coloration syntaxique -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.js"></script>
+
+<!-- Ajouter le plugin PrismJS pour Bash -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-bash.min.js"></script>
+
   <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
   
@@ -40,9 +46,24 @@
           codeBackgroundColor: '#f8f8f8',
           sidebarBackground: '#f6f8fa',
         }
+      },
+      markdown: {
+        renderer: {
+          code: function (code, lang) {
+            if (lang && Prism.languages[lang]) {
+              return '<pre class="language-' + lang + '"><code>' + Prism.highlight(code, Prism.languages[lang], lang) + '</code></pre>';
+            }
+            return '<pre><code>' + code + '</code></pre>';
+          }
+        }
       }
     };
+  
+    // Ajouter le script PrismJS pour la coloration syntaxique
+    document.write('<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.js"></script>');
+    document.write('<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-bash.min.js"></script>');
   </script>
+  
 
 <script>   // Fonction pour ajouter un cache-buster aux requêtes .md
 
