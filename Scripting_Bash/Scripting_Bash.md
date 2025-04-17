@@ -407,6 +407,269 @@ echo -e "\033[1;32mFC\e[4;33mNantes\033[0m"
 ```
 
 
+## L'Exécution conditionnelle 
+### Structure
+Pour réaliser une exécution conditionnelle, nous allons utiliser la structure de contrôle ``if ``.
+Le `if` sert à **tester une ou plusieurs condition** et à **exécuter un bloc de code** en fonction des résultats des conditions. 
+
+Structure pour tester une condition avec`` if ``simple : 
+```bash
+if [ condition ];
+then
+  # commandes si la condition est vraie
+fi
+```
+
+Structure pour tester deux condition avec ``if`` et ``else`` : 
+```bash
+if [ condition ];
+then
+  action_1
+else
+  action_2
+fi
+```
+
+Structure pour tester de multiples conditions avec`` if, elif, else`` : 
+```bash
+if [ condition ]; # Si test
+then # alors
+  action_1
+elif [ condition 2 ]; # sinon, test 2
+then # alors
+  action_2
+else # sinon
+  action_3
+fi
+```
+
+### L'évaluation des tests
+
+Lors de l'évaluation d'une condition, les critères d'évaluations sont liés au type d'élément à évaluer. Ils peuvent être : 
+- Un entier (chiffre ou nombre)
+- Une chaine (mot ou phrase)
+- Une composante du système de fichier (fichier, répertoire, extention...)
+#### Les opérateurs 
+
+🔸 **Chaînes de caractères** (`[ ... ]`, `[[ ... ]]`)
+
+| Opérateur | Signification                | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |
+| --------- | ---------------------------- | --------- | ----------- | ----------- |
+| `=`       | Égalité                      | ✅         | ✅           | ❌           |
+| `!=`      | Différent                    | ✅         | ✅           | ❌           |
+| `<`, `>`  | Ordre alphabétique           | ❌         | ✅           | ❌           |
+| `-z`      | Chaîne vide                  | ✅         | ✅           | ❌           |
+| `-n`      | Chaîne non vide              | ✅         | ✅           | ❌           |
+| `=~`      | Expression régulière (regex) | ❌         | ✅           | ❌           |
+🔸 **Nombres (entiers uniquement)** (`[ ... ]`, `(( ... ))`)
+
+| Opérateur | Signification     | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |     |
+| --------- | ----------------- | --------- | ----------- | ----------- | --- |
+| -eq       | Égal              | ✅         | ✅           | ❌ (→ `==`)  |     |
+| -ne       | Différent         | ✅         | ✅           | ❌ (→ `!=`)  |     |
+| -lt       | Inférieur         | ✅         | ✅           | ❌ (→ `<`)   |     |
+| -le       | Inférieur ou égal | ✅         | ✅           | ❌ (→ `<=`)  |     |
+| -gt       | Supérieur         | ✅         | ✅           | ❌ (→ `>`)   |     |
+| -ge       | Supérieur ou égal | ✅         | ✅           | ❌ (→ `>=`)  |     |
+
+🔸 **Tests sur fichiers (`[ ... ]`, `[[ ... ]]`)**
+
+| Opérateur | Signification               | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |
+| --------- | --------------------------- | --------- | ----------- | ----------- |
+| -f        | Fichier régulier            | ✅         | ✅           | ❌           |
+| -d        | Répertoire                  | ✅         | ✅           | ❌           |
+| -e        | Existe (fichier ou dossier) | ✅         | ✅           | ❌           |
+| -r        | Lisible                     | ✅         | ✅           | ❌           |
+| -w        | Écriturable                 | ✅         | ✅           | ❌           |
+| -x        | Exécutable                  | ✅         | ✅           | ❌           |
+| -s        | Taille non nulle            | ✅         | ✅           | ❌           |
+
+🔸 **Logique booléenne**
+
+| Opérateur | Signification       | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |
+| --------- | ------------------- | --------- | ----------- | ----------- |
+| !         | NON logique         | ✅         | ✅           | ✅           |
+| -a        | ET logique (ancien) | ✅         | ❌           | ❌           |
+| -o        | OU logique (ancien) | ✅         | ❌           | ❌           |
+| &&        | ET logique propre   | ❌ (*)     | ✅           | ✅           |
+| \|\|      | OU logique propre   | ❌ (*)     | ✅           | ✅           |
+| ( )       | Regroupement        | ❌         | ✅           | ✅           |
+(*) `&&` et `||` sont valides **en dehors** de `[ ... ]` pour enchaîner deux tests 
+
+🔸**Opérations arithmétiques (`(( ... ))` uniquement)**
+
+| Opérateur     | Signification      | `(( ... ))` |
+| ------------- | ------------------ | ----------- |
+| +, -, *, /, % | Opérations de base | ✅           |
+| **            | Puissance          | ✅           |
+🔸 **Comparateurs arithmétiques (`(( ... ))` uniquement)**
+
+| Opérateur | Signification               | `(( ... ))` |
+| --------- | --------------------------- | ----------- |
+| ==        | Égal                        | ✅           |
+| !=        | Différent                   | ✅           |
+| < / >     | Inférieur / supérieur       | ✅           |
+| <= / >=   | Inf. ou égal / sup. ou égal | ✅           |
+🔸 **Affectations et raccourcis (`(( ... ))` uniquement)**
+
+| Syntaxe   | Signification         | `(( ... ))` |
+| --------- | --------------------- | ----------- |
+| x++ / x-- | Incrément / Décrément | ✅           |
+| x += n    | Ajouter n à x         | ✅           |
+| x *= n    | Multiplier x par n    | ✅           |
+| x /= n    | Diviser x par n       | ✅           |
+| x %= n    | Reste de la division  | ✅           |
+#### Les métacaractères
+
+Les expression de test sont interprétées par le shell, il est donc possible d'utiliser des caractères spéciaux : 
+-`` * ``= 0 à n caractère
+-`` ? `` = 1 caractère quelconque
+-``[...]`` = 1 caractère parmi ceux entre crochet
+-``[^...] ou [!...]`` = 1 caractère autre que celui entre crochet 
+
+ Facteurs d’occurrence (expressions régulières étendues) - Ne fonctionne qu'avec l'option ``extglob`` (``shopt`` pour vérifier si l'option est présente et ``shopt -s extglob`` pour l'ajouter)
+- `?(...)` = 0 à 1 fois l’expression
+- `*(...)` = 0 à n fois l’expression
+- `+(...)` = 1 à n fois l’expression
+- `@(...)` = exactement 1 fois l’expression
+- `!(...)` = 0 fois l’expression
+- `*(...|...)` = 0 à n fois l’expression 1 **ou** l’expression 2  
+    _Valable aussi pour les caractères `?`, `*`, `+`, `@`, `!`_
+
+
+
+
+
+
+
+
+
+
+
+#### `[ ... ]` – Test POSIX classique (aussi appelé `test`) 
+
+ ✅ Utilisé pour :
+- Comparaisons de **chaînes de caractères**
+- Tests de **fichiers**
+- Comparaisons **arithmétiques simples** (avec `-eq`, `-gt`, etc.)
+    
+ 📌 Syntaxe stricte :
+- Variables doivent être **entre guillemets** (`"$var"`)
+- Toujours un **espace autour des crochets et des opérateurs**
+
+❗ Risque courant :
+- Si `$var` est vide et pas entouré de guillemets → **erreur** !
+
+```bash 
+if [ "$nom" = "Alice" ]; then # Exemple de test avec un nom
+	if [ "$age" -ge 18 ]; then # Exemple de comparaison avec opérateur 
+if [ -f "fichier.txt" ]; then # Exemple comparaison type de fichier
+  echo "Bonjour Alice"
+fi
+```
+
+#### `[[ ... ]]` – Test avancé **spécifique à Bash**
+
+✅ Utilisé pour :
+- Comparaisons de **chaînes** (avec `==`, `!=`)
+- Opérateurs logiques (`&&`, `||`)
+- **Expressions régulières** (`=~`)
+- Tests **plus sûrs** (pas besoin de guillemets
+
+📌 Avantages : 
+- Ne plante pas si variable vide
+- Plus lisible et plus souple
+- Gère les jokers (`*`) sans les interpréter comme des fichiers
+
+❗ Attention :
+- **Ne fonctionne que dans Bash** (et Zsh)
+- Pas compatible avec `/bin/sh` (scripts POSIX)
+
+```bash
+# Pas besoin de guillemets
+if [[ $nom == A* ]]; then
+# Avec logique booléenne
+if [[ $utilisateur == "admin" || $utilisateur == "root" ]]; then
+# Avec regex
+if [[ $email =~ ^[a-z]+@[a-z]+\.[a-z]{2,4}$ ]]; then
+  echo "Email valide"
+fi
+```
+
+#### `(( ... ))` – Test et opérations **arithmétiques**
+✅Utilisé pour :
+- Comparaisons numériques avec opérateurs classiques (`>`, `<`, `==`)
+- Incréments, décréments
+- Affectations (`+=`, `*=`, etc.)
+
+ 📌 Avantages :
+- Syntaxe **très naturelle** (comme en C ou Python)
+- **Pas besoin de `$`** pour les variables internes à `(( ))`
+- Évite les `-eq`, `-lt`, etc.
+
+❗ Limite :
+- Ne fonctionne que pour des **nombres entiers**
+
+```bash 
+x=5
+y=3
+
+# Test numérique
+if (( x > y )); then
+  echo "x est plus grand que y"
+fi
+
+# Incrément
+(( x++ ))
+
+# Affectation
+(( y += 2 ))
+```
+
+#### 🧠 Tableau récapitulatif
+
+| Syntaxe     | Pour quoi ?                  | Avantages                             | Inconvénients               | Exemples             |
+| ----------- | ---------------------------- | ------------------------------------- | --------------------------- | -------------------- |
+| `[ ... ]`   | Tests POSIX (base)           | Très compatible, simple               | Syntaxe stricte, peu souple | `[ "$x" -eq 5 ]`     |
+| `[[ ... ]]` | Tests Bash avancés           | Plus sûr, expressions logiques, regex | Bash-only                   | `[[ $x == "test" ]]` |
+| `(( ... ))` | Calculs et comparaisons nums | Très lisible, opérations naturelles   | Que pour les nombres        | `(( x >= 10 ))`      |
+
+### La structure case
+
+La commande `case` permet de tester **plusieurs cas** de manière **plus propre et lisible** que plusieurs `if...elif...else`.
+Il est très utilisé pour les **menus en ligne de commande**
+```bash
+case $variable in
+  motif1)
+    action 1
+    action 2# commandes si motif1
+    ;;
+  motif2)
+    action 3 # commandes si motif2
+    ;;
+  *)
+    action 4# commandes par défaut (comme else)
+    ;;
+esac
+```
+
+*Exemple d'utilisation*
+```bash
+echo "Menu :"
+echo "1. Lister"
+echo "2. Installer"
+echo "3. Quitter"
+read -p "Votre choix : " reponse
+
+case $reponse in
+  1) echo "Liste des fichiers" ;;
+  2) echo "Installation en cours..." ;;
+  3) echo "Au revoir !" ;;
+  *) echo "Choix invalide" ;;
+esac
+
+```
+`
 # Exemple de script
 
 ```bash 
