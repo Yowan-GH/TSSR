@@ -407,7 +407,7 @@ echo -e "\033[1;32mFC\e[4;33mNantes\033[0m"
 ```
 
 
-## L'Exécution conditionnelle 
+## L'Exécution conditionnelle ``if``
 ### Structure
 Pour réaliser une exécution conditionnelle, nous allons utiliser la structure de contrôle ``if ``.
 Le `if` sert à **tester une ou plusieurs condition** et à **exécuter un bloc de code** en fonction des résultats des conditions. 
@@ -453,14 +453,17 @@ Lors de l'évaluation d'une condition, les critères d'évaluations sont liés a
 
 🔸 **Chaînes de caractères** (`[ ... ]`, `[[ ... ]]`)
 
-| Opérateur | Signification                | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |
-| --------- | ---------------------------- | --------- | ----------- | ----------- |
-| `=`       | Égalité                      | ✅         | ✅           | ❌           |
-| `!=`      | Différent                    | ✅         | ✅           | ❌           |
-| `<`, `>`  | Ordre alphabétique           | ❌         | ✅           | ❌           |
-| `-z`      | Chaîne vide                  | ✅         | ✅           | ❌           |
-| `-n`      | Chaîne non vide              | ✅         | ✅           | ❌           |
-| `=~`      | Expression régulière (regex) | ❌         | ✅           | ❌           |
+| Opérateur | Signification                       | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |
+| --------- | ----------------------------------- | --------- | ----------- | ----------- |
+| `=`       | Égalité                             | ✅         | ✅           | ❌           |
+| `!=`      | Différent                           | ✅         | ✅           | ❌           |
+| `<`, `>`  | Ordre alphabétique                  | ❌         | ✅           | ❌           |
+| `-z`      | Chaîne vide                         | ✅         | ✅           | ❌           |
+| `-n`      | Chaîne non vide                     | ✅         | ✅           | ❌           |
+| `=~`      | Expression régulière (regex)        | ❌         | ✅           | ❌           |
+| -f        | Le fichier existe et est un fichier | ✅         | ✅           | ❌           |
+| -d        | Le fichier existe et est un dossier | ✅         | ✅           | ❌           |
+| -e        | Le fichier existe                   | ✅         | ✅           | ❌           |
 🔸 **Nombres (entiers uniquement)** (`[ ... ]`, `(( ... ))`)
 
 | Opérateur | Signification     | `[ ... ]` | `[[ ... ]]` | `(( ... ))` |     |
@@ -634,7 +637,7 @@ fi
 | `[[ ... ]]` | Tests Bash avancés           | Plus sûr, expressions logiques, regex | Bash-only                   | `[[ $x == "test" ]]` |
 | `(( ... ))` | Calculs et comparaisons nums | Très lisible, opérations naturelles   | Que pour les nombres        | `(( x >= 10 ))`      |
 
-### La structure case
+### Le cas particulier du ``case``
 
 La commande `case` permet de tester **plusieurs cas** de manière **plus propre et lisible** que plusieurs `if...elif...else`.
 Il est très utilisé pour les **menus en ligne de commande**
@@ -669,93 +672,335 @@ case $reponse in
 esac
 
 ```
-`
-# Exemple de script
 
+## La boucle 
+
+Une boucle est une structure permettant de répéter plusieurs fois un même bloc d'actions.
+
+Trois mécanismes de boucles sont utilisables en Shell : 
+- ``while``
+- ``until``
+-`` for``
+
+### Le calcule arithmétique ``expr ``
+La commande `expr` en Bash est utilisée pour **évaluer des expressions** (arithmétiques, logiques, ou de chaînes). Chaque opérateur doit être précédé et suivi d'un espace. Les commandes ``let`` et le ``((...)) ``peuvent également être utilisés en remplacement.
+
+```bash
+expr 2 + 2
+> 4
+
+expr 2 \* 7          # \ sert à échapper le caractère spécial *
+>14
+```
+
+### La boucle ``while`` (tant que)
+
+La boucle `while` en Bash te permet d’exécuter un bloc de commandes **tant qu’une condition est vraie**
+
+Syntaxe de base : 
 ```bash 
-# Script afin d'afficher les caracteristiques d'un fichier
-# Author : YMU
-# TP M4
-# Mise en place des variables
-# Mise à jour : 16.04.2025
+while [ condition ] ; do
+  action_1 # commandes à exécuter
+done
+```
 
-rep="$(pwd)" # Assignation de la vatiable rep à la commande pwd
-extension="txt" # Assignation de la vatiable extension .txt
-# Début du script
+Exemple : 
+```bash
+while [[ -z "$nom" ]] ; do                   # Tant que la variable $nom est vide
+	echo -e "veuillez entrer vôtre nom : "   # Demander d'indiquer le nom
+	read nom                    # Récupérer l'information entrée par le user
+done   # Fin de la boucle si un nom est entré
+echo "Bonjour $nom" # Suite du script 
+```
 
-echo "Répertoire de travail : $rep"
-echo ""
-echo "Fichiers pouvant être traités :"
-echo ""
-ls -l $rep | grep .$extension # Liste les fichiers ayant pour extension $extention
+#### Cas particulier des boucles infinies
+Pour générer une boucle infinie, on utilise la commande ``true`` ou ``:``
+Elles sont utilisés pour la **création de menu.**
 
-echo "" # Saut de ligne
-read -e -p "Quel fichier voulez vous traiter ? " fic trash # read -p pour ajouter un prompt et -e pour activer l'autocomplétion
-unset trash # Supprimer le contenu de la variable trash
-nblign=$(cat $fic | wc -l)  # nombre de ligne du fichier fic
-debut=$(cat $fic | head -n 2)  # Affiche les deux premières lignes de fic
-fin=$(cat $fic | tail -n 2)  # Affiche les deux dernières lignes de fic
+```bash
 
-echo "CARACTERISTIQUES DE $fic"
-echo "Nombre de ligne du fichier : $nblign"
-echo "Début du fichier :$debut"
-echo "Fin du fichier :" $fin
+while true ; do
+        echo "===== Menu =====" # Affichage du menu
+    echo "1) Copie des fichiers"
+    echo "2) Restauration des fichiers"
+    echo "q) Quitter"
+    # Récupérer la saisie de l'utilisateur
+    read -p "Taper 1, 2 ou q pour continuer : " choix
+    # Tester la valeur de $choix
+    case $choix in
+        1) echo "Copie des fichiers" ;;
+        2) echo "Restauration des fichiers" ;;
+        q) clear ; exit 0 ;;
+        *) echo -e "\e[41mSaisie incorrecte\e[0m" ;;
+    esac
+done
+```
 
-# Fin du script
+### La boucle ``until ``(jusqu'à ce que)
+La boucle `until` est l'inverse de `while` : elle boucle **tant que la condition est fausse**, et s’arrête dès qu’elle devient vraie.
 
+Syntaxe de base
+```bash
+until [ condition ] ; do
+  action_1 # commandes
+done
+
+# Equivalent de while ! [ condition ]
+```
+
+*Exemple* 
+```bash
+until [[ -n "$age" ]] ; do # Jusqu'à ce que $age soit non nul
+	read -p "Saisissez vôtre age : " age # demander l'age + lire entrée utilisateur
+	 done # fin de la boucle 
+```
+
+La boucle infinie est également possible mais avec l'utilisation de false à la place de true.
+
+### La boucle for (pour)
+La boucle `for` en Bash est utilisée pour faire des **itérations sur des listes, des fichiers, des plages numériques, etc.**
+Elle peut boucler : 
+- Pour un ensemble de valeurs à traiter
+- Un nombre de fois prédéterminé 
+La boucle for récupère les séparateurs de champs définis dans ``IFS ``pour déterminer les valeurs à prendre en compte. 
+
+``IFS`` est une variable spéciale super importante en Bash pour gérer les séparateurs.
+
+Par défaut, `IFS` contient : `" \t\n"` — soit un **espace**, une **tabulation**, et un **saut de ligne**.
+
+Cela signifie que, lorsqu’une chaîne est analysée (par exemple avec une boucle `for` ou une commande `read`), **chaque mot séparé par l’un de ces caractères sera traité comme une valeur distincte**. 
+
+Pour éviter cela (par exemple pour garder des expressions avec des espaces comme `"petit exemple"`), on peut les entourer de guillemets, ou **modifier la valeur de `IFS`** pour définir un séparateur personnalisé, comme `:` ou `,`.
+
+Syntaxe simple : 
+```bash
+for var in valeur1 valeur2 valeur3 
+# la variable $var contiendra valeur1 au 1er tour, puis valeur2 au 2eme, puis valeur3 au 3eme.
+do
+  action 1 # commande(s)
+done
+```
+
+Exemple simple (liste de valeur) : 
+```bash 
+for fruit in pomme banane "orange mur" ; do
+  echo "J'aime les $fruit"
+done
+
+# Donnera : 
+# > J'aime les pomme
+# > J'aime les banane
+# > J'aime les orange mur  # Ici l'expression entre " " est regroupée*
 ```
 
 
+Exemple avec plage numétique 
+```bash
+for i in {1..5} ; do # permettra l'incrémentation de i à chaque tour de 1 à 5
+  echo "Compteur : $i" # afficher à la suite 1 2 3 4 5
+done
+
+
+for i in {0..10..2} ; do
+# permettra l'incrémentation de i à chaque tour de 0 à 10 avec un pas de 2 
+  echo "Pair : $i"
+done
+```
+
+
+### Utilisation cumulée de while et read
+Combiner `**while**` et `**read**` est une technique **classique en Bash  pour : 
+- **lire un fichier ligne par ligne**
+- traiter distinctement les champs de chaque ligne
+- **interagir avec l'utilisateur** 
+- traiter des flux.
+
+#### Utilisation pour lire le contenu d'un fichier
+Soit un fichier avec trois colonnes. Je souhaite afficher ligne par ligne son contenu.
+
+| thouin   | Frederic | Linux   |
+| -------- | -------- | ------- |
+| brossier | Gilles   | Windows |
+Si je veux lire toute les lignes avec une boucle for : 
+```bash
+for var in $(cat fichier.txt) ; do
+    echo "$var"
+done
+# thouin
+# Frédéric
+# linux
+# brossier
+# Gilles
+# windows
+```
+
+La boucle fort considèrera chaque IFS comme un séparateur et me restituera mot par mot.
+
+En utilisant uniquement la boucle while
+```bash
+while read nom prenom suite ; do # lecture de 3 valeurs séparée 
+	echo "$prenom $nom" # Affiche les valeurs de $prenom et $nom
+	done < fichier.txt # redirige le resultat du fichier sur read*
+# Frederic thouin
+# Gilles brossier
+```
+
+`done < fichier.txt` signifie que **le contenu du fichier est lu ligne par ligne par la boucle**, et **chaque ligne est transmise à la commande `read`** comme si elle venait du clavier (stdin).
+En résumé simple :
+- `read` lit une ligne.
+- `do` exécute le bloc de code.
+- `done` marque la fin du bloc.
+- `< fichier.txt` connecte **le fichier au flux d'entrée (stdin)** de la boucle.
+- La boucle recommence tant qu’il y a des lignes dans le fichier.
+
+#### Utilisation pour lire une redirection d'entrée
+Pour utiliser le résultat de la commande en tant que flux d'entrée ou pour effectuer un traitement au fichier avant la boucle while read, on utilise la syntaxe suivante : 
+
+```bash
+while read nom prenom reste ; do
+	echo "$prenom $nom"
+	done < <(cat Edition)
+```
+< <(commande) # > *Lis le résultat de la commande comme s’il venait d’un fichier.
+done < <(cat Edition) # **Lis le contenu du fichier `Edition` ligne par ligne**, et **passe-le à la boucle**.
+Dans cet exemple done < <(cat Edition.txt) = done < Edition.txt
+
+```bash
+while read ligne
+do
+    echo "Ligne : $ligne"
+done < <(grep "linux" Edition) # N'affichera que les lignes avec linux
+```
+Ce script :
+- filtre seulement les lignes contenant "linux"
+- les traite une à une dans la boucle
+
+#### Utilisation d'une seconde commande read dans while read
+
+La commande `read` utilisée avec `while` a pour **flux d’entrée** le **flux `stdin`** (généré par la commande avant le pipe).
+**Ce flux n’est donc pas exploitable par un second `read`**.
+- Pour utiliser un **second `read`**, il faut **rediriger son flux d’entrée standard depuis `/dev/tty`**, qui est le **terminal physique (clavier)** 
+
+```bash
+cat fic | while read nom; do                  # Alternatif : while read nom ; do
+    if [[ "$nom" = toto ]]; then
+        echo "$nom"
+        read -p "message : " choix </dev/tty
+        echo "$choix"
+    fi
+done                                          # Alternatif : done < fic
+```
+
+Lorsque la commande de base est séparée par un |, comme ici cat fic |, la suite de la commande est traitée comme un sous-shell (donc avec perte de variable ...). Donc ici le bloc while sera dans un sous-shell. 
+
+*Exemple pour mieux comprendre *
+```bash 
+cat fic | while read ligne; do # Entrée de while dans un sous-shell
+    ma_var="$ligne"            # affectation faite dans le sous-shell
+done                           # Sortie du sous-shell
+
+echo "ma_var = $ma_var"        # ❌ vide ou non défini
+```
+
+```bash
+while read ligne; do           # Entrée de while dans le shell courant
+    ma_var="$ligne"            # affectation faite dans le shell
+done < fic
+
+echo "ma_var = $ma_var"        # ✅ fonctionne
+```
+
+
+
+
+
+
+# Exemple de script 
+
+## Module 7, TP1
 ```bash
 #!/bin/bash
-# TP M6
-# Script d'enchaînement conditionnel
-# Author : YMU
-# Update : 16.04.2025
 #
+# TP1 du module 7, la boucle for
+#
+# Author : YMU
+# Created : 18.04.2025
+# Update : 18.04.2025
+# Version : 1.0
+#
+# Debut du script
 
-nbarg=$# # Donne le nombre d'argument à la variable $nbarg
+fic=$1                            # Entrée utilisateur
+list=$(find $fic -type f)         # Cherche les fichiers présents dans $fic
+tf=$(find $fic -type f |wc -l)    # Nombre totale de fichier dans $fic
+red='\033[1;31m'                  # Couleur rouge
+NC='\033[0m'                      # No color
+ext=$fic"/ext.txt"                # Chemin du fichier d'extention à créer
 
-#test nbarg > 1
+# Vérification de l'argument entré par l'utilisateur
+if [[ $# -ne 1 ]] ; # Vérifie que l'utilisateur n'a pas rentré de champ vide
+    then
+    echo "Merci de rentrer le chemin complet du dossier à analyser sous la forme"
+    echo ""
+    echo "/home/user01/dossier_à_analyser"
+    exit 1
 
-if [[ $nbarg -gt 1 ]]; then
-
-        echo -e " Le script $0 s'utilise avec le nom d'utilisateur comme argument  :\n$0 \033[1;34m<nom>\033[0m "
-        exit 1
-fi # Fin de boucle nbarg > 1
-
-#test nbarg = 1
-if [[ $nbarg -eq 0 ]]; then
-                read -p "Merci de saisir votre nom d'utilisateur : " nom trash #variable trash présente pour récupérer les frappes supplémentaires
-
-				if [[ -z $nom ]] ; then # -z $nom => Vérifie si $nom est vide
-                        nom="invité"
-                fi
-        else
-                nom=$1
+# Vérifie que le chemin spécifié par l'utilisateur est valide
+elif [[ ! -d "$fic" ]] ; then   
+    echo "Erreur : $fic n'est pas un répertoire valide"
+    exit 1
+else
+    echo -e "Le nombre de fichier total dans $red $fic $NC est de $red $tf $NC"
 fi
 
-# test nom = root
+# Condition de création du fichier d'extension
 
-if [[ $nom == root ]]; then
+# Vérifie si le fichier $ext n'existe pas (-f = fichier)
+if [[ ! -f $ext ]] ; then  
+	  # non existance = création + suite du script
+	  echo "Fichier ext.txt non existant, création en cours" 
+      touch $ext
 
-        echo -e "\033[1;31;41mUtilisation de l'utilisateur $nom interdit!\033[0m."
+      else
+	  # Existance = suite du script
+      echo "Fichier ext.txt déjà existant"            
+fi  
 
-        exit 4 # Fin avec erreur 
-fi # Fin de boucle nom = root
 
-# test nom = invité
+for fichier in $list ; do               # Pour tous les fichiers dans $list
+    if [[ $fichier == *.* ]]; then      # Si il possède nom_._nom
+        # Supression de tout ce qui est avant le premier . = extension
+        extension="${fichier##*.}"      
+        echo "$extension"               # Echo de l'extension
+    fi
+    # Redirection de l'echo dans $ext + triage + supression des doublons
+done |sort |uniq > "$ext"               
 
-if [[ $nom == "invité" ]]; then
+  
+for ext in $(cat $ext) ; do # Pour toute les lignes dans le fichier $ext
 
-                echo "Vous avez été redirigé sur le compte invité"
-        else
-                echo "Bonjour $nom, bienvenue sur la machine $HOSTNAME "
+    echo ""
+    echo "===================="
+    echo -e " Fichier de type $red$ext$NC"   # Afficher en rouge l'extention
+    echo "===================="
+    
+   # Variable qui compte le nombre de fichier de l'extention $ext
+    nb_ext=$(find $fic -type f -wholename "*.$ext" |wc -l)  
 
-fi # Fin de boucle nom = invité 
+	# Calcule du nombre de fichier de l'extension dans $fic / nombre total de fichier dans $fic *100 en %.
 
-echo "Fin du script"
-exit 0
-# Fin du script
+	# Affiche le nombre de fichier du type de l'extension
+    echo -e "il y a $red$nb_ext$NC fichiers de type $red$ext$NC" 
+
+	# Calcule le pourcentage
+    pourcentage=$(( nb_ext * 100 / tf ))
+
+	# Affiche les informations
+    echo -e "L'extention $red$ext$NC représente $red$pourcentage%$NC total des fichiers"
+done
+
+    rm ./ext.txt     # Suppression du fichier contenant les extansions 
+    exit 0           # Fin du script 
+
 ```
 
