@@ -13,6 +13,15 @@ Ce site rassemble des **résumés de cours**, des **fiches pratiques** et des **
 - VLAN, Trunking, Routage
 - NAT, VTY, RIP…
 
+### 🐧 Commandes système essentielles Linux
+- Commandes de base (`ip`, `who`, `date`, `cd`, `ls`, `mkdir`, etc.)
+- Navigation dans les répertoires, affichage de fichiers, gestion des permissions
+- Redirections de flux (stdout, stderr), `tee`, `jobs`, `bg`, `fg`, etc.
+- Compression et décompression (`tar`, `gzip`, etc.)
+- Commandes de recherche (`grep`, `find`)
+- Utilisation de `sed` et `awk`
+- Métacaractères Shell et expressions régulières
+
 ### 🔐 CyberSécurité
 - Protocoles
 - Bonnes pratiques
@@ -28,7 +37,6 @@ Ce site rassemble des **résumés de cours**, des **fiches pratiques** et des **
 - Active Directory, GPO
 - DNS, DHCP, AD
 - PowerShell de base
-
 
 ### 📜 Scripting Bash
 - Les algorithmes 
