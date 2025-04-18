@@ -116,7 +116,9 @@ Options courantes :
 - ``-f`` : Force la création du lien en supprimant un lien existant au même emplacement.
 - ``-i`` : Demande confirmation avant d'écraser un lien existant.
 - ``-t`` : Indique le répertoire cible où le lien doit être créé.
+- 
 ![Illustration](images/Les_Principales_commandes_2.png)
+
 
 *Exemple pour créer un lien symbolique vers un répertoire :*
 ```bash
