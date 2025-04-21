@@ -1004,4 +1004,45 @@ done
 
 ```
 
- 
+ ## Module 7, TP2
+ ```bash
+#!/bin/bash
+#
+# MODULE 7 - TP 2
+# Boucle while - read
+#
+# Creation 21.04.2025
+# Author : YMU
+# Update : 21.04.2025
+# Version : 1
+#
+# Début du script
+
+user=$1
+red='\033[1;31m' # Formatage en rouge
+NC='\033[0m' # Sans formatage
+OLD_IFS="$IFS"   # Sauvegarde de la valeur de IFS
+IFS=":"    # Modification de la valeur de IFS pour prendre les : comme séparateur
+
+# Récupération des variables dans le fichier /etc/passwd
+while read u_nom u_passwd u_UID u_GID desc u_home u_shell ; do
+    echo ""
+    echo "======================================="
+    echo -e "== Information sur l'utilisateur $red$u_nom$NC"
+    echo "======================================="
+    echo ""
+
+[[ -n $u_nom ]] && echo -e "Nom : $red$u_nom$NC"
+[[ -n $u_passwd ]] && echo -e "Mot de passe : $red$u_passwd$NC"
+[[ -n $u_UID ]] && echo -e "User UID : $red$u_UID$NC"
+[[ -n $u_GID ]] && echo -e "User GID : $red$u_GID$NC"
+[[ -n $desc ]] && echo -e "Description : $red$desc$NC"
+[[ -n $u_home ]] && echo -e "Chemin du répertoire home : $red$u_home$NC"
+[[ -n $u_shell ]] && echo -e "Shell de l'utilisateur : $red$u_shell$NC"
+    echo ""
+done < <(cat /etc/passwd) # Fichier à analyser
+
+# Fin du script
+IFS="$OLD_IFS"                              # Rétablissement de la valeur IFS par défaut
+
+```
