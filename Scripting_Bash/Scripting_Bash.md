@@ -995,7 +995,11 @@ func_accueil "Jean" "Dupont"
 
 
 
-## Module 7, TP1
+
+
+## Exemples de script
+
+### Module 7, TP1
 ```bash
 #!/bin/bash
 #
@@ -1082,7 +1086,8 @@ done
 
 ```
 
- ## Module 7, TP2
+### Module 7 - TP2
+ 
  ```bash
 #!/bin/bash
 #
@@ -1122,5 +1127,115 @@ done < <(cat /etc/passwd) # Fichier à analyser
 
 # Fin du script
 IFS="$OLD_IFS"                              # Rétablissement de la valeur IFS par défaut
+
+```
+
+### Module 8 - TP1 
+#### fonction.sh
+
+```bash 
+#!/bin/bash
+#
+# MODULE 8 - TP 1
+#
+# Author : YMU
+# Created : 22.04.2025
+# Update : 22.04.2025
+# Version 1
+#
+# Début du script
+
+# Fonction de sauvegarde
+fonction_save() {
+    ls $PWD |grep .sh > ./listfic # list les fichiers .sh et > listfic (temporaire)
+# Pour chaque ligne dans listfic, vérifi l'existance et copie en .save
+    for fic in $(cat ./listfic) ; do
+        [[ -n $fic ]] && cp ./$fic ./$fic.save
+        echo "Votre fichier $fic a été sauvegardé en $fic.save"
+    done
+    rm ./listfic #Supprime listfic
+}
+
+# Fonction de suppression
+fonction_delect() {
+# Pour chaque fichier *.save supprime
+    for del in $(ls ./ |grep .save) ; do
+        rm $del
+        echo "Votre fichier $del a été supprimé"
+    done
+}
+
+# Fonction de listing
+fonction_list() {
+    red="\033[1;31m"
+    green="\033[1;32m"
+    NC="\033[0m"
+# Controle l'existance d'un fichier $list.save
+    for list in $(ls *.sh) ; do
+        if [[ ! -e $list.save ]]; then
+            echo -e "$red Le fichier $list n'est pas sauvegardé $NC"
+        else
+            echo -e "$green Le fichier $list est sauvegardé en $list.save $NC"
+        fi
+    done
+}
+# Fin de script
+```
+
+#### fonction.fonc
+```bash 
+#!/bin/bash
+#
+#
+# MODULE 8 - TP 1
+#
+# Script de test de fonction
+# Author : YMU
+# Created : 22.04.2025
+# Updated : 22.04.2025
+# Version 1
+#
+# Debut du script
+
+source /home/user01/scripts/fonctions/fonction.sh # Source du fichier fonction
+
+while true; do # Bouclage infinit du menu pour executer plusieurs opérations
+
+# Menu
+echo ""
+echo "Menu"
+echo "1. Lister les fichiers disposants d'une sauvegarde"
+echo "2. Sauvegarder les fichiers .sh en .save"
+echo "3. Supprimer les fichiers de sauvegarde .save"
+echo "4. Quitter le menu"
+
+echo ""
+echo ""
+# lecture du choix du menu
+read -p "Que souhaitez-vous faire ? " choix
+echo ""
+case $choix in
+    1) echo "Vous avez choisit de lister les fichiers"
+       echo "===== Listing des fichiers ====="
+       fonction_list # Appel fonction listing
+       echo "===== Fin du listing ====="
+       ;;
+    2) echo "Vous avez choisit de sauvegarder les fichiers"
+       echo "===== Sauvegarde des fichiers ====="
+       fonction_save # Appel fonction sauvegarde
+       echo "===== Fin de la sauvegarde ====="
+       ;;
+    3) echo "Vous avez choisit de supprimer les sauvegardes"
+       echo "===== Suppression en cours ====="
+       fonction_delect # Appel fonction suppression
+       echo "===== Suppression effectuée ====="
+       ;;
+    4) echo "Fin du programme"
+       exit 0
+       ;;
+    *) echo "Choix invalide" ;;
+esac
+
+done
 
 ```
