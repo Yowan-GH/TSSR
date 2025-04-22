@@ -130,12 +130,14 @@
 
   <script>
     window.$docsify = window.$docsify || {};
-    window.$docsify.plugins = [].concat((hook, vm) => {
-      hook.doneEach(() => {
-        Prism.highlightAll();
+    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
+      hook.doneEach(function () {
+        if (window.Prism) {
+          Prism.highlightAll();
+        }
       });
-    }, window.$docsify.plugins || []);
+    });
   </script>
   
-</body>
+  </body>
 </html>
