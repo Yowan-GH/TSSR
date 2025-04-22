@@ -911,11 +911,89 @@ echo "ma_var = $ma_var"        # ✅ fonctionne
 ```
 
 
+## Les fonctions
+
+Les fonctions permettent de regrouper plusieurs commandes qui pourront être exécutées de façon régulière durant le script. 
+
+Il est conseillé de mettre un préfixe minuscule aux fonctions "function_ ou func_".
+Cela permet de lire plus facilement un script.
+
+La mise en œuvre des fonctions se fait en deux étapes : 
+- Déclaration de la fonction et de son contenu
+- Appel à la fonction
+
+Les déclarations de fonctions peuvent être stockées dans un fichier séparé du script pour être utilisables cross-script. 
+
+Les fonctions peuvent être invoquées avec des paramètres, comme les commandes et les scripts. 
+
+Syntaxe : 
+```bash
+fonction_name()
+{
+Actions 
+}
+```
+
+Déclaration dans un script
+```bash
+#!/bin/bash
+
+func_infos() {
+    echo "Informations sur la distribution utilisée"
+    lsb_release -dric
+}
+
+# Afficher les infos sur l’OS
+func_infos # Appel de la commande func_infos
+```
+
+Les fonctions peuvent intégrer des paramètres et des variables. 
+*Exemple :*
+```bash
+!/bin/bash
+
+func_accueil () {
+    echo "Message d’accueil :"
+    echo "Bonjour $1 $2"
+    echo "Bienvenue sur la machine $HOSTNAME"
+}
+
+read -p "Entrez votre prénom nom (ex Marc Dubois) : " prenom nom
+func_accueil "$prenom" "$nom"
+```
+
+Il est préférable d'appeler les paramètres $1 et $2 plutôt que les $nom $prénom car le script est plus réutilisable. C'est une bonne pratique de Scripting
+
+Lors de la déclaration de la fonction **dans un fichier indépendant.**
+Pour cela, on utilise la commande ``source`` ou "``.``" (point), afin que le contenu de ce fichier soit interprété dans l'environnement  courant. 
+
+Le fichier de fonction n'a pas besoin d'être exécutable mais seulement lisible. 
+```bash
+#!/bin/bash
+
+func_accueil() {
+    echo "Message d’accueil :"
+    echo "Bonjour $1 $2"
+    echo "Bienvenue sur la machine $HOSTNAME"
+}
+```
+
+```bash
+#!/bin/bash
+
+# Importer les fonctions du fichier externe
+source /scripts/fonctions.sh
+# ou bien : . /scripts/fonctions.sh
+
+# Appel de la fonction définie dans l’autre fichier
+func_accueil "Jean" "Dupont"
+```
 
 
 
 
-# Exemple de script 
+
+
 
 ## Module 7, TP1
 ```bash
