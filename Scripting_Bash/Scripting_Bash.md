@@ -148,7 +148,7 @@ Si l'**expression** contient des caractères spéciaux, il faut la protéger ave
 On peut de plus utiliser des options de mise en forme :
 
 - `\c` : inhibe le changement de ligne en fin de commande
-- \n` : nouvelle ligne
+- ``\n`` : nouvelle ligne
 - `\t` : tabulation horizontale
 - `\\` : le caractère `\`
 
@@ -157,7 +157,7 @@ On peut de plus utiliser des options de mise en forme :
 La commande `exit` est utilisée pour **arrêter** un script (ou un programme).
 
  Syntaxe :
-`exit [n]
+``exit [n]``
 
 L'expression **``n``** est la valeur retournée au shell père dans la variable ``$?``
 
@@ -1240,4 +1240,4 @@ done
 
 ```
 
-Updated : 22.04.2025 - 10 : 53
+Updated : 22.04.2025 - 10 : 58
