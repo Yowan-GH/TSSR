@@ -4,45 +4,41 @@
   <meta charset="UTF-8">
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
-   
-  
-  <!--  CSS pour les titres rétractables  -->
+
+  <!-- Style collapsible -->
   <style>
     .collapsible-title::before {
       content: "▶ ";
       display: inline-block;
-      font-size: 0.7em;       /* taille plus petite */
-      margin-right: 0.4em;    /* espace après la flèche */
+      font-size: 0.7em;
+      margin-right: 0.4em;
       transition: transform 0.2s;
     }
-  
     .collapsible-title.open::before {
       transform: rotate(90deg);
     }
-  
     .collapsible-title {
       color: #ffcc00;
       margin-bottom: 0.3em;
     }
-  
     .collapsible {
       padding-left: 1em;
       border-left: 1px dashed #444;
     }
+    pre code[class^="language-"] {
+      display: block;
+      overflow-x: auto;
+      padding: 1em;
+    }
   </style>
-
-  <!-- Prism.js for syntax highlighting (bash + shell) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
-  
 </head>
 <body>
   <div id="app">Chargement…</div>
+
+  <!-- Config Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
@@ -73,63 +69,62 @@
         }
       }
     };
-  </script>  
+  </script>
 
-
-<script> // Fonction de retractation des titres/sous titre ...
-  window.$docsify = window.$docsify || {};
-  window.$docsify.plugins = [].concat(function (hook, vm) {
-    hook.doneEach(function () {
-      const headings = document.querySelectorAll('h2, h3');
-
-      headings.forEach(h => {
-        if (h.nextElementSibling && !h.nextElementSibling.classList.contains('collapsible')) {
-          const wrapper = document.createElement('div');
-          wrapper.classList.add('collapsible');
-          wrapper.style.display = 'none';
-
-          let next = h.nextElementSibling;
-          while (next && !/^H[1-3]$/.test(next.tagName)) {
-            const temp = next.nextElementSibling;
-            wrapper.appendChild(next);
-            next = temp;
+  <!-- Collapsible titles plugin -->
+  <script>
+    window.$docsify = window.$docsify || {};
+    window.$docsify.plugins = [].concat(function (hook, vm) {
+      hook.doneEach(function () {
+        const headings = document.querySelectorAll('h2, h3');
+        headings.forEach(h => {
+          if (h.nextElementSibling && !h.nextElementSibling.classList.contains('collapsible')) {
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('collapsible');
+            wrapper.style.display = 'none';
+            let next = h.nextElementSibling;
+            while (next && !/^H[1-3]$/.test(next.tagName)) {
+              const temp = next.nextElementSibling;
+              wrapper.appendChild(next);
+              next = temp;
+            }
+            h.parentNode.insertBefore(wrapper, next);
+            h.classList.add('collapsible-title');
+            h.style.cursor = 'pointer';
+            h.onclick = () => {
+              wrapper.style.display = (wrapper.style.display === 'none') ? 'block' : 'none';
+            };
           }
-
-          h.parentNode.insertBefore(wrapper, next);
-          h.classList.add('collapsible-title');
-          h.style.cursor = 'pointer';
-          h.onclick = () => {
-            wrapper.style.display = (wrapper.style.display === 'none') ? 'block' : 'none';
-          };
-        }
+        });
       });
-    });
-  }, window.$docsify.plugins || []);
-</script>
+    }, window.$docsify.plugins || []);
+  </script>
 
+  <!-- Cache-buster pour .md -->
+  <script>
+    const originalFetch = window.fetch;
+    window.fetch = function(input, init) {
+      if (typeof input === 'string' && input.endsWith('.md')) {
+        const cacheBuster = Date.now();
+        input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
+      }
+      return originalFetch(input, init);
+    };
+  </script>
 
-<script>   // Fonction pour ajouter un cache-buster aux requêtes .md
-
-  const originalFetch = window.fetch;
-  window.fetch = function(input, init) {
-    if (typeof input === 'string' && input.endsWith('.md')) {
-      const cacheBuster = Date.now(); // timestamp unique
-      input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
-    }
-    return originalFetch(input, init);
-  };
-</script> 
-
-
-  <!-- Core Docsify -->
+  <!-- Docsify Core -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-
-  <!-- Plugins -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
+  <!-- Prism.js for syntax highlighting (bash + shell) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
+
+  <!-- Activation Prism après rendu -->
   <script>
-    window.$docsify = window.$docsify || {};
     window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
       hook.doneEach(function () {
         if (window.Prism) {
@@ -138,6 +133,5 @@
       });
     });
   </script>
-  
-  </body>
+</body>
 </html>
