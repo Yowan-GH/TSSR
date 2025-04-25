@@ -28,18 +28,25 @@
   </style>
 
   <!-- Fleche accordéon -->
-<style> 
-  .app-sub-sidebar li > a:before {
-    content: "▸";
-    display: inline-block;
-    transform: rotate(0deg);
-    transition: transform 0.2s ease;
-    margin-right: 6px;
-  }
-  .app-sub-sidebar li.open > a:before {
-    transform: rotate(90deg);
-  }
-</style>
+  <style>
+    /* Supprime le tiret par défaut */
+    .app-sub-sidebar li {
+      list-style-type: none;
+    }
+  
+    /* Ajoute une flèche avant les éléments qui se replient */
+    .app-sub-sidebar li > a:before {
+      content: "▸";
+      display: inline-block;
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+      margin-right: 6px;
+    }
+  
+    .app-sub-sidebar li.open > a:before {
+      transform: rotate(90deg);
+    }
+  </style>
 
 </head>
 <body>
