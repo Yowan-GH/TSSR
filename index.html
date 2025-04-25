@@ -18,7 +18,7 @@
     /* ========== VARIABLES GÉNÉRALES DU THEME ========== */
     :root {
       /* Couleur principale utilisée pour le vert (liens actifs, titres, etc.) */
-      --theme-color: #00cc66;
+      --theme-color: #09914d;
     
       /* ====  Sidebar ==== */
       --sidebar-background: 81818#1;         /* Couleur de fond de la sidebar */
@@ -37,12 +37,11 @@
       --base-font-family: 'Segoe UI', sans-serif;  /* Police principale */
     
       /* ====  Code (inline et blocs) ==== */
-      --code-inline-background: #003322;     /* Fond pour `code inline` */
-      --code-block-background: #002611;      /* Fond pour les blocs ```code``` */
+      --code-inline-background: #434444;     /* Fond pour `code inline` */
+      --code-block-background: #252525;      /* Fond pour les blocs ```code``` */
     }
     
-    
-    /* ==========  STYLE DE LA SIDEBAR ========== */
+        /* ==========  STYLE DE LA SIDEBAR ========== */
     .sidebar {
       border-right: 2px dashed var(--sidebar-border-color);  /* Bordure pointillée verte à droite de la sidebar */
     }
@@ -85,7 +84,7 @@
 
   <script>
     window.$docsify = {
-      name: 'TSSR',
+      name: 'Menu',
       repo: '',
       loadSidebar: true,
       subMaxLevel: 2,
@@ -94,7 +93,7 @@
       homepage: 'README.md',
       search: {
         maxAge: 86400000,
-        placeholder: '🔍 Search...',
+        placeholder: 'Search...',
         noData: '404 Not Found',
         depth: 4,
         paths: 'auto',
