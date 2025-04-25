@@ -1,99 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Thème clair/sombre -->
+  <!-- Feuille de style du thème sombre/clair de Docsify -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-    <!-- Accordéons -->
+  <!-- Thème personnalisé de type "Hacker" -->
   <style>
-    .sidebar-nav li.has-submenu > ul {
-      display: none;
-      margin-left: 1em;
+    :root {
+      --base-font-family: 'Courier New', monospace;
     }
-    .sidebar-nav li.has-submenu.open > ul {
-      display: block;
+
+    /* Couleurs et polices pour le thème sombre */
+    body[data-theme="dark"] {
+      background-color: #101010 !important;
+      color: #e0e0e0 !important;
     }
-    .sidebar-nav li.has-submenu > a:after {
-      content: ' ▸';
-      float: right;
-      transition: transform 0.3s ease;
+
+    body[data-theme="dark"] .markdown-section {
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
     }
-    .sidebar-nav li.has-submenu.open > a:after {
-      transform: rotate(90deg);
+
+    /* Couleur verte fluo pour les titres */
+    body[data-theme="dark"] .markdown-section h1,
+    body[data-theme="dark"] .markdown-section h2,
+    body[data-theme="dark"] .markdown-section h3,
+    body[data-theme="dark"] .markdown-section h4,
+    body[data-theme="dark"] .markdown-section h5,
+    body[data-theme="dark"] .markdown-section h6 {
+      color: #b6ff40 !important;
+    }
+
+    /* Couleur vert néon pour les liens */
+    body[data-theme="dark"] a {
+      color: #00ff90 !important;
+    }
+
+    /* Fond de la sidebar et bordure pointillée */
+    body[data-theme="dark"] .sidebar {
+      background-color: #141414 !important;
+      border-right: 1px dashed #00ff90;
+    }
+
+    /* Couleur des liens dans la sidebar */
+    body[data-theme="dark"] .sidebar a {
+      color: #00ff90 !important;
+    }
+
+    /* Couleur de surbrillance à la sélection de texte */
+    ::selection {
+      background: #00ff90;
+      color: #000;
     }
   </style>
-
-  <!-- Fleche accordéon -->
-  <style>
-    /* Supprime le tiret par défaut */
-    .app-sub-sidebar li {
-      list-style-type: none;
-    }
-  
-    /* Ajoute une flèche avant les éléments qui se replient */
-    .app-sub-sidebar li > a:before {
-      content: "▸";
-      display: inline-block;
-      transform: rotate(0deg);
-      transition: transform 0.2s ease;
-      margin-right: 6px;
-    }
-  
-    .app-sub-sidebar li.open > a:before {
-      transform: rotate(90deg);
-    }
-  </style>
-
 </head>
 <body>
+  <!-- Conteneur Docsify -->
   <div id="app">Chargement…</div>
 
-  <!-- Config Docsify -->
+  <!-- Configuration principale Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
-      loadSidebar: true,
-      loadNavbar: false,
-      subMaxLevel: 3,  // Niveau initial affiché
-      maxLevel: 3,
-      sidebarDisplayLevel: 1,
-      search: { // Personnalisation barre de recherche
-        maxAge: 86400000,
+      loadSidebar: true,               // Charge le fichier _sidebar.md
+      loadNavbar: false,               // Pas de barre de navigation supérieure
+      subMaxLevel: 3,                  // Niveau max d'affichage des titres dans la sidebar
+      maxLevel: 3,                     // Profondeur max de parsing des titres dans les fichiers
+      homepage: 'README.md',          // Page d'accueil par défaut
+      sidebarDisplayLevel: 1,         // Niveau d'affichage initial dans la sidebar
+      search: {
+        maxAge: 86400000,             // Cache de la recherche (en ms)
         placeholder: '🔍 Rechercher...',
-        noData: 'Aucun résultat trouvé',
-        depth: 4,  // Valeur pour indexer plus de niveaux
-        paths: 'auto',  // Important pour le mode multi-page
-        hideOtherSidebarContent: false  // Permet de voir tous les résultats
+        noData: '⚠️ Aucun résultat trouvé',
+        depth: 4,                     // Profondeur de la recherche dans les titres
+        paths: 'auto',                // Recherche sur toutes les pages du site
+        hideOtherSidebarContent: false
       },
       darklightTheme: {
         defaultTheme: 'dark',
-        siteFont: 'Source Sans Pro',
-        codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
+        siteFont: 'Courier New, monospace',
+        codeFontFamily: 'Courier New, monospace',
         bodyFontSize: '17px',
         dark: {
-          background: '#1c1e22',
+          background: '#101010',
           textColor: '#e0e0e0',
-          linkColor: '#42b983',
-          codeBackgroundColor: '#2d2d2d',
-          sidebarBackground: '#202124',
+          linkColor: '#00ff90',
+          codeBackgroundColor: '#1f1f1f',
+          sidebarBackground: '#141414'
         },
         light: {
           background: '#ffffff',
-          textColor: '#34495e',
-          linkColor: '#42b983',
+          textColor: '#333333',
+          linkColor: '#00aa66',
           codeBackgroundColor: '#f8f8f8',
-          sidebarBackground: '#f6f8fa',
+          sidebarBackground: '#f6f8fa'
         }
       }
     };
   </script>
 
-  <!-- Cache-buster pour .md -->
+  <!-- Permet de forcer le rechargement des fichiers Markdown (évite le cache navigateur) -->
   <script>
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
@@ -105,57 +116,17 @@
     };
   </script>
 
-  <!-- Docsify Core -->
+  <!-- Scripts Docsify de base -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Prism.js for syntax highlighting (bash + shell) -->
+  <!-- Coloration syntaxique avec Prism.js -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
 
-  <!-- Activation Prism après rendu -->
+  <!-- Réactivation automatique de Prism après chaque chargement de page -->
   <script>
-    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
-      hook.doneEach(function () {
-        if (window.Prism) {
-          Prism.highlightAll();
-        }
-      });
-    });
-  </script>
-
-
-<!-- Activation pluggin accordéon -->
-<script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-
-
-
-<script>
-  // Plugin accordéon : ignore les liens directs, ne gère que les blocs avec sous-éléments
-  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook) {
-    hook.doneEach(function () {
-      const sidebar = document.querySelector('.sidebar-nav');
-      if (!sidebar) return;
-
-      sidebar.querySelectorAll('li').forEach(li => {
-        const sub = li.querySelector('ul');
-        const anchor = li.querySelector('a');
-        // n’applique l’accordéon que si l’élément n’a pas de lien réel
-        if (sub && (!anchor || anchor.getAttribute('href') === 'javascript:void(0)')) {
-          li.classList.add('has-submenu');
-          li.addEventListener('click', function (e) {
-            if (e.target.tagName.toLowerCase() === 'a') return;
-            e.stopPropagation();
-            this.classList.toggle('open');
-          });
-        }
-      });
-    });
-  });
-</script>
-
-</body>
-</html>
+    window.$docsify.plugins = (window
