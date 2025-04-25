@@ -105,18 +105,23 @@
     });
   </script>
 
+
+
+
 <script>
-  // Plugin pour accordéon dans la sidebar
-  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
-    hook.doneEach(function() {
+  // Plugin accordéon : ignore les liens directs, ne gère que les blocs avec sous-éléments
+  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook) {
+    hook.doneEach(function () {
       const sidebar = document.querySelector('.sidebar-nav');
       if (!sidebar) return;
 
       sidebar.querySelectorAll('li').forEach(li => {
         const sub = li.querySelector('ul');
-        if (sub) {
+        const anchor = li.querySelector('a');
+        // n’applique l’accordéon que si l’élément n’a pas de lien réel
+        if (sub && (!anchor || anchor.getAttribute('href') === 'javascript:void(0)')) {
           li.classList.add('has-submenu');
-          li.addEventListener('click', function(e) {
+          li.addEventListener('click', function (e) {
             if (e.target.tagName.toLowerCase() === 'a') return;
             e.stopPropagation();
             this.classList.toggle('open');
