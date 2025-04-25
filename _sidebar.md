@@ -11,7 +11,7 @@
 	- [Switches VLAN Trunk](/IOS_CISCO/Switches-VLAN-Trunk.md)
 
 - 🐧 Linux - Bases
-	- [AWK Anaylser de texte](/Linux_Bases/AWK-Anaylser-de-texte.md)
+	- [AWK Anaylser de texte](/Linux_Bases/AWK-Analyseur-de-texte.md)
 	- [FIND Recherche de fichier](/Linux_Bases/FIND-Recherche-de-fichier.md)
 	- [Gestion des processus](/Linux_Bases/Gestion-des-processus.md)
 	- [GREP Recherche dans un fichier](/Linux_Bases/GREP-Recherche-dans-un-fichier.md)
