@@ -1,92 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSSR - Yowan-GH</title>
+
+  <!-- Thème sombre Docsify -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css">
 
   <!-- Thème Prism.js (coloration syntaxique) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-    :root {
-      --theme-color: #33ff33;
-    }
-
-    body {
-      background-color: black;
-      color: var(--theme-color);
-      font-family: "Courier New", Courier, monospace;
-    }
-
-    a {
-      color: var(--theme-color);
-      text-decoration: underline;
-    }
-
-    a:hover {
-      color: #00ff00;
-      text-decoration: none;
-    }
-
-    /* Sidebar style fix */
-    .sidebar {
-      background-color: #111 !important;
-      border-right: 1px solid var(--theme-color);
-      padding: 20px;
-      width: 300px;
-    }
-
-    .sidebar ul {
-      padding-left: 0;
-    }
-
-    .sidebar a {
-      color: var(--theme-color);
-    }
-
-    .sidebar a:hover {
-      color: #00ff00;
-    }
-
-    /* Contenu principal */
-    section.content {
-      background-color: black;
-      color: var(--theme-color);
-      padding: 20px;
-    }
-
-    /* Accueil bouton */
-    [href="#/"] {
-      background: #111;
-      padding: 8px 12px;
-      border-radius: 4px;
-      color: var(--theme-color);
-      text-decoration: none;
-      border: 1px solid var(--theme-color);
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 100;
-    }
-
-    [href="#/"]:hover {
-      background: var(--theme-color);
-      color: black;
-    }
-
-    /* Glow effect (facultatif) */
-    body, .sidebar, a, [href="#/"], section.content {
-      text-shadow: 0 0 5px var(--theme-color);
-    }
+  [href="#/"] {
+    background: #2c3e50;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+  }
   </style>
 </head>
 <body>
   <div id="app">
-    <a href="#/">🏠 Accueil</a>
+    <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
   </div>
 
   <script>
