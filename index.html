@@ -124,6 +124,14 @@
         paths: 'auto',
         hideOtherSidebarContent: false
       },
+      markdown: {
+      renderer: {
+      code: function (code, lang) {
+        const langClass = lang ? `language-${lang}` : '';
+        return `<pre><code class="${langClass}">${Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup, lang)}</code></pre>`;
+      }
+    }
+  }
     };
   </script>
 
