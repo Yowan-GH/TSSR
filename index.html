@@ -8,79 +8,77 @@
   <!-- Police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- CSS de base -->
+  <!-- CSS Docsify (chargé en premier) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
+
+  <!-- CSS Personnalisé -->
   <style>
-    /* Reset des conflits */
+    :root {
+      --base-font-family: 'Fira Code', monospace;
+    }
+
+    body[data-theme="dark"] {
+      background-color: #101010;
+      color: #e0e0e0;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Titres MD en vert */
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3,
-    .markdown-section h4 {
-      all: unset;
-      display: block;
-      font-family: 'Fira Code', monospace;
+    .markdown-section h4,
+    .markdown-section h5,
+    .markdown-section h6 {
       color: #00ff90 !important;
-      margin: 1em 0 !important;
     }
-    
-    .markdown-section h1 { font-size: 2em !important; }
-    .markdown-section h2 { font-size: 1.5em !important; }
-    .markdown-section h3 { font-size: 1.25em !important; }
-    .markdown-section h4 { font-size: 1.1em !important; }
 
     /* Sidebar */
     .sidebar {
       background-color: #121212;
       border-right: 1px dashed #00ff90;
     }
-    .sidebar a { color: #e0e0e0; }
-    .sidebar li.active > a { 
+
+    .sidebar a {
+      color: #e0e0e0;
+    }
+
+    .sidebar li.active > a {
       color: #00ff90 !important;
       font-weight: bold;
     }
-  </style>
 
-  <!-- Thème Docsify -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+    ::selection {
+      background: #00ff90;
+      color: #000000;
+    }
+  </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">Chargement en cours...</div>
 
+  <!-- Configuration Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
       loadSidebar: true,
+      loadNavbar: false,
       subMaxLevel: 2,
       homepage: 'README.md',
       search: {
-        maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
         noData: '⚠️ Aucun résultat',
-      }
+      },
     };
   </script>
 
-  <!-- Scripts de base -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- Scripts Docsify (chargés en fin de body) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Vérification finale des titres -->
-  <script>
-    function checkTitles() {
-      const titles = document.querySelectorAll('.markdown-section h1, h2, h3, h4');
-      titles.forEach(title => {
-        if (window.getComputedStyle(title).color !== 'rgb(0, 255, 144)') {
-          title.style.cssText = 'color: #00ff90 !important; font-family: "Fira Code", monospace !important;';
-        }
-      });
-    }
-    
-    // Vérification répétée pendant 5 secondes après chargement
-    let checks = 0;
-    const interval = setInterval(() => {
-      checkTitles();
-      if (++checks > 10) clearInterval(interval);
-    }, 500);
-  </script>
+  <!-- Prism.js pour la syntaxe -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
 </body>
 </html>
