@@ -41,16 +41,16 @@
       --code-block-background: #252525;
     }
   
-    /* ========== FOND AVEC BRUIT ========== */
-    body {
-      background-color: #181818;
-      background-image:
-        linear-gradient(rgba(24, 24, 24, 0.95), rgba(24, 24, 24, 0.95)),
-        url('https://yowan-gh.github.io/TSSR/assets/noise-bg.png'); /* Remplace ce lien par ton vrai chemin si besoin */
-      background-size: cover;
-      background-repeat: repeat;
-      background-attachment: fixed;
-    }
+    /*  Fond bruité en arrière-plan */
+  body {
+  background-color: #181818; /* Couleur de base sombre */
+  background-image:
+    linear-gradient(rgba(24, 24, 24, 0.94), rgba(24, 24, 24, 0.94)), /* Filtre sombre par-dessus */
+    url('https://yowan-gh.github.io/TSSR/assets/noise-bg.png');     /* Chemin vers l’image bruitée */
+  background-size: auto;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  }
   
     /* ========== STYLE DE LA SIDEBAR ========== */
     .sidebar {
