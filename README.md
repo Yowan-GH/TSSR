@@ -6,43 +6,43 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 
 ---
 
-## 🧭 Sommaire des contenus
+# 🧭 Sommaire des contenus
 
-### 📡 Réseaux & Cisco
+ 📡 Réseaux & Cisco
 - IOS Cisco — Généralités, Modes, Sécurité
 - VLAN, Trunking, Routage Inter-VLAN
 - NAT, VTY, RIP…
 
-### 🐧 Commandes Linux essentielles
+🐧 Commandes Linux essentielles
 - Commandes de base (`ip`, `who`, `date`, `ls`, `mkdir`…)
 - Navigation, redirections, `jobs`, `fg/bg`, `tee`, etc.
 - Compression (`tar`, `gzip`…), recherche (`grep`, `find`)
 - Scripts, permissions, processus
 
-### 🔐 Cybersécurité
+🔐 Cybersécurité
 - DICP : Disponibilité, Intégrité, Confidentialité, Preuve
 - Vulnérabilités, Menaces, Attaques
 - Outils de protection, SIEM, PRA/PCA
 
-### 🐧 Environnement Linux
+🐧 Environnement Linux
 - Interfaces réseau, DNS, DHCP
 - Fichiers systèmes, hostname, resolv.conf
 - Administration à distance (SSH, SCP)
 - Routage, firewall, DNS bind9
 
-### 🪟 Environnement Microsoft
+ 🪟 Environnement Microsoft
 - Windows Server : rôles et fonctionnalités
 - Active Directory, GPO, DNS, DHCP
 - Gestion des disques, RAID
 - PowerShell de base
 
-### 📜 Scripting
+📜 Scripting
 - **Bash** : Algorithmes, pseudo-code, variables, boucles
 - **PowerShell** : Cmdlets, modules, sécurité, personnalisation, scripts
 
 ---
 
-## 🎯 Objectifs
+🎯 Objectifs
 
 - Structurer mes acquis de formation
 - Centraliser mes notes de révision, TP & projets
@@ -51,7 +51,7 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 
 ---
 
-## 🔄 Mises à jour
+🔄 Mises à jour
 
 🗓️ Le site est régulièrement enrichi avec :
 - Nouveaux chapitres
@@ -60,7 +60,7 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 
 ---
 
-## 📬 Contact
+📬 Contact
 
 📧 [yohann.mineau@yahoo.fr]  
 💼 [Mon profil LinkedIn](https://www.linkedin.com/in/ymn/)
