@@ -117,39 +117,48 @@
   text-align: center;
 }
 
-/* ✅ Boutons arrondis + noir pour Get Started */
+/* ✅ Boutons arrondis + noir pour coverpage Docsify */
 
-.cover .app-nav a {
+section.cover.show {
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('assets/coverpage.png');
+}
+
+.cover-main a {
   border-radius: 999px !important;
   padding: 0.6em 2em;
   font-weight: 600;
   font-size: 16px;
-  transition: 0.2s ease-in-out;
+  margin: 0 0.5em;
+  text-decoration: none;
+  display: inline-block;
 }
 
-/* ✅ Bouton noir */
-.cover .app-nav a:first-of-type {
+/* ✅ Get Started : noir */
+.cover-main a[href="#README"] {
   background-color: #000 !important;
-  border: none !important;
   color: #fff !important;
+  border: none !important;
 }
 
-/* ✅ Hover noir adouci */
-.cover .app-nav a:first-of-type:hover {
+.cover-main a[href="#README"]:hover {
   background-color: #222 !important;
 }
 
-/* ✅ GitHub bouton transparent arrondi */
-.cover .app-nav a:last-of-type {
+/* ✅ GitHub : bouton transparent arrondi */
+.cover-main a[href*="github.com"] {
   border: 1px solid #555 !important;
   background: transparent !important;
   color: #ccc !important;
 }
 
-.cover .app-nav a:last-of-type:hover {
+.cover-main a[href*="github.com"]:hover {
   border-color: #fff !important;
   color: #fff !important;
 }
+
 
   </style>
   
