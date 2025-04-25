@@ -9,46 +9,24 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
     <!-- Accordéons -->
-  <style>
-    .sidebar-nav li.has-submenu > ul {
-      display: none;
-      margin-left: 1em;
-    }
-    .sidebar-nav li.has-submenu.open > ul {
-      display: block;
-    }
-    .sidebar-nav li.has-submenu > a:after {
-      content: ' ▸';
-      float: right;
-      transition: transform 0.3s ease;
-    }
-    .sidebar-nav li.has-submenu.open > a:after {
-      transform: rotate(90deg);
-    }
-  </style>
-
-  <!-- Fleche accordéon -->
   
 
 
   <style>
-    /* Supprime les puces ou tirets des sous-menus */
-    .app-sub-sidebar ul {
-      padding-left: 0;
-      list-style: none;
-    }
-
+    /* Supprime toutes les puces/tirets */
+    .app-sub-sidebar ul,
     .app-sub-sidebar li {
-      list-style: none;
+      list-style: none !important;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
     }
 
-    /* Ajoute une flèche seulement */
+    /* Flèche de déploiement */
     .app-sub-sidebar li > a:before {
       content: "▸";
       display: inline-block;
-      transform: rotate(0deg);
-      transition: transform 0.2s ease;
       margin-right: 6px;
+      transition: transform 0.2s ease;
     }
 
     .app-sub-sidebar li.open > a:before {
