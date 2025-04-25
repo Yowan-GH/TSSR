@@ -8,7 +8,44 @@
   <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-  </head>
+  <!-- Style personnalisé pour la sidebar -->
+  <style>
+    /* Cache tous les sous-niveaux par défaut */
+    .sidebar ul ul {
+      display: none;
+      padding-left: 15px;
+      border-left: 1px solid var(--borderColor);
+    }
+    
+    /* Style pour les listes visibles */
+    .sidebar ul ul.visible {
+      display: block;
+      animation: fadeIn 0.2s;
+    }
+    
+    /* Indicateurs visuels */
+    .accordion-indicator {
+      display: inline-block;
+      margin-right: 8px;
+      font-size: 10px;
+      transition: transform 0.2s;
+      cursor: pointer;
+      color: var(--textColor);
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Style pour l'élément actif */
+    .sidebar .active {
+      font-weight: bold;
+      color: var(--theme-color, #42b983);
+    }
+  </style>
+</head>
 <body>
   <div id="app">Chargement…</div>
 
@@ -19,15 +56,18 @@
       repo: '',
       loadSidebar: true,
       loadNavbar: false,
-      subMaxLevel: 1,  // Niveau initial affiché
-      maxLevel: 0,
+      subMaxLevel: 1,  // Niveau initial (seuls les # visibles)
+      toc: {
+        scope: '.markdown-section',
+        headings: 'h1, h2, h3, h4'  // Tous les niveaux à prendre en compte
+      },
       search: { // Personnalisation barre de recherche
         maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
         noData: 'Aucun résultat trouvé',
-        depth: 4,  // Valeur pour indexer plus de niveaux
-        paths: 'auto',  // Important pour le mode multi-page
-        hideOtherSidebarContent: false  // Permet de voir tous les résultats
+        depth: 4,
+        paths: 'auto',
+        hideOtherSidebarContent: false
       },
       darklightTheme: {
         defaultTheme: 'dark',
@@ -69,14 +109,78 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Prism.js for syntax highlighting (bash + shell) -->
+  <!-- Prism.js for syntax highlighting -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
 
-  <!-- Activation Prism après rendu -->
+  <!-- Script pour la navigation hiérarchique -->
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Attendre que Docsify ait initialisé la sidebar
+      const observer = new MutationObserver(function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          observer.disconnect();
+          setupAccordionNavigation();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      function setupAccordionNavigation() {
+        const sidebar = document.querySelector('.sidebar');
+        
+        // Fonction récursive pour configurer tous les niveaux
+        function setupItems(container) {
+          const items = container.querySelectorAll('li');
+          
+          items.forEach(item => {
+            const link = item.querySelector('a');
+            const sublist = item.querySelector('ul');
+            
+            if (sublist) {
+              // Crée un indicateur visuel
+              const indicator = document.createElement('span');
+              indicator.className = 'accordion-indicator';
+              indicator.innerHTML = '▶';
+              link.prepend(indicator);
+              
+              // Gestion du clic
+              link.addEventListener('click', function(e) {
+                if (e.target === indicator || indicator.contains(e.target)) {
+                  e.preventDefault();
+                  sublist.classList.toggle('visible');
+                  indicator.style.transform = sublist.classList.contains('visible') 
+                    ? 'rotate(90deg)' 
+                    : 'rotate(0deg)';
+                }
+              });
+              
+              // Applique récursivement aux sous-niveaux
+              setupItems(sublist);
+            }
+          });
+        }
+        
+        // Initialisation
+        setupItems(sidebar);
+        
+        // Ouvre automatiquement la branche active
+        const activeItem = sidebar.querySelector('.active');
+        if (activeItem) {
+          let parent = activeItem.closest('ul');
+          while (parent && parent !== sidebar) {
+            parent.classList.add('visible');
+            const indicator = parent.previousElementSibling?.querySelector('.accordion-indicator');
+            if (indicator) indicator.style.transform = 'rotate(90deg)';
+            parent = parent.parentElement.closest('ul');
+          }
+        }
+      }
+    });
+
+    // Activation Prism après rendu
     window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
       hook.doneEach(function () {
         if (window.Prism) {
