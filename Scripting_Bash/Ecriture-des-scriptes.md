@@ -1,65 +1,4 @@
-
-# Analyse du Langage
-
-## Introduction
-
-Un script est un ensemble de commande ``shell`` enchainé les unes à la suite des autres.
-
-Avant la réalisation de celui-ci, il est vivement conseillé de : 
-- Définir clairement l'objectif à atteindre : **Le besoin**
-- Rédiger un cahier des charges : **Les contraintes**
-- Traduction détaillée de l'ensemble des actions à réaliser pour parvenir à m'objectif : **La réflexion**
-- Coder le script en langage shell : **La solution**
-
-## Algorithme
-
-Pour qu’un ordinateur réalise une tâche, qu’elle soit basique ou très complexe, il est nécessaire de lui indiquer dans les moindres détails toutes les actions à réaliser.
-
-Un algorithme, c’est une description **complète et détaillée des instructions ordonnancées** dont l’exécution conduit à un résultat donné.
-
-Eléments utilisés pour la réalisation d'un algorithme : 
-- Des instructions 
-- Des Variables
-- Des tests 
-- Des boucles 
-
-On utilise le **<span style="color:rgb(255, 192, 0)">pseudo code</span>** comme outil de visualisation du code (transposition textuelle ou schématique pour la compréhension humaine)
-
-*Exemple d'un pseudo code en forme textuel :*
-
-```bash 
-Lancement du script  
-**log** ← /var/log/secure  
-**nbdefault** ← 42
-
-Si (nombre d’argument passé au script = 1)  
-  alors **nb** ← argument  
-Finsi
-
-Si ((**nb** est nul) OU (**nb** n’est pas un entier))  
-  alors la **nb** ← **nbdefault**  
-Finsi
-
-Afficher la liste des **nb** derniers échecs de connexion de **log**  
-Journaliser « exécution de logonfails.sh »
-
-Fin d’exécution du script
-```
-
-Convention utilisé pour définir un algorithme sous forme graphique :
-
-| **Symbole**           | **Signification**                                                                                                                                                                                        |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ⬭ **DÉBUT / FIN**     | L’ovale matérialise les étapes du **début** et de **fin** d’un programme.                                                                                                                                |
-| ➝ **Flèche**          | La flèche indique le sens des flux.                                                                                                                                                                      |
-| ▭ **ACTION**          | Le rectangle représente la réalisation d’une action ou d’un processus.                                                                                                                                   |
-| ◇ **DÉCISION**        | Le losange est utilisé pour représenter une décision à prendre ; ou la vérification d’une condition. Il est parfois utile d’utiliser des formes plus complexes quand on a plus de 3 décisions à prendre. |
-| ⬒ **ENTRÉE / SORTIE** | Entrée / Sortie                                                                                                                                                                                          |
-*Exemple de pseudo code au format schématique :*
-![[image-1.png]]
-
-# Ecriture des scriptes 
-
+# Ecriture des scriptes
 ## Généralités 
 
 ### Le shebang ou Hashbang
@@ -176,7 +115,7 @@ set "$LOGNAME" $(uname -n)
 
 echo "$1 $2" # Revient à faire un echo "$LOGNAME $(uname-n)"
 ```
-### La commande read
+## La commande read
 
 La commande ``read`` est utilisée pour affecter un contenu saisi par l'utilisateur à une variable
 
@@ -449,7 +388,7 @@ Lors de l'évaluation d'une condition, les critères d'évaluations sont liés a
 - Un entier (chiffre ou nombre)
 - Une chaine (mot ou phrase)
 - Une composante du système de fichier (fichier, répertoire, extention...)
-#### Les opérateurs 
+##### Les opérateurs 
 
 🔸 **Chaînes de caractères** (`[ ... ]`, `[[ ... ]]`)
 
@@ -538,16 +477,6 @@ Les expression de test sont interprétées par le shell, il est donc possible d'
 - `!(...)` = 0 fois l’expression
 - `*(...|...)` = 0 à n fois l’expression 1 **ou** l’expression 2  
     _Valable aussi pour les caractères `?`, `*`, `+`, `@`, `!`_
-
-
-
-
-
-
-
-
-
-
 
 #### `[ ... ]` – Test POSIX classique (aussi appelé `test`) 
 
@@ -713,7 +642,7 @@ done   # Fin de la boucle si un nom est entré
 echo "Bonjour $nom" # Suite du script 
 ```
 
-#### Cas particulier des boucles infinies
+### Les boucles infinies
 Pour générer une boucle infinie, on utilise la commande ``true`` ou ``:``
 Elles sont utilisés pour la **création de menu.**
 
@@ -758,6 +687,7 @@ until [[ -n "$age" ]] ; do # Jusqu'à ce que $age soit non nul
 La boucle infinie est également possible mais avec l'utilisation de false à la place de true.
 
 ### La boucle for (pour)
+
 La boucle `for` en Bash est utilisée pour faire des **itérations sur des listes, des fichiers, des plages numériques, etc.**
 Elle peut boucler : 
 - Pour un ensemble de valeurs à traiter
@@ -988,14 +918,6 @@ source /scripts/fonctions.sh
 # Appel de la fonction définie dans l’autre fichier
 func_accueil "Jean" "Dupont"
 ```
-
-
-
-
-
-
-
-
 
 ## Exemples de script
 
@@ -1239,5 +1161,3 @@ esac
 done
 
 ```
-
-Updated : 22.04.2025 - 10 : 58
