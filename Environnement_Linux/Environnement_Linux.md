@@ -1,5 +1,4 @@
 # Structure du sandbox
-# Structure du sandbox
 
 ![Image](images/Environnement_Linux_1.png)
 
