@@ -11,37 +11,90 @@
   <!-- CSS Docsify (chargé en premier) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-  <<style>
+  <style>
     :root {
       --base-font-family: 'Fira Code', monospace;
-      --background-color: #121212; /* Variable déclarée */
+      --background-color: #121212;
     }
   
-    /* Couleur de fond appliquée par défaut (même hors thème dark) */
     body {
-      background-color: var(--background-color, #121212); /* Utilisation de la variable avec fallback */
+      background-color: var(--background-color, #121212);
       font-family: 'Fira Code', monospace;
     }
   
     body[data-theme="dark"] {
-      color: #e0e0e0; /* Conserve uniquement les styles spécifiques au thème dark */
-    }
-  
-    /* Sidebar */
-    .sidebar {
-      background-color: #121212;
-      border-right: 1px dashed #00ff90;
-    }
-  
-    .sidebar a {
       color: #e0e0e0;
     }
   
+    /* Sidebar compacte */
+    .sidebar {
+      background-color: #121212;
+      border-right: 1px dashed #00ff90;
+      padding: 10px 0;
+    }
+    
+    .sidebar ul {
+      padding-left: 15px;
+      margin: 0;
+    }
+    
+    .sidebar li {
+      margin: 2px 0;
+      list-style: none;
+      position: relative;
+    }
+    
+    .sidebar a {
+      color: #e0e0e0;
+      text-decoration: none;
+      display: block;
+      padding: 2px 10px;
+      font-size: 0.9em;
+    }
+    
     .sidebar li.active > a {
       color: #00ff90 !important;
       font-weight: bold;
     }
-  
+    
+    /* Style des titres */
+    .sidebar h1 {
+      font-size: 1em;
+      margin: 10px 0 5px 0;
+      padding: 0 10px;
+      color: #00ff90;
+      font-weight: bold;
+    }
+    
+    .sidebar h2 {
+      font-size: 0.9em;
+      margin: 8px 0 3px 0;
+      padding: 0 10px;
+      color: #e0e0e0;
+    }
+    
+    /* Accordéon */
+    .sidebar ul ul {
+      display: none;
+      padding-left: 10px;
+    }
+    
+    .sidebar li.active > ul {
+      display: block;
+    }
+    
+    /* Icônes flèches */
+    .sidebar li > a::before {
+      content: '▶';
+      font-size: 0.7em;
+      margin-right: 5px;
+      color: #00ff90;
+    }
+    
+    .sidebar li.active > a::before {
+      content: '▼';
+    }
+
     ::selection {
       background: #00ff90;
       color: #000000;
@@ -67,10 +120,25 @@
     };
   </script>
 
-  <!-- Scripts Docsify (chargés en fin de body) -->
+  <!-- Scripts Docsify -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
+  
+  <!-- Plugin Accordéon -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('click', function(e) {
+        if (e.target.matches('.sidebar a')) {
+          const li = e.target.parentElement;
+          if (li.querySelector('ul')) {
+            e.preventDefault();
+            li.classList.toggle('active');
+          }
+        }
+      });
+    });
+  </script>
 
   <!-- Prism.js pour la syntaxe -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
