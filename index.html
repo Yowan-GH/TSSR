@@ -4,11 +4,23 @@
   <meta charset="UTF-8">
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
+
+  <!-- Style personnalisé pour la sidebar -->
   <style>
-    /* Style de base pour la sidebar */
-    .sidebar {
-      padding: 20px 0;
+    /* Cache tous les sous-niveaux par défaut */
+    .sidebar ul ul {
+      display: none;
+      padding-left: 15px;
+      border-left: 1px solid var(--borderColor);
+    }
+    
+    /* Style pour les listes visibles */
+    .sidebar ul ul.visible {
+      display: block;
+      animation: fadeIn 0.2s;
     }
     
     /* Indicateurs visuels */
@@ -18,27 +30,38 @@
       font-size: 10px;
       transition: transform 0.2s;
       cursor: pointer;
+      color: var(--textColor);
     }
     
     /* Animation */
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Style pour l'élément actif */
+    .sidebar .active {
+      font-weight: bold;
+      color: var(--theme-color, #42b983);
     }
   </style>
 </head>
 <body>
   <div id="app">Chargement…</div>
 
+  <!-- Config Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
       loadSidebar: true,
       loadNavbar: false,
-      subMaxLevel: 4,  // Afficher tous les niveaux (nous filtrerons via CSS)
-      maxLevel: 6,
-      search: {
+      subMaxLevel: 4,  // Niveau initial (seuls les # visibles)
+      toc: {
+        scope: '.markdown-section',
+        headings: 'h1, h2, h3, h4'  // Tous les niveaux à prendre en compte
+      },
+      search: { // Personnalisation barre de recherche
         maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
         noData: 'Aucun résultat trouvé',
@@ -69,78 +92,102 @@
     };
   </script>
 
+  <!-- Cache-buster pour .md -->
+  <script>
+    const originalFetch = window.fetch;
+    window.fetch = function(input, init) {
+      if (typeof input === 'string' && input.endsWith('.md')) {
+        const cacheBuster = Date.now();
+        input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
+      }
+      return originalFetch(input, init);
+    };
+  </script>
+
   <!-- Docsify Core -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Solution optimisée pour la sidebar -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      function initSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        if (!sidebar) {
-          setTimeout(initSidebar, 100);
-          return;
-        }
-
-        // 1. Afficher tous les éléments de niveau 1 immédiatement
-        const level1Items = sidebar.querySelectorAll('ul > li');
-        level1Items.forEach(item => {
-          item.style.display = 'block';
-          
-          // 2. Ajouter les indicateurs pour les éléments avec sous-menu
-          const subMenu = item.querySelector('ul');
-          if (subMenu) {
-            const indicator = document.createElement('span');
-            indicator.className = 'accordion-indicator';
-            indicator.innerHTML = '>';
-            item.querySelector('a').prepend(indicator);
-            
-            // 3. Masquer les sous-niveaux par défaut
-            subMenu.style.display = 'none';
-            
-            // 4. Gestion du clic
-            indicator.addEventListener('click', function(e) {
-              e.stopPropagation();
-              subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
-              indicator.style.transform = subMenu.style.display === 'block' ? 'rotate(90deg)' : 'rotate(0deg)';
-            });
-          }
-        });
-
-        // 5. Ouvrir automatiquement la section active
-        const activeItem = sidebar.querySelector('.active');
-        if (activeItem) {
-          let current = activeItem;
-          while (current && current !== sidebar) {
-            if (current.tagName === 'UL') {
-              current.style.display = 'block';
-              const indicator = current.previousElementSibling?.querySelector('.accordion-indicator');
-              if (indicator) indicator.style.transform = 'rotate(90deg)';
-            }
-            current = current.parentElement;
-          }
-        }
-      }
-
-      // Démarrer l'initialisation
-      initSidebar();
-    });
-  </script>
-
-  <!-- Prism.js -->
+  <!-- Prism.js for syntax highlighting -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
-  
+
+  <!-- Script pour la navigation hiérarchique -->
   <script>
-    window.$docsify.plugins = [function(hook) {
-      hook.doneEach(function() {
-        if (window.Prism) Prism.highlightAll();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Attendre que Docsify ait initialisé la sidebar
+      const observer = new MutationObserver(function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          observer.disconnect();
+          setupAccordionNavigation();
+        }
       });
-    }];
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      function setupAccordionNavigation() {
+        const sidebar = document.querySelector('.sidebar');
+        
+        // Fonction récursive pour configurer tous les niveaux
+        function setupItems(container) {
+          const items = container.querySelectorAll('li');
+          
+          items.forEach(item => {
+            const link = item.querySelector('a');
+            const sublist = item.querySelector('ul');
+            
+            if (sublist) {
+              // Crée un indicateur visuel
+              const indicator = document.createElement('span');
+              indicator.className = 'accordion-indicator';
+              indicator.innerHTML = '>';
+              link.prepend(indicator);
+              
+              // Gestion du clic
+              link.addEventListener('click', function(e) {
+                if (e.target === indicator || indicator.contains(e.target)) {
+                  e.preventDefault();
+                  sublist.classList.toggle('visible');
+                  indicator.style.transform = sublist.classList.contains('visible') 
+                    ? 'rotate(90deg)' 
+                    : 'rotate(0deg)';
+                }
+              });
+              
+              // Applique récursivement aux sous-niveaux
+              setupItems(sublist);
+            }
+          });
+        }
+        
+        // Initialisation
+        setupItems(sidebar);
+        
+        // Ouvre automatiquement la branche active
+        const activeItem = sidebar.querySelector('.active');
+        if (activeItem) {
+          let parent = activeItem.closest('ul');
+          while (parent && parent !== sidebar) {
+            parent.classList.add('visible');
+            const indicator = parent.previousElementSibling?.querySelector('.accordion-indicator');
+            if (indicator) indicator.style.transform = 'rotate(90deg)';
+            parent = parent.parentElement.closest('ul');
+          }
+        }
+      }
+    });
+
+    // Activation Prism après rendu
+    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
+      hook.doneEach(function () {
+        if (window.Prism) {
+          Prism.highlightAll();
+        }
+      });
+    });
   </script>
 </body>
 </html>
