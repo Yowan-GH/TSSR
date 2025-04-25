@@ -13,57 +13,59 @@
 
   <!-- Thème personnalisé Hacker + Fira Code -->
   <style>
-    /* Définition de la police de base pour l’ensemble du site */
-    :root {
-  --base-font-family: 'Fira Code', monospace;
-}
+    <style>
+  /* Police de base */
+  :root {
+    --base-font-family: 'Fira Code', monospace;
+  }
 
-/* Base globale en thème sombre */
-body[data-theme="dark"] {
-  background-color: #101010 !important;
-  color: #e0e0e0 !important;
-  font-family: 'Fira Code', monospace !important;
-}
+  /* Thème sombre : corps global */
+  body[data-theme="dark"] {
+    background-color: #101010 !important;
+    color: #e0e0e0 !important;
+    font-family: 'Fira Code', monospace !important;
+  }
 
-/* Contenu central en Fira Code */
-body[data-theme="dark"] .markdown-section {
-  font-family: 'Fira Code', monospace !important;
-  color: #e0e0e0 !important;
-}
+  /* Zone de contenu principale */
+  body[data-theme="dark"] .markdown-section {
+    font-family: 'Fira Code', monospace !important;
+    color: #e0e0e0 !important;
+  }
 
-/* Forcer tous les titres h1 à h6, même injectés */
-body[data-theme="dark"] .markdown-section h1,
-body[data-theme="dark"] .markdown-section h2,
-body[data-theme="dark"] .markdown-section h3,
-body[data-theme="dark"] .markdown-section h4,
-body[data-theme="dark"] .markdown-section h5,
-body[data-theme="dark"] .markdown-section h6 {
-  color: #b6ff40 !important;
-}
+  /* Titres h1 à h6 + balises dynamiques injectées par Docsify */
+  .markdown-section h1,
+  .markdown-section h2,
+  .markdown-section h3,
+  .markdown-section h4,
+  .markdown-section h5,
+  .markdown-section h6,
+  .markdown-section [role="heading"] {
+    color: #b6ff40 !important;
+  }
 
-/* Également forcer les titres via role (accessibilité Docsify) */
-body[data-theme="dark"] .markdown-section [role="heading"] {
-  color: #b6ff40 !important;
-}
+  /* Lien actif ou survol dans la sidebar */
+  .sidebar a {
+    color: #00ff90 !important;
+  }
 
-/* Liens verts néon */
-body[data-theme="dark"] a,
-body[data-theme="dark"] .sidebar a {
-  color: #00ff90 !important;
-}
+  /* Apparence de la sidebar */
+  .sidebar {
+    background-color: #121212 !important;
+    border-right: 1px dashed #00ff90 !important; /* ligne verticale */
+  }
 
-/* Sidebar */
-body[data-theme="dark"] .sidebar {
-  background-color: #121212 !important;
-  border-right: 1px dashed #00ff90 !important;
-}
+  /* Si le toggle de la sidebar est visible */
+  .sidebar-toggle {
+    border-color: #00ff90 !important;
+  }
 
-/* Sélection */
-::selection {
-  background: #00ff90;
-  color: #000000;
-}
-  </style>
+  /* Sélection de texte */
+  ::selection {
+    background: #00ff90;
+    color: #000;
+  }
+</style>
+
   
 </head>
 <body>
