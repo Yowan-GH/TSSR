@@ -43,15 +43,32 @@
     }
 
     /* Boutons de la coverpage */
-    .cover .app-nav a:first-of-type {
-    background-color: #09914d;
-    border: none;
-    color: #fff !important;
-    }
+   /* 🌄 Étire le fond de la coverpage */
+  section.cover.show {
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
 
-    .cover .app-nav a:first-of-type:hover {
-    background-color: #0bb65c;
-    }
+  /* 🧭 Centrage du contenu + espacement */
+  .cover-main {
+  max-width: 800px;
+  margin: auto;
+  padding-top: 10vh;
+  padding-bottom: 5vh;
+  text-align: center;
+  }
+
+  /* 🎨 Bouton "Get Started" personnalisé */
+  .cover .app-nav a:first-of-type {
+  background-color: #09914d;
+  border: none;
+  color: #fff !important;
+  }
+
+.cover .app-nav a:first-of-type:hover {
+  background-color: #0bb65c;
+}
 
     /*  Fond bruité en arrière-plan */
   body {
