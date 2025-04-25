@@ -4,46 +4,30 @@
   <meta charset="UTF-8">
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
-  <style>
-    /* Style pour l'accordéon */
-    .sidebar ul ul {
-      display: none;
-      padding-left: 15px;
-    }
-    .sidebar ul ul.visible {
-      display: block;
-      animation: fadeIn 0.2s;
-    }
-    .accordion-indicator {
-      display: inline-block;
-      margin-right: 8px;
-      font-size: 10px;
-      transition: transform 0.2s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
-</head>
+
+  </head>
 <body>
   <div id="app">Chargement…</div>
 
+  <!-- Config Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
       loadSidebar: true,
       loadNavbar: false,
-      subMaxLevel: 4, // Important pour charger toute la hiérarchie
-      search: {
+      subMaxLevel: 1,  // Niveau initial affiché
+      maxLevel: 0,
+      search: { // Personnalisation barre de recherche
         maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
         noData: 'Aucun résultat trouvé',
-        depth: 4,
-        paths: 'auto',
-        hideOtherSidebarContent: false
+        depth: 4,  // Valeur pour indexer plus de niveaux
+        paths: 'auto',  // Important pour le mode multi-page
+        hideOtherSidebarContent: false  // Permet de voir tous les résultats
       },
       darklightTheme: {
         defaultTheme: 'dark',
@@ -68,79 +52,38 @@
     };
   </script>
 
+  <!-- Cache-buster pour .md -->
+  <script>
+    const originalFetch = window.fetch;
+    window.fetch = function(input, init) {
+      if (typeof input === 'string' && input.endsWith('.md')) {
+        const cacheBuster = Date.now();
+        input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
+      }
+      return originalFetch(input, init);
+    };
+  </script>
+
   <!-- Docsify Core -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Script accordéon optimisé -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      function initAccordion() {
-        const sidebar = document.querySelector('.sidebar');
-        if (!sidebar) return setTimeout(initAccordion, 100);
-
-        // 1. Ne masquer que les sous-niveaux (niveau 2+)
-        const subItems = sidebar.querySelectorAll('ul ul');
-        subItems.forEach(sub => {
-          sub.classList.add('hidden-level');
-          const parentItem = sub.closest('li');
-          if (parentItem) {
-            const link = parentItem.querySelector('a');
-            if (link) {
-              const indicator = document.createElement('span');
-              indicator.className = 'accordion-indicator';
-              indicator.innerHTML = '>';
-              link.prepend(indicator);
-            }
-          }
-        });
-
-        // 2. Gestion des clics
-        sidebar.addEventListener('click', function(e) {
-          const indicator = e.target.closest('.accordion-indicator');
-          if (indicator) {
-            e.preventDefault();
-            const parentLi = indicator.closest('li');
-            const subMenu = parentLi.querySelector('ul');
-            if (subMenu) {
-              subMenu.classList.toggle('visible');
-              indicator.style.transform = subMenu.classList.contains('visible') 
-                ? 'rotate(90deg)' 
-                : 'rotate(0deg)';
-            }
-          }
-        });
-
-        // 3. Ouvrir le chemin actif
-        const activeItem = sidebar.querySelector('.active');
-        if (activeItem) {
-          let parent = activeItem.closest('ul');
-          while (parent) {
-            parent.classList.add('visible');
-            const indicator = parent.previousElementSibling?.querySelector('.accordion-indicator');
-            if (indicator) indicator.style.transform = 'rotate(90deg)';
-            parent = parent.parentElement.closest('ul');
-          }
-        }
-      }
-
-      initAccordion();
-    });
-  </script>
-
-  <!-- Prism.js -->
+  <!-- Prism.js for syntax highlighting (bash + shell) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
-  
+
+  <!-- Activation Prism après rendu -->
   <script>
-    window.$docsify.plugins = [function(hook) {
-      hook.doneEach(function() {
-        if (window.Prism) Prism.highlightAll();
+    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
+      hook.doneEach(function () {
+        if (window.Prism) {
+          Prism.highlightAll();
+        }
       });
-    }];
+    });
   </script>
 </body>
 </html>
