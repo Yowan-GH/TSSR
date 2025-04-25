@@ -2,74 +2,71 @@
 
 Bienvenue sur mon espace de documentation dédié à la formation **TSSR** (Technicien Supérieur Systèmes et Réseaux).
 
-Ce site rassemble des **résumés de cours**, des **fiches pratiques** et des **commandes essentielles** sur les principaux domaines de compétences du métier :
+Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes essentielles**, couvrant l’ensemble des compétences clés du métier.
 
 ---
 
-## 🧭 Contenu principal
+## 🧭 Sommaire des contenus
 
 ### 📡 Réseaux & Cisco
-- Commandes IOS
-- VLAN, Trunking, Routage
+- IOS Cisco — Généralités, Modes, Sécurité
+- VLAN, Trunking, Routage Inter-VLAN
 - NAT, VTY, RIP…
 
-### 🐧 Commandes système essentielles Linux
-- Commandes de base (`ip`, `who`, `date`, `cd`, `ls`, `mkdir`, etc.)
-- Navigation dans les répertoires, affichage de fichiers, gestion des permissions
-- Redirections de flux (stdout, stderr), `tee`, `jobs`, `bg`, `fg`, etc.
-- Compression et décompression (`tar`, `gzip`, etc.)
-- Commandes de recherche (`grep`, `find`)
-- Utilisation de `sed` et `awk`
-- Métacaractères Shell et expressions régulières
+### 🐧 Commandes Linux essentielles
+- Commandes de base (`ip`, `who`, `date`, `ls`, `mkdir`…)
+- Navigation, redirections, `jobs`, `fg/bg`, `tee`, etc.
+- Compression (`tar`, `gzip`…), recherche (`grep`, `find`)
+- Scripts, permissions, processus
 
-### 🔐 CyberSécurité
-- Protocoles
-- Bonnes pratiques
-- Outils de protection
+### 🔐 Cybersécurité
+- DICP : Disponibilité, Intégrité, Confidentialité, Preuve
+- Vulnérabilités, Menaces, Attaques
+- Outils de protection, SIEM, PRA/PCA
 
 ### 🐧 Environnement Linux
-- Commandes système
-- Droits, utilisateurs, réseau
-- Scripts, services, logs
-- DNS, DHCP
+- Interfaces réseau, DNS, DHCP
+- Fichiers systèmes, hostname, resolv.conf
+- Administration à distance (SSH, SCP)
+- Routage, firewall, DNS bind9
 
 ### 🪟 Environnement Microsoft
-- Active Directory, GPO
-- DNS, DHCP, AD
+- Windows Server : rôles et fonctionnalités
+- Active Directory, GPO, DNS, DHCP
+- Gestion des disques, RAID
 - PowerShell de base
 
-### 📜 Scripting Bash
-- Les algorithmes 
-- Le pseudo code
-- Les commandes et bases du Scripting
-
+### 📜 Scripting
+- **Bash** : Algorithmes, pseudo-code, variables, boucles
+- **PowerShell** : Cmdlets, modules, sécurité, personnalisation, scripts
 
 ---
 
-## 🚀 Objectifs
+## 🎯 Objectifs
 
-- Structurer mes connaissances acquises pendant la formation
-- Centraliser mes notes de révision et TP
-- Proposer une **vitrine professionnelle** à jour de mes compétences techniques
-- Partager une base utile pour les étudiants en IT
+- Structurer mes acquis de formation
+- Centraliser mes notes de révision, TP & projets
+- Créer une **vitrine professionnelle** à jour de mes compétences
+- Fournir une base utile pour étudiants et techniciens IT
 
 ---
 
 ## 🔄 Mises à jour
 
-🗓️ Ce site est régulièrement enrichi avec de nouveaux contenus, retours d'expérience, astuces et résumés de TP.
-
-N'hésitez pas à suivre le projet ou à proposer des suggestions !
+🗓️ Le site est régulièrement enrichi avec :
+- Nouveaux chapitres
+- Retours de TP
+- Astuces & pratiques pro
 
 ---
 
-## 📬 Me contacter
+## 📬 Contact
 
-> Pour toute question ou collaboration :
 📧 [yohann.mineau@yahoo.fr]  
-💼 [LinkedIn](https://www.linkedin.com/in/ymn/)
+💼 [Mon profil LinkedIn](https://www.linkedin.com/in/ymn/)
 
 ---
 
-*🛠️ Ce site est propulsé par [Docsify](https://docsify.js.org), avec un thème sombre et une barre de recherche full-text.*  
-*🏢 Ce site est hébergé gratuitement par GitHub et mis à jour par yowan-GH*
+> 🛠️ Site propulsé par [Docsify](https://docsify.js.org)  
+> 🎨 Thème sombre + recherche full-text  
+> ☁️ Hébergé gratuitement sur GitHub Pages
