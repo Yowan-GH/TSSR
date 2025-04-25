@@ -8,29 +8,18 @@
   <!-- Police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- CSS Docsify -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
-
-  <!-- CSS Personnalisé -->
+  <!-- CSS Personnalisé - Chargé EN PREMIER -->
   <style>
     :root {
       --base-font-family: 'Fira Code', monospace;
     }
 
-    body[data-theme="dark"] {
-      background-color: #101010;
-      color: #e0e0e0;
-      font-family: 'Fira Code', monospace;
-    }
-
-    /* Titres MD toujours verts */
+    /* Force les titres à rester verts */
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3,
     .markdown-section h4 {
       color: #00ff90 !important;
-      text-decoration: none !important;
-      border-bottom: none !important;
     }
 
     /* Sidebar */
@@ -47,52 +36,48 @@
       color: #00ff90 !important;
       font-weight: bold;
     }
-
-    /* Surbrillance texte */
-    ::selection {
-      background: #00ff90;
-      color: #000000;
-    }
   </style>
+
+  <!-- CSS Docsify - Chargé APRÈS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 </head>
 <body>
-  <div id="app">Chargement en cours...</div>
+  <div id="app">Chargement...</div>
 
-  <!-- Configuration Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
-      repo: '',
       loadSidebar: true,
-      loadNavbar: false,
       subMaxLevel: 2,
       homepage: 'README.md',
-      search: {
-        placeholder: '🔍 Rechercher...',
-        noData: '⚠️ Aucun résultat',
-      },
       darklightTheme: {
         defaultTheme: 'dark',
         siteFont: 'Fira Code',
-        codeFontFamily: 'Fira Code',
-        bodyFontSize: '17px',
         dark: {
-          background: '#101010',
-          textColor: '#e0e0e0',
-          linkColor: '#e0e0e0',
-          codeBackgroundColor: '#1f1f1f',
-          sidebarBackground: '#141414'
+          linkColor: '#e0e0e0' /* Couleur des liens normaux */
         }
       }
     };
   </script>
 
-  <!-- Scripts Docsify -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Prism.js pour la syntaxe -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <!-- Solution Définitive pour les titres -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new MutationObserver(function() {
+        document.querySelectorAll('.markdown-section h1, h2, h3, h4').forEach(el => {
+          el.style.color = '#00ff90';
+        });
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  </script>
 </body>
 </html>
