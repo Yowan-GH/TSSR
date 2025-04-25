@@ -53,105 +53,15 @@
   <div id="app">Chargement…</div>
 
   <!-- Config Docsify -->
-  <script>
-    window.$docsify = {
-      name: 'TSSR Notes',
-      repo: '',
-      loadSidebar: true,
-      loadNavbar: false,
-      subMaxLevel: 3,  // Niveau initial affiché
-      maxLevel: 3,
-      sidebarDisplayLevel: 1,
-      search: { // Personnalisation barre de recherche
-        maxAge: 86400000,
-        placeholder: '🔍 Rechercher...',
-        noData: 'Aucun résultat trouvé',
-        depth: 4,  // Valeur pour indexer plus de niveaux
-        paths: 'auto',  // Important pour le mode multi-page
-        hideOtherSidebarContent: false  // Permet de voir tous les résultats
-      },
-      darklightTheme: {
-        defaultTheme: 'dark',
-        siteFont: 'Source Sans Pro',
-        codeFontFamily: 'Roboto Mono, Monaco, courier, monospace',
-        bodyFontSize: '17px',
-        dark: {
-          background: '#1c1e22',
-          textColor: '#e0e0e0',
-          linkColor: '#42b983',
-          codeBackgroundColor: '#2d2d2d',
-          sidebarBackground: '#202124',
-        },
-        light: {
-          background: '#ffffff',
-          textColor: '#34495e',
-          linkColor: '#42b983',
-          codeBackgroundColor: '#f8f8f8',
-          sidebarBackground: '#f6f8fa',
-        }
-      }
-    };
-  </script>
-
-  <!-- Cache-buster pour .md -->
-  <script>
-    const originalFetch = window.fetch;
-    window.fetch = function(input, init) {
-      if (typeof input === 'string' && input.endsWith('.md')) {
-        const cacheBuster = Date.now();
-        input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
-      }
-      return originalFetch(input, init);
-    };
-  </script>
-
-  <!-- Docsify Core -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
-
-  <!-- Prism.js for syntax highlighting (bash + shell) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
-
-  <!-- Activation Prism après rendu -->
-  <script>
-    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
-      hook.doneEach(function () {
-        if (window.Prism) {
-          Prism.highlightAll();
-        }
-      });
-    });
-  </script>
-
-
-<!-- Activation pluggin accordéon -->
-<script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-
+  
 
 
 <script>
-  // Plugin accordéon : ignore les liens directs, ne gère que les blocs avec sous-éléments
   window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook) {
     hook.doneEach(function () {
-      const sidebar = document.querySelector('.sidebar-nav');
-      if (!sidebar) return;
-
-      sidebar.querySelectorAll('li').forEach(li => {
-        const sub = li.querySelector('ul');
-        const anchor = li.querySelector('a');
-        // n’applique l’accordéon que si l’élément n’a pas de lien réel
-        if (sub && (!anchor || anchor.getAttribute('href') === 'javascript:void(0)')) {
-          li.classList.add('has-submenu');
-          li.addEventListener('click', function (e) {
-            if (e.target.tagName.toLowerCase() === 'a') return;
-            e.stopPropagation();
-            this.classList.toggle('open');
-          });
-        }
+      const subSidebarLinks = document.querySelectorAll('.app-sub-sidebar li > a');
+      subSidebarLinks.forEach(link => {
+        link.textContent = link.textContent.replace(/^\s*-\s*/, '');
       });
     });
   });
