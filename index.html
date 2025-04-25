@@ -13,7 +13,6 @@
 
 
   <style>
-    /* Supprime toutes les puces/tirets */
     .app-sub-sidebar ul,
     .app-sub-sidebar li {
       list-style: none !important;
@@ -21,7 +20,6 @@
       margin-left: 0 !important;
     }
 
-    /* Flèche de déploiement */
     .app-sub-sidebar li > a:before {
       content: "▸";
       display: inline-block;
@@ -138,6 +136,19 @@
             this.classList.toggle('open');
           });
         }
+      });
+    });
+  });
+</script>
+
+
+<script>
+  // Supprime les tirets visibles dans les sous-menus de la sidebar
+  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook) {
+    hook.doneEach(function () {
+      const links = document.querySelectorAll('.app-sub-sidebar li > a');
+      links.forEach(link => {
+        link.innerHTML = link.innerHTML.replace(/^\s*-\s*/, '');
       });
     });
   });
