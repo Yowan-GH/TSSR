@@ -224,7 +224,7 @@ Avant de promouvoir un serveur en contrôleur de domaine, ces prérequis doivent
 | **Domaine**   | **Maître RID**                     | Alloue les blocs d’**Identificateurs Relatifs (RID)** aux autres CD, pour générer les **SID**        |
 |               | **Maître d’infrastructure**        | Gère les objets référencés entre **domaines différents** de la forêt                                 |
 |               | **Maître émulateur PDC**           | - Gère les **mots de passe**<br>- Gère les **GPO**<br>- **Synchronise les horloges**<br>- Joue le rôle de **contrôleur principal** dans les anciens domaines |
-![alt text](image.png)
+![alt text](TSSR/Scripting_powershell/images/image.png)
 
 ### ✅ Prérequis pour l’ajout d’un contrôleur de domaine (DC)
 | 🧩 Prérequis                             | 📝 Description                                                                 |
