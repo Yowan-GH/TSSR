@@ -10,8 +10,44 @@
 
   <style>
     :root {
-      --theme-hue: 140; /* Vert hacker */
+      --theme-hue: 120; /* Vert pur */
       --mono-hue: 120;
+      --base-font-family: 'Courier New', monospace;
+      --base-font-size: 16px;
+      --sidebar-width: 260px;
+      --theme-color: #00ff90;
+    }
+  
+    body {
+      background-color: #0c0c0c;
+      color: #d0ffd0;
+    }
+  
+    a {
+      color: #00ff90;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+    }
+  
+    .sidebar {
+      background-color: #101010;
+      border-right: 1px solid #00ff90;
+    }
+  
+    .app-name, .sidebar-nav {
+      font-family: 'Courier New', monospace;
+    }
+  
+    .markdown-section {
+      font-family: 'Courier New', monospace;
+      color: #d0ffd0;
+    }
+  
+    ::selection {
+      background: #00ff90;
+      color: #000;
     }
   </style>
 </head>
