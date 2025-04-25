@@ -15,49 +15,54 @@
   <style>
     /* Définition de la police de base pour l’ensemble du site */
     :root {
-      --base-font-family: 'Fira Code', monospace;
-    }
-  
-    /* Thème sombre global */
-    body[data-theme="dark"] {
-      background-color: #101010 !important;
-      color: #e0e0e0 !important;
-      font-family: 'Fira Code', monospace !important;
-    }
-  
-    /* Application de la police au contenu central */
-    body[data-theme="dark"] .markdown-section {
-      font-family: 'Fira Code', monospace !important;
-      color: #e0e0e0 !important;
-    }
-  
-    /* Titres H1 à H6 : vert fluo, avec priorité maximale */
-    .markdown-section h1,
-    .markdown-section h2,
-    .markdown-section h3,
-    .markdown-section h4,
-    .markdown-section h5,
-    .markdown-section h6 {
-      color: #b6ff40 !important;
-    }
-  
-    /* Liens (texte et sidebar) */
-    a,
-    .sidebar a {
-      color: #00ff90 !important;
-    }
-  
-    /* Sidebar : fond sombre + ligne pointillée + couleur de lien */
-    .sidebar {
-      background-color: #121212 !important;
-      border-right: 1px dashed #00ff90 !important;
-    }
-  
-    /* Sélection de texte personnalisée */
-    ::selection {
-      background: #00ff90;
-      color: #000000;
-    }
+  --base-font-family: 'Fira Code', monospace;
+}
+
+/* Base globale en thème sombre */
+body[data-theme="dark"] {
+  background-color: #101010 !important;
+  color: #e0e0e0 !important;
+  font-family: 'Fira Code', monospace !important;
+}
+
+/* Contenu central en Fira Code */
+body[data-theme="dark"] .markdown-section {
+  font-family: 'Fira Code', monospace !important;
+  color: #e0e0e0 !important;
+}
+
+/* Forcer tous les titres h1 à h6, même injectés */
+body[data-theme="dark"] .markdown-section h1,
+body[data-theme="dark"] .markdown-section h2,
+body[data-theme="dark"] .markdown-section h3,
+body[data-theme="dark"] .markdown-section h4,
+body[data-theme="dark"] .markdown-section h5,
+body[data-theme="dark"] .markdown-section h6 {
+  color: #b6ff40 !important;
+}
+
+/* Également forcer les titres via role (accessibilité Docsify) */
+body[data-theme="dark"] .markdown-section [role="heading"] {
+  color: #b6ff40 !important;
+}
+
+/* Liens verts néon */
+body[data-theme="dark"] a,
+body[data-theme="dark"] .sidebar a {
+  color: #00ff90 !important;
+}
+
+/* Sidebar */
+body[data-theme="dark"] .sidebar {
+  background-color: #121212 !important;
+  border-right: 1px dashed #00ff90 !important;
+}
+
+/* Sélection */
+::selection {
+  background: #00ff90;
+  color: #000000;
+}
   </style>
   
 </head>
