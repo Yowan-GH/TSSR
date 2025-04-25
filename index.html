@@ -5,22 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSSR - Yowan-GH</title>
 
-  <!-- Suppression du thème Docsify existant -->
-  <!-- Ajout du style personnalisé Hacker -->
+  <!-- Style personnalisé Hacker avec navbar -->
   <style>
     :root {
-      --primary-color: #00ff00; /* Vert fluo typique du style hacker */
-      --bg-color: #111111;     /* Fond noir */
-      --text-color: #00ff00;   /* Texte vert fluo */
-      --link-color: #00ff00;    /* Liens vert fluo */
-      --code-bg: #000000;      /* Fond noir pour les blocs de code */
-      --border-color: #00ff00;  /* Bordures vert fluo */
+      --primary-color: #00ff00;
+      --bg-color: #111111;
+      --text-color: #00ff00;
+      --link-color: #00ff00;
+      --code-bg: #000000;
+      --border-color: #00ff00;
+      --navbar-bg: #000000;
     }
 
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
       font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar stylée */
+    .app-nav {
+      background-color: var(--navbar-bg);
+      padding: 15px;
+      border-bottom: 1px solid var(--border-color);
+      margin: 0;
+    }
+
+    .app-nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+    }
+
+    .app-nav li {
+      margin-right: 20px;
+    }
+
+    .app-nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .app-nav a:hover {
+      text-decoration: underline;
     }
 
     #app {
@@ -38,13 +69,19 @@
       text-decoration: underline;
     }
 
-    /* Style pour la barre de navigation */
     .sidebar {
       background-color: var(--bg-color);
       border-right: 1px solid var(--border-color);
     }
 
-    /* Style pour les blocs de code */
+    .sidebar ul {
+      border-left: 1px solid var(--border-color);
+    }
+
+    .sidebar li {
+      margin: 10px 0;
+    }
+
     pre, code {
       background-color: var(--code-bg);
       color: var(--primary-color);
@@ -52,7 +89,6 @@
       font-family: 'Courier New', monospace;
     }
 
-    /* Style pour le bouton d'accueil */
     [href="#/"] {
       background: var(--bg-color);
       padding: 8px 12px;
@@ -62,7 +98,6 @@
       border: 1px solid var(--border-color);
     }
 
-    /* Style pour la recherche */
     .search input {
       background-color: var(--bg-color);
       color: var(--primary-color);
@@ -70,16 +105,22 @@
       font-family: 'Courier New', monospace;
     }
 
-    /* Animation clignotante pour le curseur */
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* Style pour les titres */
     h1, h2, h3, h4, h5, h6 {
       color: var(--primary-color);
       border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Animation pour le curseur de la navbar */
+    .app-nav::after {
+      content: "|";
+      animation: blink 1s infinite;
+      color: var(--primary-color);
+      margin-left: 5px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 
@@ -87,6 +128,15 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <!-- Navbar ajoutée ici -->
+  <nav class="app-nav">
+    <ul>
+      <li><a href="#/">Accueil</a></li>
+      <li><a href="#/projets">Projets</a></li>
+      <li><a href="#/contact">Contact</a></li>
+    </ul>
+  </nav>
+
   <div id="app">
     <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
   </div>
@@ -108,6 +158,12 @@
         paths: 'auto',
         hideOtherSidebarContent: false
       },
+      // Configuration de la navbar Docsify
+      nav: [
+        { title: 'Accueil', path: '/' },
+        { title: 'Projets', path: '/projets' },
+        { title: 'Contact', path: '/contact' }
+      ]
     };
   </script>
 
@@ -115,6 +171,7 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
 
   <!-- Prism.js Core + Langages -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
