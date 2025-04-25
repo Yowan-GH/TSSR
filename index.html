@@ -67,21 +67,22 @@
   <div id="app">Chargement en cours…</div>
 
   <script>
-   window.$docsify = {
-  name: 'Notes TSSR',
-  repo: '',
-  loadSidebar: true,
-  basePath: '/',          // 🔧 force à chercher _sidebar.md à la racine
-  relativePath: true,     // 🔧 adapte les chemins internes
-  subMaxLevel: 2,
-  themeColor: '#00ff90',
-  search: {
-    placeholder: '🔍 Search...',
-    noData: '⚠️ 404 Not found',
-    depth: 4,
-    paths: 'auto'
-  }
-};
+    window.$docsify = {
+      name: 'Notes TSSR',
+      repo: '',
+      loadSidebar: '/_sidebar.md',   // 🔧 charge le fichier global, peu importe la page
+      relativePath: true,            // 🔧 permet de garder les chemins relatifs corrects
+      basePath: '/',                 // 🔧 assure que tous les chemins partent bien de la racine
+      homepage: 'README.md',         // ✅ force Docsify à afficher le README comme page d’accueil
+      subMaxLevel: 2,
+      themeColor: '#00ff90',
+      search: {
+        placeholder: '🔍 Rechercher...',
+        noData: '⚠️ 404 - Aucun résultat',
+        depth: 4,
+        paths: 'auto'
+      }
+    };
   </script>
 
   <!-- Docsify -->
