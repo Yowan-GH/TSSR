@@ -11,43 +11,37 @@
   <!-- CSS Docsify (chargé en premier) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-  <!-- CSS Personnalisé -->
-  <style>
+  <<style>
     :root {
       --base-font-family: 'Fira Code', monospace;
+      --background-color: #121212; /* Variable déclarée */
     }
-
-    body[data-theme="dark"] {
-      background-color: #121212;
-      color: #e0e0e0;
+  
+    /* Couleur de fond appliquée par défaut (même hors thème dark) */
+    body {
+      background-color: var(--background-color, #121212); /* Utilisation de la variable avec fallback */
       font-family: 'Fira Code', monospace;
     }
-
-    /* Titres MD en vert */
-    .markdown-section h1,
-    .markdown-section h2,
-    .markdown-section h3,
-    .markdown-section h4,
-    .markdown-section h5,
-    .markdown-section h6 {
-      color: #00ff90 !important;
+  
+    body[data-theme="dark"] {
+      color: #e0e0e0; /* Conserve uniquement les styles spécifiques au thème dark */
     }
-
+  
     /* Sidebar */
     .sidebar {
       background-color: #121212;
       border-right: 1px dashed #00ff90;
     }
-
+  
     .sidebar a {
       color: #e0e0e0;
     }
-
+  
     .sidebar li.active > a {
       color: #00ff90 !important;
       font-weight: bold;
     }
-
+  
     ::selection {
       background: #00ff90;
       color: #000000;
