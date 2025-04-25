@@ -136,6 +136,17 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-powershell.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  
+    <!-- Force coloration syntaxique -->
+  <script>
+    window.$docsify = window.$docsify  {};
+    window.$docsify.plugins = [].concat(function(hook) {
+      hook.doneEach(function() {
+        Prism.highlightAll();
+      });
+    }, window.$docsify.plugins  []);
+  </script>
+
 </body>
 </html>
 
