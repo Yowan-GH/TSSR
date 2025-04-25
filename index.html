@@ -8,7 +8,7 @@
   <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-  
+    <!-- Accordéons -->
   <style>
     .sidebar-nav li.has-submenu > ul {
       display: none;
@@ -26,6 +26,20 @@
       transform: rotate(90deg);
     }
   </style>
+
+  <!-- Fleche accordéon -->
+<style> 
+  .app-sub-sidebar li > a:before {
+    content: "▸";
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+    margin-right: 6px;
+  }
+  .app-sub-sidebar li.open > a:before {
+    transform: rotate(90deg);
+  }
+</style>
 
 </head>
 <body>
