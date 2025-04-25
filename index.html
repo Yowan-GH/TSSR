@@ -8,59 +8,64 @@
   <!-- Police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- Style Hacker Fixe -->
+  <!-- Style Hacker Complet -->
   <style>
     :root {
-      --base-font-family: 'Fira Code', monospace;
       --bg-color: #0c0d0e;
       --text-color: #c5c8c6;
-      --link-color: #00ff90;
+      --green: #00ff90;
       --sidebar-bg: #121212;
-      --sidebar-border: #00ff90;
     }
 
     body {
-      background-color: var(--bg-color) !important;
+      background: var(--bg-color) !important;
       color: var(--text-color) !important;
-      font-family: var(--base-font-family) !important;
+      font-family: 'Fira Code', monospace !important;
     }
 
-    /* Titres toujours verts */
+    /* Titres */
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3,
     .markdown-section h4,
     .markdown-section h5,
     .markdown-section h6 {
-      color: var(--link-color) !important;
-      font-family: var(--base-font-family) !important;
+      color: var(--green) !important;
       border-bottom: none !important;
     }
 
-    /* Sidebar style hacker */
+    /* Sidebar */
     .sidebar {
-      background-color: var(--sidebar-bg) !important;
-      border-right: 1px dashed var(--sidebar-border) !important;
+      background: var(--sidebar-bg) !important;
+      border-right: 1px dashed var(--green) !important;
     }
-    .sidebar a {
+    .sidebar ul li a {
       color: var(--text-color) !important;
     }
-    .sidebar li.active > a {
-      color: var(--link-color) !important;
+    .sidebar ul li.active > a {
+      color: var(--green) !important;
       font-weight: bold !important;
     }
 
-    /* Code blocks */
-    pre, code {
-      background-color: #1c1c1c !important;
-      border-radius: 3px !important;
+    /* Contenu principal */
+    .content {
+      background: var(--bg-color) !important;
     }
 
     /* Liens */
     a {
-      color: var(--link-color) !important;
+      color: var(--green) !important;
+    }
+
+    /* Code */
+    pre, code {
+      background: #1c1c1c !important;
+      border: 1px solid #333 !important;
     }
   </style>
+
+  <!-- CSS Docsify de base -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
   <div id="app"></div>
@@ -68,7 +73,9 @@
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
+      repo: '',
       loadSidebar: true,
+      loadNavbar: false,
       subMaxLevel: 2,
       homepage: 'README.md',
       search: {
@@ -80,25 +87,29 @@
   </script>
 
   <!-- Scripts Docsify -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
-  <!-- Garantie titre verte -->
+  <!-- Garantie des styles -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const style = document.createElement('style');
-      style.innerHTML = `
-        .markdown-section h1,
-        .markdown-section h2,
-        .markdown-section h3,
-        .markdown-section h4,
-        .markdown-section h5,
-        .markdown-section h6 {
-          color: #00ff90 !important;
-        }
-      `;
-      document.head.appendChild(style);
-    });
+    function applyStyles() {
+      // Force les titres verts
+      document.querySelectorAll('.markdown-section h1, h2, h3, h4, h5, h6').forEach(el => {
+        el.style.color = '#00ff90';
+      });
+      
+      // Force la sidebar
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        sidebar.style.backgroundColor = '#121212';
+        sidebar.style.borderRight = '1px dashed #00ff90';
+      }
+    }
+
+    // Applique immédiatement et toutes les secondes pendant 5s
+    applyStyles();
+    const interval = setInterval(applyStyles, 1000);
+    setTimeout(() => clearInterval(interval), 5000);
   </script>
 </body>
 </html>
