@@ -5,155 +5,80 @@
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Police typique des terminaux -->
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Police Fira Code -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- Style Hacker pur -->
+  <!-- CSS Docsify (chargé en premier) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
+
+  <!-- CSS Personnalisé -->
   <style>
     :root {
-      --bg: #0d1117;
-      --text: #c9d1d9;
-      --green: #00ff90;
-      --sidebar-bg: #161b22;
+      --base-font-family: 'Fira Code', monospace;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inconsolata', monospace;
-      margin: 0;
-      line-height: 1.6;
+    body[data-theme="dark"] {
+      background-color: #101010;
+      color: #e0e0e0;
+      font-family: 'Fira Code', monospace;
     }
 
-    /* Layout */
-    #app {
-      display: flex;
-      min-height: 100vh;
+    /* Titres MD en vert */
+    .markdown-section h1,
+    .markdown-section h2,
+    .markdown-section h3,
+    .markdown-section h4,
+    .markdown-section h5,
+    .markdown-section h6 {
+      color: #00ff90 !important;
     }
 
     /* Sidebar */
     .sidebar {
-      width: 300px;
-      background: var(--sidebar-bg);
-      border-right: 1px dashed var(--green);
-      padding: 20px;
-      box-sizing: border-box;
-      overflow-y: auto;
+      background-color: #121212;
+      border-right: 1px dashed #00ff90;
     }
 
-    .sidebar-nav {
-      padding: 0;
-      list-style: none;
+    .sidebar a {
+      color: #e0e0e0;
     }
 
-    .sidebar-nav a {
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      padding: 5px 0;
+    .sidebar li.active > a {
+      color: #00ff90 !important;
+      font-weight: bold;
     }
 
-    .sidebar-nav a:hover,
-    .sidebar-nav li.active > a {
-      color: var(--green);
-    }
-
-    /* Contenu */
-    .content {
-      flex: 1;
-      padding: 20px 40px;
-      max-width: 800px;
-    }
-
-    /* Titres */
-    h1, h2, h3, h4 {
-      color: var(--green);
-      margin-top: 1.5em;
-      border-bottom: 1px solid #30363d;
-      padding-bottom: 0.3em;
-    }
-
-    /* Code */
-    pre, code {
-      background: #161b22;
-      border-radius: 3px;
-      padding: 0.2em 0.4em;
-      font-size: 85%;
-    }
-
-    pre {
-      padding: 16px;
-      overflow: auto;
-    }
-
-    /* Liens */
-    a {
-      color: var(--green);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+    ::selection {
+      background: #00ff90;
+      color: #000000;
     }
   </style>
 </head>
 <body>
-  <div id="app">
-    <nav class="sidebar">
-      <ul class="sidebar-nav" id="sidebar"></ul>
-    </nav>
-    
-    <main class="content" id="content">
-      <!-- Le contenu sera injecté ici -->
-    </main>
-  </div>
+  <div id="app">Chargement en cours...</div>
 
-  <!-- Configuration et scripts -->
+  <!-- Configuration Docsify -->
   <script>
-    // Configuration basique
-    const config = {
-      basePath: '/',
-      sidebarFile: '_sidebar.md',
-      homepage: 'README.md'
+    window.$docsify = {
+      name: 'TSSR Notes',
+      repo: '',
+      loadSidebar: true,
+      loadNavbar: false,
+      subMaxLevel: 2,
+      homepage: 'README.md',
+      search: {
+        placeholder: '🔍 Rechercher...',
+        noData: '⚠️ Aucun résultat',
+      },
     };
-
-    // Charge le contenu
-    async function loadContent() {
-      // Charge la sidebar
-      const sidebarResponse = await fetch(config.sidebarFile);
-      const sidebarContent = await sidebarResponse.text();
-      document.getElementById('sidebar').innerHTML = marked.parse(sidebarContent);
-      
-      // Charge la page courante
-      const page = window.location.hash.substring(2) || config.homepage;
-      const contentResponse = await fetch(page);
-      const content = await contentResponse.text();
-      document.getElementById('content').innerHTML = marked.parse(content);
-      
-      // Active les liens
-      setupLinks();
-    }
-
-    // Gère la navigation
-    function setupLinks() {
-      document.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href')?.startsWith('#')) {
-          link.addEventListener('click', async (e) => {
-            e.preventDefault();
-            const page = link.getAttribute('href').substring(1);
-            window.location.hash = `#/${page}`;
-            await loadContent();
-          });
-        }
-      });
-    }
-
-    // Initialisation
-    window.addEventListener('DOMContentLoaded', loadContent);
-    window.addEventListener('hashchange', loadContent);
   </script>
 
-  <!-- Marked.js pour le rendu Markdown -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Scripts Docsify (chargés en fin de body) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
+
+  <!-- Prism.js pour la syntaxe -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
 </body>
 </html>
