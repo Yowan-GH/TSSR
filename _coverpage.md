@@ -1,9 +1,6 @@
 <!-- _coverpage.md -->
 
 ![cover](assets/coverpage.png)
-tes tes tetst ts t
-
-
 
 
 [Get Started](/README.md)
