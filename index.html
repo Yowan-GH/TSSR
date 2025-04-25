@@ -42,34 +42,6 @@
       --code-block-background: #252525;
     }
 
-    /* Boutons de la coverpage */
-   /* 🌄 Étire le fond de la coverpage */
-  section.cover.show {
-  background-size: cover !important;
-  background-repeat: no-repeat;
-  background-position: center;
-  }
-
-  /* 🧭 Centrage du contenu + espacement */
-  .cover-main {
-  max-width: 800px;
-  margin: auto;
-  padding-top: 10vh;
-  padding-bottom: 5vh;
-  text-align: center;
-  }
-
-  /* 🎨 Bouton "Get Started" personnalisé */
-  .cover .app-nav a:first-of-type {
-  background-color: #09914d;
-  border: none;
-  color: #fff !important;
-  }
-
-.cover .app-nav a:first-of-type:hover {
-  background-color: #0bb65c;
-}
-
     /*  Fond bruité en arrière-plan */
   body {
   background-color: #181818; /* Couleur de base sombre */
@@ -127,6 +99,55 @@
       color: white;
       text-decoration: none;
     }
+
+    /* 🌄 Étend l'image de la cover sur tout l'écran */
+section.cover.show {
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('assets/coverpage.png'); /* ou lien GitHub si besoin */
+}
+
+/* Centrage et espacement */
+.cover-main {
+  max-width: 800px;
+  margin: auto;
+  padding-top: 15vh;
+  padding-bottom: 5vh;
+  text-align: center;
+}
+
+/* ⭕ Style arrondi pour TOUS les boutons */
+.cover .app-nav a {
+  border-radius: 999px;
+  padding: 0.6em 1.8em;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}
+
+/* ⚫ Get Started = bouton noir */
+.cover .app-nav a:first-of-type {
+  background-color: #000;
+  border: none;
+  color: #fff !important;
+}
+
+.cover .app-nav a:first-of-type:hover {
+  background-color: #333;
+}
+
+/* GitHub = bouton classique transparent bordé */
+.cover .app-nav a:last-of-type {
+  background-color: transparent;
+  border: 1px solid #888;
+  color: #ccc;
+}
+
+.cover .app-nav a:last-of-type:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
   </style>
   
 </head>
