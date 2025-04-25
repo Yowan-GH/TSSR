@@ -8,7 +8,26 @@
   <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-  </head>
+  
+  <style>
+    .sidebar-nav li.has-submenu > ul {
+      display: none;
+      margin-left: 1em;
+    }
+    .sidebar-nav li.has-submenu.open > ul {
+      display: block;
+    }
+    .sidebar-nav li.has-submenu > a:after {
+      content: ' ▸';
+      float: right;
+      transition: transform 0.3s ease;
+    }
+    .sidebar-nav li.has-submenu.open > a:after {
+      transform: rotate(90deg);
+    }
+  </style>
+
+</head>
 <body>
   <div id="app">Chargement…</div>
 
@@ -19,8 +38,8 @@
       repo: '',
       loadSidebar: true,
       loadNavbar: false,
-      subMaxLevel: 1,  // Niveau initial affiché
-      maxLevel: 0,
+      subMaxLevel: 3,  // Niveau initial affiché
+      maxLevel: 3,
       search: { // Personnalisation barre de recherche
         maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
@@ -85,5 +104,28 @@
       });
     });
   </script>
+
+<script>
+  // Plugin pour accordéon dans la sidebar
+  window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+    hook.doneEach(function() {
+      const sidebar = document.querySelector('.sidebar-nav');
+      if (!sidebar) return;
+
+      sidebar.querySelectorAll('li').forEach(li => {
+        const sub = li.querySelector('ul');
+        if (sub) {
+          li.classList.add('has-submenu');
+          li.addEventListener('click', function(e) {
+            if (e.target.tagName.toLowerCase() === 'a') return;
+            e.stopPropagation();
+            this.classList.toggle('open');
+          });
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
