@@ -1,8 +1,6 @@
 
 # IOS CISCO - Generalités
 
-# IOS CISCO - Generalités
-
 ## Qu'est-ce que IOS ? 
 
 
@@ -86,9 +84,8 @@ transport input ssh         				# Désactive Telnet, active SSH uniquement
 exit										# Sort du mode courant 
 ```
 
-<span style="color:red"> Remplace le mot de passe définit en vty (telnet) ne remplace pas le mot de passe privilège /<span> 
-
-
+ <span style="color:rgb(255, 0, 0)">Remplace le mot de passe définit en vty (telnet) ne remplace pas le mot de passe privilège</span> 
+ 
 **Vérifier et gérer les connexions VTY**  
 
 💡 Vérifier les connexions en cours : 

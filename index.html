@@ -4,64 +4,40 @@
   <meta charset="UTF-8">
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Thème clair/sombre -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
-
-  <!-- Style personnalisé pour la sidebar -->
   <style>
-    /* Cache tous les sous-niveaux par défaut */
+    /* Style pour l'accordéon */
     .sidebar ul ul {
       display: none;
       padding-left: 15px;
-      border-left: 1px solid var(--borderColor);
     }
-    
-    /* Style pour les listes visibles */
     .sidebar ul ul.visible {
       display: block;
       animation: fadeIn 0.2s;
     }
-    
-    /* Indicateurs visuels */
     .accordion-indicator {
       display: inline-block;
       margin-right: 8px;
       font-size: 10px;
       transition: transform 0.2s;
-      cursor: pointer;
-      color: var(--textColor);
     }
-    
-    /* Animation */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Style pour l'élément actif */
-    .sidebar .active {
-      font-weight: bold;
-      color: var(--theme-color, #42b983);
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
   <div id="app">Chargement…</div>
 
-  <!-- Config Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
       loadSidebar: true,
       loadNavbar: false,
-      subMaxLevel: 4,  // Niveau initial (seuls les # visibles)
-      toc: {
-        scope: '.markdown-section',
-        headings: 'h1, h2, h3, h4'  // Tous les niveaux à prendre en compte
-      },
-      search: { // Personnalisation barre de recherche
+      subMaxLevel: 4, // Important pour charger toute la hiérarchie
+      search: {
         maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
         noData: 'Aucun résultat trouvé',
@@ -92,85 +68,55 @@
     };
   </script>
 
-  <!-- Cache-buster pour .md -->
-  <script>
-    const originalFetch = window.fetch;
-    window.fetch = function(input, init) {
-      if (typeof input === 'string' && input.endsWith('.md')) {
-        const cacheBuster = Date.now();
-        input += (input.includes('?') ? '&' : '?') + 't=' + cacheBuster;
-      }
-      return originalFetch(input, init);
-    };
-  </script>
-
   <!-- Docsify Core -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Prism.js for syntax highlighting -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
-
-  <!-- Script pour la navigation hiérarchique -->
+  <!-- Script accordéon optimisé -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Attendre que Docsify ait initialisé la sidebar
-      const observer = new MutationObserver(function() {
+      function initAccordion() {
         const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-          observer.disconnect();
-          setupAccordionNavigation();
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
+        if (!sidebar) return setTimeout(initAccordion, 100);
 
-      function setupAccordionNavigation() {
-        const sidebar = document.querySelector('.sidebar');
-        
-        // Fonction récursive pour configurer tous les niveaux
-        function setupItems(container) {
-          const items = container.querySelectorAll('li');
-          
-          items.forEach(item => {
-            const link = item.querySelector('a');
-            const sublist = item.querySelector('ul');
-            
-            if (sublist) {
-              // Crée un indicateur visuel
+        // 1. Ne masquer que les sous-niveaux (niveau 2+)
+        const subItems = sidebar.querySelectorAll('ul ul');
+        subItems.forEach(sub => {
+          sub.classList.add('hidden-level');
+          const parentItem = sub.closest('li');
+          if (parentItem) {
+            const link = parentItem.querySelector('a');
+            if (link) {
               const indicator = document.createElement('span');
               indicator.className = 'accordion-indicator';
               indicator.innerHTML = '>';
               link.prepend(indicator);
-              
-              // Gestion du clic
-              link.addEventListener('click', function(e) {
-                if (e.target === indicator || indicator.contains(e.target)) {
-                  e.preventDefault();
-                  sublist.classList.toggle('visible');
-                  indicator.style.transform = sublist.classList.contains('visible') 
-                    ? 'rotate(90deg)' 
-                    : 'rotate(0deg)';
-                }
-              });
-              
-              // Applique récursivement aux sous-niveaux
-              setupItems(sublist);
             }
-          });
-        }
-        
-        // Initialisation
-        setupItems(sidebar);
-        
-        // Ouvre automatiquement la branche active
+          }
+        });
+
+        // 2. Gestion des clics
+        sidebar.addEventListener('click', function(e) {
+          const indicator = e.target.closest('.accordion-indicator');
+          if (indicator) {
+            e.preventDefault();
+            const parentLi = indicator.closest('li');
+            const subMenu = parentLi.querySelector('ul');
+            if (subMenu) {
+              subMenu.classList.toggle('visible');
+              indicator.style.transform = subMenu.classList.contains('visible') 
+                ? 'rotate(90deg)' 
+                : 'rotate(0deg)';
+            }
+          }
+        });
+
+        // 3. Ouvrir le chemin actif
         const activeItem = sidebar.querySelector('.active');
         if (activeItem) {
           let parent = activeItem.closest('ul');
-          while (parent && parent !== sidebar) {
+          while (parent) {
             parent.classList.add('visible');
             const indicator = parent.previousElementSibling?.querySelector('.accordion-indicator');
             if (indicator) indicator.style.transform = 'rotate(90deg)';
@@ -178,16 +124,23 @@
           }
         }
       }
-    });
 
-    // Activation Prism après rendu
-    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
-      hook.doneEach(function () {
-        if (window.Prism) {
-          Prism.highlightAll();
-        }
-      });
+      initAccordion();
     });
+  </script>
+
+  <!-- Prism.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
+  
+  <script>
+    window.$docsify.plugins = [function(hook) {
+      hook.doneEach(function() {
+        if (window.Prism) Prism.highlightAll();
+      });
+    }];
   </script>
 </body>
 </html>

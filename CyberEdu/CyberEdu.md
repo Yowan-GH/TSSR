@@ -1,7 +1,3 @@
-![Image](images/CyberEdu_3.png)
-
-
-# Les DICP  
 # Les DICP
 
 Les critères DICP sont des principes fondamentaux en cybersécurité qui permettent d'assurer la protection des données et des systèmes informatiques. L'acronyme DICP signifie :  
