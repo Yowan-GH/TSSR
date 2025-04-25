@@ -67,21 +67,21 @@
   <div id="app">Chargement en cours…</div>
 
   <script>
-    window.$docsify = {
-      name: 'Notes TSSR',
-      repo: '',
-      loadSidebar: true,
-      relativePath: true,         // 👈 important si tu utilises des chemins relatifs
-      subMaxLevel: 2,
-      search: 'auto',
-      search: {
-        noData: '⚠️ 404 Not found',
-        depth: 4,  // Valeur pour indexer plus de niveaux
-        paths: 'auto', // Search multi-page
-        placeholder: '🔍 Search...'
-      },
-      themeColor: '#00ff90'
-    };
+   window.$docsify = {
+  name: 'Notes TSSR',
+  repo: '',
+  loadSidebar: true,
+  basePath: '/',          // 🔧 force à chercher _sidebar.md à la racine
+  relativePath: true,     // 🔧 adapte les chemins internes
+  subMaxLevel: 2,
+  themeColor: '#00ff90',
+  search: {
+    placeholder: '🔍 Search...',
+    noData: '⚠️ 404 Not found',
+    depth: 4,
+    paths: 'auto'
+  }
+};
   </script>
 
   <!-- Docsify -->
