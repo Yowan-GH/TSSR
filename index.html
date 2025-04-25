@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSSR - Yowan-GH</title>
 
-  <!-- Thème sombre Docsify -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css">
+  <<!-- Theme: Simple Dark -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
 
   <!-- Thème Prism.js (coloration syntaxique) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
@@ -15,13 +15,28 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-  [href="#/"] {
-    background: #181818;
-    padding: 8px 12px;
-    border-radius: 4px;
-    color: white;
-    text-decoration: none;
-  }
+    :root {
+      --sidebar-background: #181818;
+      --sidebar-color: #f1f1f1;
+      --sidebar-font-family: 'Arial', monospace;
+      --sidebar-border-color: #f1f1f1;
+  
+      --base-background-color: #181818;
+      --base-color: #ffffff;
+      --base-font-family: 'Arial', sans-serif;
+    }
+  
+    .sidebar {
+      border-right: 2px dotted var(--sidebar-border-color);
+    }
+  
+    [href="#/"] {
+      background: #181818;
+      padding: 8px 12px;
+      border-radius: 4px;
+      color: white;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -40,8 +55,8 @@
       homepage: 'README.md',
       search: {
         maxAge: 86400000,
-        placeholder: '🔍 Rechercher...',
-        noData: 'Aucun résultat trouvé',
+        placeholder: '🔍 Search...',
+        noData: '404 Not Found',
         depth: 4,
         paths: 'auto',
         hideOtherSidebarContent: false
