@@ -3,91 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notes TSSR</title>
+  <title>TSSR - Yowan-GH</title>
 
-  <!-- Thème sombre avec Docsify Themeable -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+  <!-- Thème sombre -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css">
 
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
-    :root {
-      --base-font-family: 'Courier New', monospace; /* Police monospace style terminal */
-      --base-font-size: 16px;
-      --theme-hue: 100; /* Teinte globale Docsify (optionnelle ici) */
-    }
-  
-    body {
-      background-color: #222222; /*  Fond principal Gris foncé */
-      color: #f0f0f0;             /* Texte standard en blanc cassé (confort de lecture) */
-      font-family: 'Courier New', monospace; /* Apparence type terminal */
-    }
-  
-    /* 🔠 Titres (H1 à H6) en vert fluo Hacker */
-    .markdown-section h1,
-    .markdown-section h2,
-    .markdown-section h3,
-    .markdown-section h4,
-    .markdown-section h5,
-    .markdown-section h6 {
-      color: #98d437;  /*  Vert fluo pour les titres  */
-      font-weight: bold;
-    }
-  
-    /* 🔗 Liens dans le contenu principal */
-    .markdown-section a {
-      color: #00ff90; /* Vert néon pour les liens : lisible et visible sur fond sombre */
-    }
-  
-    .markdown-section a:hover {
-      text-decoration: underline; /* Soulignement au survol pour repérer les liens */
-    }
-  
-    /*  Sidebar gauche */
-    .sidebar {
-      background-color: #2b2a2a; /* Fond très sombre pour le menu */
-      border-right: 1px dashed #00ff90; /* Trait vertical vert pour bien séparer la sidebar */
-    }
-  
-    .sidebar a {
-      color: #00ff90; /* 🔗 Liens dans la sidebar en vert néon */
-    }
-  
-    .sidebar a:hover {
-      text-decoration: underline; /* Surbrillance au survol */
-    }
-  
-    /* 🖱️ Quand on sélectionne du texte */
-    ::selection {
-      background: #0d9459; /* Fond vert néon */
-      color: #000;          /* Texte noir dessus pour un contraste clair */
-    }
+  [href="#/"] {
+    background: #2c3e50;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+  }
   </style>
-  
 </head>
 <body>
-  <div id="app">Chargement en cours…</div>
+  <div id="app">
+  <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
+  </div>
 
   <script>
     window.$docsify = {
-      name: 'Notes TSSR',
+      name: 'TSSR',
       repo: '',
-      loadSidebar: '/_sidebar.md',   // 🔧 charge le fichier global, peu importe la page
-      relativePath: true,            // 🔧 permet de garder les chemins relatifs corrects
-      basePath: '/',                 // 🔧 assure que tous les chemins partent bien de la racine
-      homepage: 'README.md',         // ✅ force Docsify à afficher le README comme page d’accueil
+      loadSidebar: true,
+      loadNavbar: true,
       subMaxLevel: 2,
-      themeColor: '#00ff90',
+      auto2top: true,
+      relativePath: true,
+      homepage: 'README.md',
       search: {
+        maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
-        noData: '⚠️ 404 - Aucun résultat',
-        depth: 4,
-        paths: 'auto'
+        noData: 'Aucun résultat trouvé',
+        depth: 4,  // Valeur pour indexer plus de niveaux
+        paths: 'auto',  // Important pour le mode multi-page
+        hideOtherSidebarContent: false  // Permet de voir tous les résultats
+      },
+      copyCode: {
+        buttonText: '📋 Copier',
+        errorText: 'Erreur',
+        successText: 'Copié !'
       }
     };
   </script>
 
-  <!-- Docsify -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  <!-- Search plugin -->
+  <!-- Docsify Core + Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code"></script>
 </body>
 </html>
