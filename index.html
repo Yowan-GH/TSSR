@@ -5,24 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSSR - Yowan-GH</title>
 
-  <!-- Thème sombre Docsify -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css">
+  <!-- Suppression du thème Docsify existant -->
+  <!-- Ajout du style personnalisé Hacker -->
+  <style>
+    :root {
+      --primary-color: #00ff00; /* Vert fluo typique du style hacker */
+      --bg-color: #111111;     /* Fond noir */
+      --text-color: #00ff00;   /* Texte vert fluo */
+      --link-color: #00ff00;    /* Liens vert fluo */
+      --code-bg: #000000;      /* Fond noir pour les blocs de code */
+      --border-color: #00ff00;  /* Bordures vert fluo */
+    }
 
-  <!-- Thème Prism.js (coloration syntaxique) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Courier New', monospace;
+    }
+
+    #app {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Style pour la barre de navigation */
+    .sidebar {
+      background-color: var(--bg-color);
+      border-right: 1px solid var(--border-color);
+    }
+
+    /* Style pour les blocs de code */
+    pre, code {
+      background-color: var(--code-bg);
+      color: var(--primary-color);
+      border: 1px solid var(--border-color);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Style pour le bouton d'accueil */
+    [href="#/"] {
+      background: var(--bg-color);
+      padding: 8px 12px;
+      border-radius: 4px;
+      color: var(--primary-color);
+      text-decoration: none;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Style pour la recherche */
+    .search input {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      border: 1px solid var(--border-color);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Animation clignotante pour le curseur */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Style pour les titres */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+  </style>
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <style>
-  [href="#/"] {
-    background: #2c3e50;
-    padding: 8px 12px;
-    border-radius: 4px;
-    color: white;
-    text-decoration: none;
-  }
-  </style>
 </head>
 <body>
   <div id="app">
@@ -34,7 +96,6 @@
       name: 'TSSR',
       repo: '',
       loadSidebar: true,
-      loadNavbar: true,
       subMaxLevel: 2,
       auto2top: true,
       relativePath: true,
