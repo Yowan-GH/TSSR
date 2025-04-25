@@ -41,7 +41,18 @@
       --code-inline-background: #434444;
       --code-block-background: #252525;
     }
-  
+
+    /* Boutons de la coverpage */
+    .cover .app-nav a:first-of-type {
+    background-color: #09914d;
+    border: none;
+    color: #fff !important;
+    }
+
+    .cover .app-nav a:first-of-type:hover {
+    background-color: #0bb65c;
+    }
+
     /*  Fond bruité en arrière-plan */
   body {
   background-color: #181818; /* Couleur de base sombre */
@@ -112,6 +123,7 @@
       name: 'Menu',
       repo: '',
       loadSidebar: true,
+      coverpage: true,
       subMaxLevel: 2,
       auto2top: true,
       relativePath: true,
