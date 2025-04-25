@@ -8,35 +8,59 @@
   <!-- Police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- CSS Personnalisé -->
+  <!-- Style Hacker Fixe -->
   <style>
-    /* Force les titres à rester verts */
+    :root {
+      --base-font-family: 'Fira Code', monospace;
+      --bg-color: #0c0d0e;
+      --text-color: #c5c8c6;
+      --link-color: #00ff90;
+      --sidebar-bg: #121212;
+      --sidebar-border: #00ff90;
+    }
+
+    body {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+      font-family: var(--base-font-family) !important;
+    }
+
+    /* Titres toujours verts */
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3,
     .markdown-section h4,
     .markdown-section h5,
     .markdown-section h6 {
-      color: #00ff90 !important;
-      font-family: 'Fira Code', monospace !important;
+      color: var(--link-color) !important;
+      font-family: var(--base-font-family) !important;
+      border-bottom: none !important;
     }
 
-    /* Sidebar */
+    /* Sidebar style hacker */
     .sidebar {
-      background-color: #121212;
-      border-right: 1px dashed #00ff90;
+      background-color: var(--sidebar-bg) !important;
+      border-right: 1px dashed var(--sidebar-border) !important;
     }
     .sidebar a {
-      color: #e0e0e0;
+      color: var(--text-color) !important;
     }
     .sidebar li.active > a {
-      color: #00ff90 !important;
-      font-weight: bold;
+      color: var(--link-color) !important;
+      font-weight: bold !important;
+    }
+
+    /* Code blocks */
+    pre, code {
+      background-color: #1c1c1c !important;
+      border-radius: 3px !important;
+    }
+
+    /* Liens */
+    a {
+      color: var(--link-color) !important;
     }
   </style>
-
-  <!-- CSS Docsify -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 </head>
 <body>
   <div id="app"></div>
@@ -51,29 +75,17 @@
         placeholder: '🔍 Rechercher...',
         noData: '⚠️ Aucun résultat'
       },
-      darklightTheme: {
-        defaultTheme: 'dark',
-        siteFont: 'Fira Code',
-        dark: {
-          linkColor: '#e0e0e0',
-          sidebarBackground: '#121212'
-        },
-        light: {
-          linkColor: '#333333',
-          sidebarBackground: '#f6f8fa'
-        }
-      }
+      themeColor: '#00ff90'
     };
   </script>
 
   <!-- Scripts Docsify -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Solution ultime pour les titres -->
+  <!-- Garantie titre verte -->
   <script>
-    function enforceGreenTitles() {
+    document.addEventListener('DOMContentLoaded', function() {
       const style = document.createElement('style');
       style.innerHTML = `
         .markdown-section h1,
@@ -83,16 +95,10 @@
         .markdown-section h5,
         .markdown-section h6 {
           color: #00ff90 !important;
-          font-family: 'Fira Code', monospace !important;
         }
       `;
       document.head.appendChild(style);
-    }
-    
-    // Triple protection
-    document.addEventListener('DOMContentLoaded', enforceGreenTitles);
-    window.addEventListener('load', enforceGreenTitles);
-    setInterval(enforceGreenTitles, 1000);
+    });
   </script>
 </body>
 </html>
