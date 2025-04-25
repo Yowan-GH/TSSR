@@ -28,21 +28,13 @@
   </style>
 
   <!-- Fleche accordéon -->
-  
-
-
   <style>
-    /* Supprime les puces ou tirets des sous-menus */
-    .app-sub-sidebar ul {
-      padding-left: 0;
-      list-style: none;
-    }
-
+    /* Supprime le tiret par défaut */
     .app-sub-sidebar li {
-      list-style: none;
+      list-style-type: none;
     }
-
-    /* Ajoute une flèche seulement */
+  
+    /* Ajoute une flèche avant les éléments qui se replient */
     .app-sub-sidebar li > a:before {
       content: "▸";
       display: inline-block;
@@ -50,7 +42,7 @@
       transition: transform 0.2s ease;
       margin-right: 6px;
     }
-
+  
     .app-sub-sidebar li.open > a:before {
       transform: rotate(90deg);
     }
