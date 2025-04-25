@@ -15,29 +15,68 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
+    /* ========== VARIABLES GÉNÉRALES DU THEME ========== */
     :root {
-      --sidebar-background: #181818;
-      --sidebar-color: #f1f1f1;
-      --sidebar-font-family: 'Arial', monospace;
-      --sidebar-border-color: #f1f1f1;
-  
-      --base-background-color: #181818;
-      --base-color: #ffffff;
-      --base-font-family: 'Arial', sans-serif;
+      /* Couleur principale utilisée pour le vert (liens actifs, titres, etc.) */
+      --theme-color: #00cc66;
+    
+      /* ====  Sidebar ==== */
+      --sidebar-background: 81818#1;         /* Couleur de fond de la sidebar */
+      --sidebar-color: #ffffff;              /* Couleur du texte de la sidebar */
+      --sidebar-border-color: #00cc66;       /* Couleur utilisée pour les bordures (ici pour le trait vertical) */
+      --sidebar-font-family: 'Segoe UI', sans-serif;
+    
+      /* Lien actif dans la sidebar (celui de la page ouverte) */
+      --sidebar-nav-link-active-color: #00cc66;       /* Couleur du lien actif */
+      --sidebar-nav-link-active-background: transparent;
+      --sidebar-nav-link-color--hover: #00cc66;       /* Couleur au survol */
+    
+      /* ====  Markdown principal ==== */
+      --base-background-color: #181818;      /* Fond principal de la page */
+      --base-color: #ffffff;                 /* Couleur du texte principal */
+      --base-font-family: 'Segoe UI', sans-serif;  /* Police principale */
+    
+      /* ====  Code (inline et blocs) ==== */
+      --code-inline-background: #003322;     /* Fond pour `code inline` */
+      --code-block-background: #002611;      /* Fond pour les blocs ```code``` */
     }
-  
+    
+    
+    /* ==========  STYLE DE LA SIDEBAR ========== */
     .sidebar {
-      border-right: 2px dotted var(--sidebar-border-color);
+      border-right: 2px dashed var(--sidebar-border-color);  /* Bordure pointillée verte à droite de la sidebar */
     }
-  
-    [href="#/"] {
-      background: #181818;
-      padding: 8px 12px;
+    
+    /* ==========  LIEN ACTIF DANS LA SIDEBAR ========== */
+    .sidebar .app-sub-sidebar li.active > a {
+      color: var(--theme-color) !important;  /* Met le lien actif en vert */
+    }
+    
+    /* ==========  TITRE PRINCIPAL (TSSR) EN HAUT DE LA SIDEBAR ========== */
+    .app-name {
+      color: var(--theme-color) !important;  /* Le texte "TSSR" devient vert */
+      font-weight: bold;
+    }
+    
+    /* ========== `code inline` DANS LE TEXTE MARKDOWN ========== */
+    .markdown-section code {
+      background-color: var(--code-inline-background);  /* Fond vert foncé */
+      color: #a9ffa9;                                   /* Texte vert clair */
+    }
+    
+    /* ========== BLOCS DE CODE (AVEC ```bash PAR EXEMPLE) ========== */
+    .markdown-section pre {
+      background-color: var(--code-block-background);   /* Fond encore plus foncé */
+      color: #a9ffa9;                                   /* Texte vert clair */
       border-radius: 4px;
-      color: white;
-      text-decoration: none;
+      padding: 10px;
     }
-  </style>
+    
+    /* ========== BARRE DE RECHERCHE (curseur vert) ========== */
+    input[type="search"] {
+      caret-color: var(--theme-color);  /* Curseur de recherche vert */
+    }
+    </style>
 </head>
 <body>
   <div id="app">
