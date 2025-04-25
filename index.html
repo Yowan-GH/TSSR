@@ -5,87 +5,70 @@
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Import de la police Fira Code depuis Google Fonts -->
+  <!-- Import de la police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- Thème Docsify Dark/Light -->
+  <!-- Thème Docsify Darklight -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
-  <!-- Thème personnalisé Hacker + Fira Code -->
+  <!-- Style Hacker avec Fira Code -->
   <style>
-    <style>
-  /* Police de base */
-  :root {
-    --base-font-family: 'Fira Code', monospace;
-  }
+    /* Police globale */
+    :root {
+      --base-font-family: 'Fira Code', monospace;
+    }
 
-  /* Thème sombre : corps global */
-  body[data-theme="dark"] {
-    background-color: #101010 !important;
-    color: #e0e0e0 !important;
-    font-family: 'Fira Code', monospace !important;
-  }
+    /* Thème sombre principal */
+    body[data-theme="dark"] {
+      background-color: #101010 !important;
+      color: #e0e0e0 !important;
+      font-family: 'Fira Code', monospace !important;
+    }
 
-  /* Zone de contenu principale */
-  body[data-theme="dark"] .markdown-section {
-    font-family: 'Fira Code', monospace !important;
-    color: #e0e0e0 !important;
-  }
+    /* Contenu principal */
+    .markdown-section {
+      font-family: 'Fira Code', monospace !important;
+    }
 
-  /* Titres h1 à h6 + balises dynamiques injectées par Docsify */
-  .markdown-section h1,
-  .markdown-section h2,
-  .markdown-section h3,
-  .markdown-section h4,
-  .markdown-section h5,
-  .markdown-section h6,
-  .markdown-section [role="heading"] {
-    color: #b6ff40 !important;
-  }
+    /* Sidebar Hacker : fond sombre, liens vert fluo, ligne pointillée */
+    .sidebar {
+      background-color: #121212 !important;
+      border-right: 1px dashed #00ff90 !important;
+    }
 
-  /* Lien actif ou survol dans la sidebar */
-  .sidebar a {
-    color: #00ff90 !important;
-  }
+    .sidebar a {
+      color: #00ff90 !important;
+    }
 
-  /* Apparence de la sidebar */
-  .sidebar {
-    background-color: #121212 !important;
-    border-right: 1px dashed #00ff90 !important; /* ligne verticale */
-  }
+    .sidebar-toggle {
+      border-color: #00ff90 !important;
+    }
 
-  /* Si le toggle de la sidebar est visible */
-  .sidebar-toggle {
-    border-color: #00ff90 !important;
-  }
-
-  /* Sélection de texte */
-  ::selection {
-    background: #00ff90;
-    color: #000;
-  }
-</style>
-
-  
+    /* Surbrillance texte */
+    ::selection {
+      background: #00ff90;
+      color: #000000;
+    }
+  </style>
 </head>
 <body>
   <div id="app">Chargement…</div>
 
-  <!-- Configuration principale Docsify -->
+  <!-- Configuration Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
       loadSidebar: true,
       loadNavbar: false,
-      subMaxLevel: 3,
+      subMaxLevel: 2,
       maxLevel: 3,
       homepage: 'README.md',
       sidebarDisplayLevel: 1,
       search: {
         maxAge: 86400000,
         placeholder: '🔍 Rechercher...',
-        noData: '⚠️ Aucun résultat trouvé',
+        noData: '⚠️ 404 Not Found',
         depth: 4,
         paths: 'auto',
         hideOtherSidebarContent: false
@@ -113,7 +96,7 @@
     };
   </script>
 
-  <!-- Cache-buster : recharge toujours les derniers .md -->
+  <!-- Cache-buster pour forcer le rechargement des fichiers .md -->
   <script>
     const originalFetch = window.fetch;
     window.fetch = function(input, init) {
@@ -130,19 +113,30 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Prism.js pour coloration syntaxique -->
+  <!-- Prism.js pour la coloration syntaxique -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-shell-session.min.js"></script>
 
-  <!-- Réactivation de la coloration après chaque chargement -->
+  <!-- Activation Prism après chaque chargement -->
   <script>
     window.$docsify.plugins = (window.$docsify.plugins || []).concat(function (hook, vm) {
       hook.doneEach(function () {
         if (window.Prism) {
           Prism.highlightAll();
         }
+      });
+    });
+  </script>
+
+  <!-- Forcer la couleur des titres après le rendu Docsify -->
+  <script>
+    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+      hook.doneEach(function() {
+        document.querySelectorAll('.markdown-section h1, h2, h3, h4, h5, h6, [role="heading"]').forEach(el => {
+          el.style.color = '#b6ff40';
+        });
       });
     });
   </script>
