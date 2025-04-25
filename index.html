@@ -8,7 +8,7 @@
   <!-- Police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- CSS Docsify (chargé en premier) -->
+  <!-- CSS Docsify -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
 
   <!-- CSS Personnalisé -->
@@ -23,14 +23,14 @@
       font-family: 'Fira Code', monospace;
     }
 
-    /* Titres MD en vert */
+    /* Titres MD toujours verts */
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3,
-    .markdown-section h4,
-    .markdown-section h5,
-    .markdown-section h6 {
+    .markdown-section h4 {
       color: #00ff90 !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
     }
 
     /* Sidebar */
@@ -48,6 +48,7 @@
       font-weight: bold;
     }
 
+    /* Surbrillance texte */
     ::selection {
       background: #00ff90;
       color: #000000;
@@ -70,10 +71,23 @@
         placeholder: '🔍 Rechercher...',
         noData: '⚠️ Aucun résultat',
       },
+      darklightTheme: {
+        defaultTheme: 'dark',
+        siteFont: 'Fira Code',
+        codeFontFamily: 'Fira Code',
+        bodyFontSize: '17px',
+        dark: {
+          background: '#101010',
+          textColor: '#e0e0e0',
+          linkColor: '#e0e0e0',
+          codeBackgroundColor: '#1f1f1f',
+          sidebarBackground: '#141414'
+        }
+      }
     };
   </script>
 
-  <!-- Scripts Docsify (chargés en fin de body) -->
+  <!-- Scripts Docsify -->
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
