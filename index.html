@@ -17,23 +17,11 @@
     window.$docsify = {
       name: 'TSSR Notes',
       repo: '',
-      loadSidebar: true, // Barre latérale
-      loadNavbar: false, // Barre de navigation haute 
+      loadSidebar: true,
+      loadNavbar: false,
       subMaxLevel: 2,
       maxLevel: 0,
-      search: { // Configuration personnalisée de la barre de recherche. Sinon mettre auto
-        maxAge: 86400000,
-        placeholder: '🔍 Rechercher...',
-        noData: 'Aucun résultat trouvé',
-        depth: 4,  // Valeur pour indexer plus de niveaux
-        paths: 'auto',  // Important pour le mode multi-page
-        hideOtherSidebarContent: false  // Permet de voir tous les résultats
-      },
-      copyCode: { // FOnction de copie 
-        buttonText: '📋 Copier',
-        errorText: 'Erreur',
-        successText: 'Copié !'
-      }
+      search: 'auto',
       darklightTheme: {
         defaultTheme: 'dark',
         siteFont: 'Source Sans Pro',
