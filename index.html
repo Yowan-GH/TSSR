@@ -30,14 +30,30 @@
       font-family: 'Fira Code', monospace !important;
     }
 
-    /* Sidebar Hacker : fond sombre, liens vert fluo, ligne pointillée */
+    /* Titres en vert */
+    .markdown-section h1,
+    .markdown-section h2,
+    .markdown-section h3,
+    .markdown-section h4,
+    .markdown-section h5,
+    .markdown-section h6 {
+      color: #00ff90 !important;
+    }
+
+    /* Sidebar Hacker : fond sombre, liens blancs, ligne pointillée */
     .sidebar {
       background-color: #121212 !important;
       border-right: 1px dashed #00ff90 !important;
     }
 
     .sidebar a {
+      color: #e0e0e0 !important; /* Liens en blanc par défaut */
+    }
+
+    /* Lien actif dans la sidebar en vert */
+    .sidebar li.active > a {
       color: #00ff90 !important;
+      font-weight: bold;
     }
 
     .sidebar-toggle {
@@ -81,7 +97,7 @@
         dark: {
           background: '#101010',
           textColor: '#e0e0e0',
-          linkColor: '#00ff90',
+          linkColor: '#e0e0e0', /* Liens en blanc par défaut */
           codeBackgroundColor: '#1f1f1f',
           sidebarBackground: '#141414'
         },
@@ -126,17 +142,6 @@
         if (window.Prism) {
           Prism.highlightAll();
         }
-      });
-    });
-  </script>
-
-  <!-- Forcer la couleur des titres après le rendu Docsify -->
-  <script>
-    window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
-      hook.doneEach(function() {
-        document.querySelectorAll('.markdown-section h1, h2, h3, h4, h5, h6, [role="heading"]').forEach(el => {
-          el.style.color = '#b6ff40';
-        });
       });
     });
   </script>
