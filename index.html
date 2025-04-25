@@ -5,111 +5,155 @@
   <title>TSSR Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Police Fira Code -->
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Police typique des terminaux -->
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Style Hacker Complet -->
+  <!-- Style Hacker pur -->
   <style>
     :root {
-      --bg-color: #0c0d0e;
-      --text-color: #c5c8c6;
+      --bg: #0d1117;
+      --text: #c9d1d9;
       --green: #00ff90;
-      --sidebar-bg: #121212;
+      --sidebar-bg: #161b22;
     }
 
     body {
-      background: var(--bg-color) !important;
-      color: var(--text-color) !important;
-      font-family: 'Fira Code', monospace !important;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inconsolata', monospace;
+      margin: 0;
+      line-height: 1.6;
     }
 
-    /* Titres */
-    .markdown-section h1,
-    .markdown-section h2,
-    .markdown-section h3,
-    .markdown-section h4,
-    .markdown-section h5,
-    .markdown-section h6 {
-      color: var(--green) !important;
-      border-bottom: none !important;
+    /* Layout */
+    #app {
+      display: flex;
+      min-height: 100vh;
     }
 
     /* Sidebar */
     .sidebar {
-      background: var(--sidebar-bg) !important;
-      border-right: 1px dashed var(--green) !important;
-    }
-    .sidebar ul li a {
-      color: var(--text-color) !important;
-    }
-    .sidebar ul li.active > a {
-      color: var(--green) !important;
-      font-weight: bold !important;
+      width: 300px;
+      background: var(--sidebar-bg);
+      border-right: 1px dashed var(--green);
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
     }
 
-    /* Contenu principal */
+    .sidebar-nav {
+      padding: 0;
+      list-style: none;
+    }
+
+    .sidebar-nav a {
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      padding: 5px 0;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav li.active > a {
+      color: var(--green);
+    }
+
+    /* Contenu */
     .content {
-      background: var(--bg-color) !important;
+      flex: 1;
+      padding: 20px 40px;
+      max-width: 800px;
     }
 
-    /* Liens */
-    a {
-      color: var(--green) !important;
+    /* Titres */
+    h1, h2, h3, h4 {
+      color: var(--green);
+      margin-top: 1.5em;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 0.3em;
     }
 
     /* Code */
     pre, code {
-      background: #1c1c1c !important;
-      border: 1px solid #333 !important;
+      background: #161b22;
+      border-radius: 3px;
+      padding: 0.2em 0.4em;
+      font-size: 85%;
+    }
+
+    pre {
+      padding: 16px;
+      overflow: auto;
+    }
+
+    /* Liens */
+    a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
-
-  <!-- CSS Docsify de base -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <nav class="sidebar">
+      <ul class="sidebar-nav" id="sidebar"></ul>
+    </nav>
+    
+    <main class="content" id="content">
+      <!-- Le contenu sera injecté ici -->
+    </main>
+  </div>
 
+  <!-- Configuration et scripts -->
   <script>
-    window.$docsify = {
-      name: 'TSSR Notes',
-      repo: '',
-      loadSidebar: true,
-      loadNavbar: false,
-      subMaxLevel: 2,
-      homepage: 'README.md',
-      search: {
-        placeholder: '🔍 Rechercher...',
-        noData: '⚠️ Aucun résultat'
-      },
-      themeColor: '#00ff90'
+    // Configuration basique
+    const config = {
+      basePath: '/',
+      sidebarFile: '_sidebar.md',
+      homepage: 'README.md'
     };
-  </script>
 
-  <!-- Scripts Docsify -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-
-  <!-- Garantie des styles -->
-  <script>
-    function applyStyles() {
-      // Force les titres verts
-      document.querySelectorAll('.markdown-section h1, h2, h3, h4, h5, h6').forEach(el => {
-        el.style.color = '#00ff90';
-      });
+    // Charge le contenu
+    async function loadContent() {
+      // Charge la sidebar
+      const sidebarResponse = await fetch(config.sidebarFile);
+      const sidebarContent = await sidebarResponse.text();
+      document.getElementById('sidebar').innerHTML = marked.parse(sidebarContent);
       
-      // Force la sidebar
-      const sidebar = document.querySelector('.sidebar');
-      if (sidebar) {
-        sidebar.style.backgroundColor = '#121212';
-        sidebar.style.borderRight = '1px dashed #00ff90';
-      }
+      // Charge la page courante
+      const page = window.location.hash.substring(2) || config.homepage;
+      const contentResponse = await fetch(page);
+      const content = await contentResponse.text();
+      document.getElementById('content').innerHTML = marked.parse(content);
+      
+      // Active les liens
+      setupLinks();
     }
 
-    // Applique immédiatement et toutes les secondes pendant 5s
-    applyStyles();
-    const interval = setInterval(applyStyles, 1000);
-    setTimeout(() => clearInterval(interval), 5000);
+    // Gère la navigation
+    function setupLinks() {
+      document.querySelectorAll('a').forEach(link => {
+        if (link.getAttribute('href')?.startsWith('#')) {
+          link.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const page = link.getAttribute('href').substring(1);
+            window.location.hash = `#/${page}`;
+            await loadContent();
+          });
+        }
+      });
+    }
+
+    // Initialisation
+    window.addEventListener('DOMContentLoaded', loadContent);
+    window.addEventListener('hashchange', loadContent);
   </script>
+
+  <!-- Marked.js pour le rendu Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
