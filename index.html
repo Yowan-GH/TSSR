@@ -8,77 +8,72 @@
   <!-- Police Fira Code -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
-  <!-- CSS Docsify (chargé en premier) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css">
-
-  <!-- CSS Personnalisé -->
+  <!-- CSS de base -->
   <style>
-    :root {
-      --base-font-family: 'Fira Code', monospace;
-    }
-
-    body[data-theme="dark"] {
-      background-color: #101010;
-      color: #e0e0e0;
-      font-family: 'Fira Code', monospace;
-    }
-
-    /* Titres MD en vert */
+    /* Style minimal pour les titres */
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3,
-    .markdown-section h4,
-    .markdown-section h5,
-    .markdown-section h6 {
+    .markdown-section h4 {
       color: #00ff90 !important;
+      font-family: 'Fira Code', monospace !important;
     }
 
-    /* Sidebar */
+    /* Style sidebar existant */
     .sidebar {
       background-color: #121212;
       border-right: 1px dashed #00ff90;
     }
-
     .sidebar a {
       color: #e0e0e0;
     }
-
     .sidebar li.active > a {
       color: #00ff90 !important;
       font-weight: bold;
     }
-
-    ::selection {
-      background: #00ff90;
-      color: #000000;
-    }
   </style>
+
+  <!-- CSS Docsify -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app">Chargement en cours...</div>
+  <div id="app"></div>
 
-  <!-- Configuration Docsify -->
   <script>
     window.$docsify = {
       name: 'TSSR Notes',
-      repo: '',
       loadSidebar: true,
-      loadNavbar: false,
       subMaxLevel: 2,
       homepage: 'README.md',
       search: {
         placeholder: '🔍 Rechercher...',
-        noData: '⚠️ Aucun résultat',
+        noData: '⚠️ Aucun résultat'
       },
+      themeColor: '#00ff90'
     };
   </script>
 
-  <!-- Scripts Docsify (chargés en fin de body) -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <!-- Scripts Docsify -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
 
-  <!-- Prism.js pour la syntaxe -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <!-- Script de secours pour les titres -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function applyTitleStyles() {
+        const titles = document.querySelectorAll('.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4');
+        titles.forEach(title => {
+          title.style.color = '#00ff90';
+          title.style.fontFamily = '"Fira Code", monospace';
+        });
+      }
+      
+      // Applique une première fois
+      applyTitleStyles();
+      
+      // Ré-applique après un délai au cas où Docsify aurait modifié les styles
+      setTimeout(applyTitleStyles, 300);
+    });
+  </script>
 </body>
 </html>
