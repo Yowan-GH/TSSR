@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSSR - Yowan-GH</title>
 
-  <!-- Thème sombre Docsify -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable/dist/css/theme-simple-dark.css">
-
   <!-- Thème Prism.js (coloration syntaxique) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
 
@@ -15,18 +12,61 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-  [href="#/"] {
-    background: #2c3e50;
-    padding: 8px 12px;
-    border-radius: 4px;
-    color: white;
-    text-decoration: none;
-  }
+    body {
+      background-color: black;
+      color: #33ff33;
+      font-family: "Courier New", Courier, monospace;
+    }
+    
+    a {
+      color: #33ff33;
+      text-decoration: underline;
+    }
+    
+    a:hover {
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #111;
+      border-right: 1px solid #33ff33;
+    }
+    .sidebar a {
+      color: #33ff33;
+    }
+    .sidebar a:hover {
+      color: #00ff00;
+    }
+
+    /* Accueil bouton */
+    [href="#/"] {
+      background: #111;
+      padding: 8px 12px;
+      border-radius: 4px;
+      color: #33ff33;
+      text-decoration: none;
+      border: 1px solid #33ff33;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+    }
+    [href="#/"]:hover {
+      background: #33ff33;
+      color: black;
+    }
+
+    /* Ajout effet glow optionnel (peut être enlevé si tu veux sobre) */
+    body, .sidebar, a, [href="#/"] {
+      text-shadow: 0 0 5px #33ff33;
+    }
   </style>
 </head>
 <body>
   <div id="app">
-    <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
+    <a href="#/">🏠 Accueil</a>
   </div>
 
   <script>
