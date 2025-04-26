@@ -71,7 +71,6 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 > 🎨 Thème sombre + recherche full-text  
 > ☁️ Hébergé gratuitement sur GitHub Pages
 
-```
-[!NOTE]
-Test du plugin. Note style
-```
+
+>[!NOTE]
+>Test du plugin. Note style
