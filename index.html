@@ -172,6 +172,11 @@
       auto2top: true,
       relativePath: true,
       homepage: 'README.md',
+      progress: {
+        position: "top",
+        color: "var(--theme-color,#42b983)",
+        height: "3px",
+        }
       search: {
         maxAge: 86400000,
         placeholder: 'Search...',
@@ -192,6 +197,9 @@
   </script>
 
   <!-----------------------------  Plugins section ----------------------------------->
+  
+  <!-- Progress bar Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
 
   <!-- Docsify Core + Plugins -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
