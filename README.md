@@ -72,5 +72,17 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 > ☁️ Hébergé gratuitement sur GitHub Pages
 
 
->[!NOTE]
->Test du plugin. Note style
+> [!NOTE] 
+> Ceci est une note 
+
+> [!TIP] 
+> Ceci est un tips
+
+> [!DANGER] 
+> Ceci est un danger
+
+> [!warning] 
+> Ceci est un warning
+
+
+
