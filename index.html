@@ -119,13 +119,6 @@
 
 /* ✅ Boutons arrondis + noir pour coverpage Docsify */
 
-section.cover.show {
-  background-size: cover !important;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('assets/coverpage.png');
-}
-
 .cover-main a {
   border-radius: 999px !important;
   padding: 0.6em 2em;
@@ -138,14 +131,16 @@ section.cover.show {
 
 /* ✅ Get Started : vert avec écriture noire */
 .cover-main a[href="#README"] {
-  background-color: #c2ff3d !important;
-  color: #000 !important;
-  border: none !important;
+  background-color: var(--theme-color) !important; /* Couleur de fond du bouton */
+  color: #070707 !important; /* Couleur du texte */
+  border: 2px solid #000 !important; /* Bordure */
 }
 
 /* ✅ Get Started : hover */
 .cover-main a[href="#README"]:hover {
-  background-color: #b5f934 !important;
+  background-color: #3c3d3a !important;
+  color: var(--theme-color) !important; /* Couleur du texte */
+  border: 2px solid #000 !important; /* Bordure */
 }
 
 /* ✅ GitHub : bouton transparent + bord noir + écriture noire */
@@ -157,11 +152,11 @@ section.cover.show {
 
 /* ✅ GitHub : hover */
 .cover-main a[href*="github.com"]:hover {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-  border-color: #000 !important;
-  color: #000 !important;
+  /* background-color: rgba(0, 0, 0, 0.05) !important; */
+  background-color: #3c3d3a !important;
+  color: var(--theme-color) !important; /* Couleur du texte */
+  border: 2px solid #000 !important; /* Bordure */
 }
-
 
   </style>
   
