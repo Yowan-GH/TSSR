@@ -111,15 +111,15 @@
       text-decoration: none;
     }
 
-    /* 🌄 Étend l'image de la cover sur tout l'écran */
+    /*  Cover image */
   section.cover.show {
   background-size: cover !important;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url('assets/coverpage.png'); /* ou lien GitHub si besoin */
+  background-image: url('assets/coverpage.png'); 
 }
 
-/* Centrage et espacement */
+/* Center and space */
 .cover-main {
   max-width: 800px;
   margin: auto;
@@ -128,7 +128,7 @@
   text-align: center;
 }
 
-/* ✅ Boutons arrondis + noir pour coverpage Docsify */
+/* Round button + black coverpage Docsify */
 
 .cover-main a {
   border-radius: 999px !important;
@@ -140,14 +140,14 @@
   display: inline-block;
 }
 
-/* ✅ GitHub : bouton transparent + bord noir + écriture noire */
+/* GitHub : transparent button + border + writing */
 .cover-main a[href*="github.com"] {
   border: 1px solid #000 !important;
   background: transparent !important;
   color: #000 !important;
 }
 
-/* ✅ GitHub : hover */
+/* GitHub : hover corlor + border + writing */
 .cover-main a[href*="github.com"]:hover {
   background-color: #3c3d3a !important;
   color: var(--theme-color) !important; /* Couleur du texte */
@@ -190,6 +190,12 @@
   }
     };
   </script>
+
+  <!-----------------------------  Plugins section ----------------------------------->
+
+  <!-- Sidebar Collapse Plugins -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+
 
   <!-- Docsify Core + Plugins -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
