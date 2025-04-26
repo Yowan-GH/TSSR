@@ -22,9 +22,9 @@
       --theme-color: #baff39;
   
       /* ==== Sidebar ==== */
-      --sidebar-background: #181818;        /* Correction ici ✅ */
+      --sidebar-background: #181818;        /* background sidebar */
       --sidebar-color: #ffffff;
-      --sidebar-border-color: #baff39;
+      --sidebar-border-color: #baff39; /* Border Color */
       --sidebar-font-family: 'Segoe UI', sans-serif;
   
       /* Liens de la sidebar */
@@ -40,17 +40,28 @@
       /* ==== Code (inline et blocs) ==== */
       --code-inline-background: #434444;
       --code-block-background: #252525;
+
+      /* ==== Boutons cover ==== */
+
+      --cover-button-primary-background: var(--theme-color) !important;
+      --cover-button-primary-color: #000 !important;
+      --cover-button-primary-border: 2px solid #000 !important;
+      
+      /* ==== Boutons cover over ==== */
+      --cover-button-primary-background--hover: #303030 !important;
+      --cover-button-primary-color--hover: var(--theme-color) !important;
+      --cover-button-primary-border--hover: 2px solid #000 !important;
     }
 
     /*  Fond bruité en arrière-plan */
-  body {
-  background-color: #181818; /* Couleur de base sombre */
-  background-image:
+    body {
+    background-color: #181818; /* Couleur de base sombre */
+    background-image:
     url('https://yowan-gh.github.io/TSSR/assets/noise-bg.png');     /* Chemin vers l’image bruitée */
-  background-size: auto;
-  background-repeat: repeat;
-  background-attachment: fixed;
-  }
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    }
   
     /* ========== STYLE DE LA SIDEBAR ========== */
     .sidebar {
@@ -127,20 +138,6 @@
   margin: 0 0.5em;
   text-decoration: none;
   display: inline-block;
-}
-
-/* ✅ Get Started : vert avec écriture noire */
-.cover-main a[href="#/README.md"] {
-  background-color: var(--theme-color) !important; /* Couleur de fond du bouton */
-  color: #070707 !important; /* Couleur du texte */
-  border: 2px solid #000 !important; /* Bordure */
-}
-
-/* ✅ Get Started : hover */
-.cover-main a[href="#/README.md"]:hover {
-  background-color: #3c3d3a !important;
-  color: var(--theme-color) !important; /* Couleur du texte */
-  border: 2px solid #000 !important; /* Bordure */
 }
 
 /* ✅ GitHub : bouton transparent + bord noir + écriture noire */
