@@ -72,18 +72,18 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 > ☁️ Hébergé gratuitement sur GitHub Pages
 
 
-<!-- tabs:start --> 
+<!-- tabs:start -->
 
-<!-- tab:English --> 
+#### **English**
 
-Hello! 
+Hello!
 
-<!-- tab:French --> 
+#### **French**
 
-Bonjour! 
+Bonjour!
 
-<!-- tab:Italian --> 
+#### **Italian**
 
-Ciao! 
+Ciao!
 
 <!-- tabs:end -->
