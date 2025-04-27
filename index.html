@@ -169,6 +169,9 @@
     
     <!-- Search Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+    <!-- docsify-tabs (latest v1.x.x) -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   
     <!-- Prism.js Core + Langages -->
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
@@ -189,6 +192,14 @@
       relativePath: true,
       homepage: 'README.md',
        
+      tabs: {
+      persist: true,          // garde l'onglet actif même après reload
+      sync: true,             // synchronise les onglets sur plusieurs vues
+      theme: 'classic',       // ou 'material'
+      tabComments: true,      // utilise `<!-- tab:Tab Name -->` comme titre
+      tabHeadings: true       // utilise `## Heading` comme titre si pas de commentaire
+      },
+      
         search: {
         maxAge: 86400000,
         placeholder: 'Search...',
