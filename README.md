@@ -70,3 +70,15 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 > 🛠️ Site propulsé par [Docsify](https://docsify.js.org)  
 > 🎨 Thème sombre + recherche full-text  
 > ☁️ Hébergé gratuitement sur GitHub Pages
+
+
+<!-- tabs:start --> 
+#### **English** 
+
+Hello! 
+#### **French** 
+
+Bonjour! 
+#### **Italian** Ciao! 
+
+<!-- tabs:end -->
