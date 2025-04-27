@@ -71,20 +71,12 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 > 🎨 Thème sombre + recherche full-text  
 > ☁️ Hébergé gratuitement sur GitHub Pages
 
-
 <!-- tabs:start -->
 
-## English
+#### **Titre Onglet 1**
+Contenu du premier onglet
 
-Hello!
-
-## French
-
-Bonjour!
-
-## Italian
-
-Ciao!
+#### **Titre Onglet 2**
+Contenu du deuxième onglet
 
 <!-- tabs:end -->
-

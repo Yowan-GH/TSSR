@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSSR - Yowan-GH</title>
 
-
   <!-- Thème Prism.js (coloration syntaxique) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
 
@@ -22,9 +21,9 @@
       --theme-color: #baff39;
   
       /* ==== Sidebar ==== */
-      --sidebar-background: #181818;        /* background sidebar */
+      --sidebar-background: #181818;
       --sidebar-color: #ffffff;
-      --sidebar-border-color: #baff39; /* Border Color */
+      --sidebar-border-color: #baff39;
       --sidebar-font-family: 'Segoe UI', sans-serif;
   
       /* Liens de la sidebar */
@@ -42,7 +41,6 @@
       --code-block-background: #252525;
 
       /* ==== Boutons cover ==== */
-
       --cover-button-primary-background: var(--theme-color) !important;
       --cover-button-primary-color: #000 !important;
       --cover-button-primary-border: 2px solid #000 !important;
@@ -53,25 +51,24 @@
       --cover-button-primary-border--hover: 2px solid #000 !important;
     }
 
-    /*  Fond bruité en arrière-plan */
+    /* Fond bruité en arrière-plan */
     body {
-    background-color: #181818; /* Couleur de base sombre */
-    background-image:
-    url('https://yowan-gh.github.io/TSSR/assets/noise-bg.png');     /* Chemin vers l’image bruitée */
-    background-size: auto;
-    background-repeat: repeat;
-    background-attachment: fixed;
+      background-color: #181818;
+      background-image: url('https://yowan-gh.github.io/TSSR/assets/noise-bg.png');
+      background-size: auto;
+      background-repeat: repeat;
+      background-attachment: fixed;
     }
   
     /* ========== STYLE DE LA SIDEBAR ========== */
     .sidebar {
-      background-color: var(--sidebar-background); /* Utilise la variable corrigée */
-      border-right: 2px dashed var(--sidebar-border-color); /* Bordure droite en pointillé vert */
+      background-color: var(--sidebar-background);
+      border-right: 2px dashed var(--sidebar-border-color);
     }
   
     /* ========== LIEN ACTIF DANS LA SIDEBAR ========== */
     .sidebar .app-sub-sidebar li.active > a {
-      color: var(--theme-color) !important; /* Titre actif en vert */
+      color: var(--theme-color) !important;
     }
   
     /* ========== TITRE PRINCIPAL (TSSR) EN HAUT DE LA SIDEBAR ========== */
@@ -83,7 +80,7 @@
     /* ========== `code inline` DANS LE TEXTE MARKDOWN ========== */
     .markdown-section code {
       background-color: var(--code-inline-background);
-   }
+    }
   
     /* ========== BLOCS DE CODE (```bash, ```json, etc.) ========== */
     .markdown-section pre {
@@ -92,11 +89,12 @@
       padding: 10px;
       overflow-x: auto;
     }
-    /* Supprimer la couleur par défaut forcée */
+    
     .markdown-section pre code {
-    background: none;
-    color: unset;
+      background: none;
+      color: unset;
     }
+    
     /* ========== CURSEUR DE LA BARRE DE RECHERCHE ========== */
     input[type="search"] {
       caret-color: var(--theme-color);
@@ -111,76 +109,87 @@
       text-decoration: none;
     }
 
-    /*  Cover image */
-  section.cover.show {
-  background-size: cover !important;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('assets/coverpage.png'); 
-}
+    /* Cover image */
+    section.cover.show {
+      background-size: cover !important;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url('assets/coverpage.png'); 
+    }
 
-/* Center and space */
-.cover-main {
-  max-width: 800px;
-  margin: auto;
-  padding-top: 15vh;
-  padding-bottom: 5vh;
-  text-align: center;
-}
+    /* Center and space */
+    .cover-main {
+      max-width: 800px;
+      margin: auto;
+      padding-top: 15vh;
+      padding-bottom: 5vh;
+      text-align: center;
+    }
 
-/* Round button + black coverpage Docsify */
+    /* Round button + black coverpage Docsify */
+    .cover-main a {
+      border-radius: 999px !important;
+      padding: 0.6em 2em;
+      font-weight: 600;
+      font-size: 16px;
+      margin: 0 0.5em;
+      text-decoration: none;
+      display: inline-block;
+    }
 
-.cover-main a {
-  border-radius: 999px !important;
-  padding: 0.6em 2em;
-  font-weight: 600;
-  font-size: 16px;
-  margin: 0 0.5em;
-  text-decoration: none;
-  display: inline-block;
-}
+    /* GitHub : transparent button + border + writing */
+    .cover-main a[href*="github.com"] {
+      border: 1px solid #000 !important;
+      background: transparent !important;
+      color: #000 !important;
+    }
 
-/* GitHub : transparent button + border + writing */
-.cover-main a[href*="github.com"] {
-  border: 1px solid #000 !important;
-  background: transparent !important;
-  color: #000 !important;
-}
+    /* GitHub : hover corlor + border + writing */
+    .cover-main a[href*="github.com"]:hover {
+      background-color: #3c3d3a !important;
+      color: var(--theme-color) !important;
+      border: 2px solid #000 !important;
+    }
 
-/* GitHub : hover corlor + border + writing */
-.cover-main a[href*="github.com"]:hover {
-  background-color: #3c3d3a !important;
-  color: var(--theme-color) !important; /* Couleur du texte */
-  border: 2px solid #000 !important; /* Bordure */
-}
-
+    /* Style supplémentaire pour les onglets */
+    .docsify-tabs__tab {
+      padding: 8px 16px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .docsify-tabs__tab--active {
+      border-bottom: 2px solid var(--theme-color);
+      color: var(--theme-color);
+    }
+    
+    .docsify-tabs__tab:focus {
+      outline: none;
+    }
   </style>
-  
 </head>
 <body>
   <div id="app">
-  <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
+    <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
   </div>
 
- <!-----------------------------  Plugins section ----------------------------------->
-
-    <!-- Docsify Core -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-    
-    <!-- Search Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-
-    <!-- docsify-tabs (latest v1.x.x) -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <!----------------------------- Plugins section ----------------------------------->
+  <!-- Docsify Core -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   
-    <!-- Prism.js Core + Langages -->
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-powershell.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
-    
+  <!-- Search Plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
-    <!-- Configuration Docsify-->
+  <!-- docsify-tabs (latest v1.x.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  
+  <!-- Prism.js Core + Langages -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-powershell.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  
+  <!-- Configuration Docsify-->
   <script>
     window.$docsify = {
       name: 'Menu',
@@ -191,8 +200,17 @@
       auto2top: true,
       relativePath: true,
       homepage: 'README.md',
-       
-        search: {
+      
+      // Configuration des onglets
+      tabs: {
+        persist: true,
+        sync: true,
+        theme: 'classic',
+        tabComments: true,
+        tabHeadings: true
+      },
+      
+      search: {
         maxAge: 86400000,
         placeholder: 'Search...',
         noData: '404 Not Found',
@@ -201,17 +219,15 @@
         hideOtherSidebarContent: false
       },
 
-       markdown: {
-       renderer: {
-       code: function (code, lang) {
-        const langClass = lang ? `language-${lang}` : '';
-        return `<pre><code class="${langClass}">${Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup, lang)}</code></pre>`;
+      markdown: {
+        renderer: {
+          code: function (code, lang) {
+            const langClass = lang ? `language-${lang}` : '';
+            return `<pre><code class="${langClass}">${Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup, lang)}</code></pre>`;
+          }
+        }
       }
-    }
-  }
     };
   </script>
-
 </body>
 </html>
-
