@@ -74,16 +74,17 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 
 <!-- tabs:start -->
 
-#### **English**
+## **English**
 
 Hello!
 
-#### **French**
+## **French**
 
 Bonjour!
 
-#### **Italian**
+## **Italian**
 
 Ciao!
 
 <!-- tabs:end -->
+
