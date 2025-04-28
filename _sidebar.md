@@ -14,7 +14,6 @@
 	- [Les menaces](/CyberSecurite/Les-menaces.md)
 	- [Vulnerabilite Menace et Attaque en Cybersecurite](/CyberSecurite/Vulnerabilite-Menace-et-Attaque-en-Cybersecurite.md)
 	
-
 - 📡 IOS Cisco
 	- [IOS CISCO Generalites](/IOS_CISCO/IOS-CISCO-Generalites.md)
 	- [Routeurs Inter VLAN RIP Autres Protocoles](/IOS_CISCO/Routeurs-Inter-VLAN-RIP-Autres-Protocoles.md)
@@ -40,10 +39,12 @@
 	- [Manipulation des objets](/Scripting_powershell/Manipulation-des-objets.md)
 	- [Présentation](/Scripting_powershell/Presentation.md)
 	- [Structures et variables](/Scripting_powershell/Structures-et-variables.md)
-
+	- [L'écriture du script](/Scripting_powershell/Ecriture.md)
+	- [Pour aller plus loin](/Scripting_powershell/Pour-aller-plus-loin.md)
+	
 - 🔧 Service Réseaux Linux
 	- [Administration a distance](/Service_Reseaux_Linux/Administration-a-distance.md)
-	- [Adressage reseau](/Service_Reseaux_Linux/Adressage-reseau.md)
+	- [Adressage réseau](/Service_Reseaux_Linux/Adressage-reseau.md)
 	- [DHCP](/Service_Reseaux_Linux/DHCP.md)
 	- [DNS autoritaire](/Service_Reseaux_Linux/DNS-autoritaire.md)
 	- [DNS resolveur](/Service_Reseaux_Linux/DNS-resolveur.md)
