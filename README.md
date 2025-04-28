@@ -8,37 +8,37 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 
 # 🧭 Sommaire des contenus
 
- 📡 Réseaux & Cisco
-- IOS Cisco — Généralités, Modes, Sécurité
-- VLAN, Trunking, Routage Inter-VLAN
-- NAT, VTY, RIP…
+ - 📡 Réseaux & Cisco
+	 - IOS Cisco — Généralités, Modes, Sécurité
+	 - VLAN, Trunking, Routage Inter-VLAN
+	 - NAT, VTY, RIP…
 
-🐧 Commandes Linux essentielles
-- Commandes de base (`ip`, `who`, `date`, `ls`, `mkdir`…)
-- Navigation, redirections, `jobs`, `fg/bg`, `tee`, etc.
-- Compression (`tar`, `gzip`…), recherche (`grep`, `find`)
-- Scripts, permissions, processus
+- 🐧 Commandes Linux essentielles
+	- Commandes de base (`ip`, `who`, `date`, `ls`, `mkdir`…)
+	- Navigation, redirections, `jobs`, `fg/bg`, `tee`, etc.
+	- Compression (`tar`, `gzip`…), recherche (`grep`, `find`)
+	- Scripts, permissions, processus
 
-🔐 Cybersécurité
-- DICP : Disponibilité, Intégrité, Confidentialité, Preuve
-- Vulnérabilités, Menaces, Attaques
-- Outils de protection, SIEM, PRA/PCA
+- 🔐 Cybersécurité
+	- DICP : Disponibilité, Intégrité, Confidentialité, Preuve
+	- Vulnérabilités, Menaces, Attaques
+	- Outils de protection, SIEM, PRA/PCA
 
-🐧 Environnement Linux
-- Interfaces réseau, DNS, DHCP
-- Fichiers systèmes, hostname, resolv.conf
-- Administration à distance (SSH, SCP)
-- Routage, firewall, DNS bind9
+- 🐧 Environnement Linux
+	- Interfaces réseau, DNS, DHCP
+	- Fichiers systèmes, hostname, resolv.conf
+	- Administration à distance (SSH, SCP)
+	- Routage, firewall, DNS bind9
 
- 🪟 Environnement Microsoft
-- Windows Server : rôles et fonctionnalités
-- Active Directory, GPO, DNS, DHCP
-- Gestion des disques, RAID
-- PowerShell de base
+ - 🪟 Environnement Microsoft
+	 - Windows Server : rôles et fonctionnalités
+	 - Active Directory, GPO, DNS, DHCP
+	 - Gestion des disques, RAID
+	 - PowerShell de base
 
-📜 Scripting
-- **Bash** : Algorithmes, pseudo-code, variables, boucles
-- **PowerShell** : Cmdlets, modules, sécurité, personnalisation, scripts
+- 📜 Scripting
+	- **Bash** : Algorithmes, pseudo-code, variables, boucles
+	- **PowerShell** : Cmdlets, modules, sécurité, personnalisation, scripts
 
 ---
 
