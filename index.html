@@ -51,6 +51,9 @@
       --cover-button-primary-background--hover: #303030 !important;
       --cover-button-primary-color--hover: var(--theme-color) !important;
       --cover-button-primary-border--hover: 2px solid #000 !important;
+
+/*      --docsifytabs-border-color: #ededed; pour le plugin tab*/ 
+/*      --docsifytabs-tab-highlight-color: purple; pour le plugin tab*/
     }
 
     /*  Fond bruité en arrière-plan */
@@ -162,25 +165,7 @@
   <a href="#/" style="position: fixed; top: 10px; right: 10px; z-index: 100;">🏠 Accueil</a>
   </div>
 
- <!-----------------------------  Plugins section ----------------------------------->
-
-    <!-- Docsify Core -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-    
-    <!-- Search Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-
-    <!-- docsify-tabs (latest v1.x.x) -->
-    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
-  
-    <!-- Prism.js Core + Langages -->
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-powershell.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
-    
-
-    <!-- Configuration Docsify-->
+     <!-- Configuration Docsify-->
   <script>
     window.$docsify = {
       name: 'Menu',
@@ -191,7 +176,8 @@
       auto2top: true,
       relativePath: true,
       homepage: 'README.md',
-     
+      sidebarDisplayLevel: 4, // set sidebar display level
+      
       search: {
         maxAge: 86400000,
         placeholder: 'Search...',
@@ -201,7 +187,7 @@
         hideOtherSidebarContent: false
       },
 
-       markdown: {
+         markdown: {
        renderer: {
        code: function (code, lang) {
         const langClass = lang ? `language-${lang}` : '';
@@ -211,6 +197,33 @@
   }
     };
   </script>
+
+<!-----------------------------  Plugins section ----------------------------------->
+
+    <!-- Docsify Core -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+    
+    <!-- docsify-tabs (latest v1.x.x) -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+
+    <!-- Search Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+
+    
+  
+    <!-- Prism.js Core + Langages -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-powershell.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    
+    
+    <!-- Docsify Collapse + Fleche -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+
+    
+
 
 </body>
 </html>
