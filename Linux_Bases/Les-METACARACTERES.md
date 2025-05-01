@@ -1,6 +1,7 @@
 # Les-METACARACTERES
 
-## 🔹 Métacaractères standards
+<!-- tabs:start --> 
+## **Standards**
 
 |Métacaractère|Description|Exemple|Explication de l’exemple|
 |---|---|---|---|
@@ -20,7 +21,9 @@
 
 ---
 
-## 🔹 Métacaractères avancés (glob extended - nécessite `shopt -s extglob`)
+## **Avancés**
+
+Glob extended - nécessite `shopt -s extglob`)
 
 | Métacaractère | Description                                  | Exemple                | Explication de l’exemple                                                |
 | ------------- | -------------------------------------------- | ---------------------- | ----------------------------------------------------------------------- |
@@ -32,6 +35,7 @@
 | `[...]`       | Un caractère dans une classe spécifiée       | `ls fichier[a-c].txt`  | Liste `fichiera.txt`, `fichierb.txt`, `fichierc.txt`                    |
 | `[^...]`      | Un caractère **hors** de la classe spécifiée | `ls fichier[^a-c].txt` | Liste tous les fichiers sauf ceux avec `a`, `b`, ou `c` après `fichier` |
 
+<!-- tabs:end --> 
 
 
 

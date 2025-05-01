@@ -6,7 +6,8 @@ Les critères DICP sont des principes fondamentaux en cybersécurité qui permet
 - Confidentialité (C)
 - Preuve (P) (ou Traçabilité)
 
-## Disponibilité (D)
+<!-- tabs:start --> 
+## **Disponibilité (D)**
 
 📌 Définition :  
 La disponibilité signifie que les systèmes, services et données doivent être accessibles aux utilisateurs autorisés quand ils en ont besoin.  
@@ -20,9 +21,7 @@ Erreurs humaines : Mauvaise configuration entraînant des interruptions.
 Redondance et sauvegardes (RAID, sauvegardes régulières).  
 Plans de reprise d’activité (PRA) et de continuité (PCA).  
 Protection contre les attaques DDoS (firewalls, filtrage de trafic).  
-
----
-## Intégrité (I)
+## **Intégrité (I)**
 
 📌 Définition :  
 L’intégrité garantit que les données ne sont ni modifiées ni altérées de manière non autorisée.
@@ -36,9 +35,7 @@ Erreur humaine ou logicielle : Mauvaise manipulation des données.
 Hachage des données (SHA-256, MD5 avec sel pour vérifier l'intégrité).  
 Contrôles d'accès stricts (ACL, permissions sur fichiers).  
 Signature numérique et certificats (pour garantir l’authenticité des fichiers).  
-
----
-## Confidentialité (C)
+## **Confidentialité (C)**
 
 📌 Définition :  
 La confidentialité assure que seules les personnes autorisées peuvent accéder aux informations sensibles.  
@@ -52,9 +49,7 @@ Mauvaise gestion des permissions (accès non autorisé aux fichiers).
 Chiffrement des données (AES, RSA, TLS pour protéger les communications).  
 Authentification forte (MFA, cartes à puce, biométrie).  
 Segmentation des accès (Zero Trust, principe du moindre privilège).  
-
----
-## Preuve / Traçabilité (P)
+## **Preuve / Traçabilité (P)**
 
 📌 Définition :  
 La traçabilité garantit qu’il est possible de retrouver l'origine d'une action et de prouver qui a fait quoi et quand.  
@@ -69,7 +64,7 @@ Journaux et logs sécurisés (Syslog, SIEM pour centraliser et analyser les logs
 Contrôle des accès avec horodatage (audit des connexions).  
 Gestion des identités et authentification forte (IAM, SSO).  
 
----
+<!-- tabs:end -->
 ## Récapitulatif des Critères DICP en Cybersécurité
 
 Exemple d'Évaluation DICP en Cybersécurité  

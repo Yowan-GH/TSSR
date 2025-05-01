@@ -82,7 +82,13 @@
       color: var(--theme-color) !important;
       font-weight: bold;
     }
-  
+    /* ========== `Elargissement de la zone de texte ========== */
+    .markdown-section {
+    max-width: 1200px; /* Avant c'était limité autour de 800px */
+    margin: 0 auto;    /* Garde centré */
+    padding: 2rem;     /* Conserve un peu d'espace intérieur */
+    }
+
     /* ========== `code inline` DANS LE TEXTE MARKDOWN ========== */
     .markdown-section code {
       background-color: var(--code-inline-background);
@@ -172,11 +178,11 @@
       repo: '',
       loadSidebar: true,
       coverpage: true,
-      subMaxLevel: 4,
+      subMaxLevel: 2,
       auto2top: true,
       relativePath: true,
       homepage: 'README.md',
-      sidebarDisplayLevel: 4, // set sidebar display level
+      sidebarDisplayLevel: 2, // set sidebar display level
       
       search: {
         maxAge: 86400000,

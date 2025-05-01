@@ -1,7 +1,7 @@
 # La communication réseau
 
-
-## 🖥️ Communication dans le **même réseau logique**
+<!-- tabs:start --> 
+## **🖥️ Même Réseau**
 
 - **Vérification réseau :**
     - Le PC source applique un **AND** logique entre son IP et son masque.
@@ -24,7 +24,7 @@
 - **Réception et traitement :**
     - Le PC cible reçoit la trame, extrait les données IP, puis traite la requête.
 
-## 🌐 Communication entre **deux réseaux différents**
+## **🌐 Réseaux différents**
 
 - **Vérification réseau :**
     - Le PC source applique un **AND** logique avec son masque.
@@ -49,6 +49,7 @@
 - **Transmission finale :**
     - Le paquet continue son chemin jusqu'à la machine cible.
 
+<!-- tabs:end -->
 ## 🚦 Notion de **routage**
 
 - **Routage** = acheminer un paquet IP d’un réseau à un autre.

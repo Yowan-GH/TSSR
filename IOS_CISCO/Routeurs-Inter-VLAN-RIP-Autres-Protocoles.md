@@ -34,10 +34,7 @@ no auto-summary
 exit
 ```
 
-![Image](Commandes_CISCO_1.png)  
-
-
-## NAT (Network Address Translation)
+  ## NAT (Network Address Translation)
 
 Le **NAT (Network Address Translation)** est une technique utilisée pour **modifier les adresses IP dans les en-têtes des paquets** de données lorsqu'ils traversent un routeur ou un pare-feu.   
 Elle permet de **résoudre des problèmes liés à la pénurie d'adresses IPv4** en masquant les adresses privées du réseau interne derrière une adresse publique.  
@@ -49,7 +46,11 @@ Elle permet de **résoudre des problèmes liés à la pénurie d'adresses IPv4**
 - Faciliter la gestion des réseaux : Le NAT permet de configurer un réseau interne sans avoir à gérer des adresses IP publiques pour chaque appareil.  
 
 ### Types de NAT
-**Static NAT (NAT statique)**  
+
+<!-- tabs:start -->
+
+#### **Static NAT**
+
 C'est une traduction un à un entre une adresse IP privée et une adresse IP publique. Elle est utilisée lorsque tu veux que certains hôtes du réseau interne aient une adresse IP publique fixe.  
 
 Exemple : Un serveur web interne avec une adresse privée 192.168.1.10 peut être mappé de manière statique à une adresse publique 203.0.113.10 pour que les utilisateurs externes puissent y accéder.  
@@ -61,7 +62,7 @@ configure terminal
 ip nat inside source static 192.168.1.10 203.0.113.10  						# Associe 192.168.1.10 à 203.0.113.10
 ```
 
-**Dynamic NAT (NAT dynamique)**  
+#### **Dynamic NAT**
 
 Le Dynamic NAT associe une adresse IP privée à une adresse IP publique d'un pool d'adresses. Ce type de NAT est utilisé lorsque tu as plusieurs hôtes internes qui doivent accéder à Internet, mais que tu ne veux pas leur attribuer une adresse publique fixe.  
 
@@ -77,7 +78,9 @@ access-list 1 permit 192.168.1.0 0.0.0.255  								# Définir les adresses priv
 ```
 
 
-**PAT (Port Address Translation)**, aussi appelé NAT Overload
+#### **PAT (Port Address Translation)**
+
+Aussi appelé NAT Overload
 
 Le PAT permet de traduire plusieurs adresses IP privées en une seule adresse IP publique mais avec des numéros de port différents. Cela permet à plusieurs hôtes internes de partager une même adresse publique pour l'accès à Internet.  
 
@@ -90,3 +93,5 @@ configure terminal
 ip nat inside source list 1 interface Ethernet0 overload  					# Utilise l'interface externe et active le PAT
 access-list 1 permit 192.168.1.0 0.0.0.255  								# Définir les adresses privées autorisées
 ```
+
+<!-- tabs:end -->

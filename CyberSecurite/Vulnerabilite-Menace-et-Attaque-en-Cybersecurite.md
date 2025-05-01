@@ -5,7 +5,8 @@ En cybersécurité, ces trois concepts sont liés mais distincts :
 - Menace : Un danger potentiel qui pourrait exploiter une vulnérabilité.
 - Attaque : L’exploitation réelle d’une vulnérabilité par un acteur malveillant.
 
-## Vulnérabilité (Faiblesse du système)
+<!-- tabs:start -->
+## **Vulnérabilité (Faiblesse du système)**
 
 📌 Définition :  
 Une vulnérabilité est une faille dans un système, une application ou une configuration qui peut être exploitée pour compromettre la sécurité.  
@@ -22,7 +23,7 @@ Renforcer les politiques de sécurité (authentification forte, MFA).
 Auditer et tester régulièrement avec des scanners de vulnérabilités (Nessus, OpenVAS).  
 
 ---
-## Menace (Le danger potentiel)
+## **Menace (Le danger potentiel)**
 
 📌 Définition :  
 Une menace est un acteur ou un événement qui pourrait exploiter une vulnérabilité pour causer un dommage.  
@@ -39,7 +40,7 @@ Former les utilisateurs pour éviter les erreurs humaines.
 Élaborer des plans de continuité (PCA/PRA).  
 
 ---
-## Attaque (L’action réelle)
+## **Attaque (L’action réelle)**
 
 📌 Définition :  
 Une attaque est une action malveillante qui exploite une vulnérabilité pour causer un dommage.  
@@ -54,3 +55,5 @@ Déni de service (DDoS) : Saturation d’un serveur pour le rendre indisponible.
 Détecter et bloquer les attaques avec des SIEM et IDS/IPS.  
 Appliquer une segmentation réseau pour limiter l’impact.  
 Sauvegarder régulièrement les données pour se protéger des ransomwares.  
+
+<!-- tabs:end -->

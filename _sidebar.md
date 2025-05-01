@@ -8,6 +8,11 @@
 	- [La communication réseau](/Les-Bases-Reseaux/Communication-reseau.md)
 	- [Les unités informatique](/Les-Bases-Reseaux/Unite-informatique.md)
 	- [Les principales commandes](/Les-Bases-Reseaux/Les-commandes.md)
+
+- 🪟 Système Client Microsoft
+	- [L'OS](/Systeme-client-Microsoft/OS.md)
+	- [Microsoft Windows](/Systeme-client-Microsoft/Windows.md)
+	- [La Gestion de Disque](/Systeme-client-Microsoft/Disques.md)
 	
 - 🔐 CyberSécurité
 	- [Les DICP](/CyberSecurite/Les-DICP.md)
@@ -57,3 +62,16 @@
 		- [Le DHCP](/Service_Reseaux_Microsoft/Le-DHCP.md)
 		- [Le routage](/Service_Reseaux_Microsoft/Le-routage.md)
 		- [Le service DNS](/Service_Reseaux_Microsoft/Le-service-DNS.md)
+		
+- 🖥️ La virtualisation
+	- [Présentation](/Virtualisation/Presentation.md)
+	- [Les Applications de virtualisation](/Virtualisation/Application.md)
+	- [La Virtualisation de Serveur](/Virtualisation/Serveur.md)
+	- Microsoft Hyper-V
+		- [Solution Hyper-V](/Virtualisation/M-hyperV.md)
+		- [Hyperviseur Hyper-V](/Virtualisation/Hyper-V.md)
+	- VMware vSphere
+		- [Solution vSphere](/Virtualisation/vSphere.md)
+		- [Hyperviseur ESXi](/Virtualisation/ESXi.md)
+	- [Réseaux virtualisés](/Virtualisation/Reseau.md)
+	- [Gestion du stockage](/Virtualisation/Stockage.md)
