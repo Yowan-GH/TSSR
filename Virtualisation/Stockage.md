@@ -94,6 +94,7 @@ Stockage distant (LUN)
 >- Le disque apparaît comme **local pour l’hôte**, mais est en fait hébergé **à distance**.
 >- iSCSI est très utilisé dans les environnements **vSphere, Hyper-V ou Proxmox** pour **mutualiser le stockage**.
 
+💡Il est conseillé, lors de l'utilisation de ce protocole;, d'augmenter la valeur MTU à 9000.
 
 ###### **SAS**
 
@@ -286,5 +287,76 @@ Le stockage est **entièrement dissocié des hôtes** et centralisé dans un sys
 - Déploiement technique complexe
 <!-- tabs:end --> 
 
-## vSphere et le stockage..
+## 📦 vSphere et le stockage..
 
+Dans une infrastructure **VMware vSphere**, le stockage repose sur deux éléments clés :
+
+|Élément|Rôle|
+|---|---|
+|**Adaptateurs de stockage**|Permettent à l’hôte ESXi de **se connecter** à des supports de stockage locaux ou distants.|
+|**Banques de données (datastores)**|Espace de stockage **logique et structuré** dans lequel les **VMs sont hébergées** (disques VMDK, ISO, snapshots…).|
+
+---
+### **Choix d’une solution de stockage**
+
+Ce choix dépend de plusieurs critères : 
+
+| Critère                 | Question à se poser                                                |
+| ----------------------- | ------------------------------------------------------------------ |
+| **Dédié ou mutualisé**  | Le stockage est-il lié à un seul hôte ou partagé entre plusieurs ? |
+| **Protocole d’accès**   | Quel protocole sera utilisé ? (iSCSI, NFS, FC…)                    |
+| **Support physique**    | Disque local, NAS, SAN, baie…                                      |
+| **Mode d’accès**        | Bloc ou fichier ?                                                  |
+| **Système de fichiers** | VMFS, NFS, ou autre ?                                              |
+### 📊Synthèse des types de stockage et critères
+
+<img src="Virtualisation/images/Solution_stockage.png" width="600">
+
+
+### Solution de stockage iSCSI
+  
+
+<img src="Virtualisation/images/iSCSI.png" width="600">
+
+Cette illustration montre **comment un hôte ESXi accède à un espace de stockage distant**, via le protocole **iSCSI**, à travers un **réseau IP**. Elle contient : 
+<!-- tabs:start -->
+#### **🧱SAN – Storage Area Network**
+
+- Un **réseau spécialisé dédié au stockage**.
+- Dans ce cas, c’est un **SAN iSCSI**, donc utilisant **IP + iSCSI** pour transporter des commandes SCSI.
+- Il permet à plusieurs hôtes d’accéder à un ou plusieurs **espaces disques centralisés**, sans passer par un partage de fichiers (comme NFS).
+#### **📦LUN – Logical Unit Number**
+
+- Un **volume logique** d’une baie de disques.
+- Il s’agit d’un **disque ou d’un espace disque virtuel**, exposé par la baie (ou cible iSCSI) à l’hôte.
+- Chaque LUN (ex : LUN0, LUN1) est vu par ESXi comme un **disque brut**, que l’on peut formater en VMFS.
+#### **🔌HBA – Host Bus Adapter**
+
+- C’est l’**adaptateur de stockage** du côté ESXi.
+- Il existe deux types :
+    - **HBA physique** : carte réseau ou fibre installée dans l’ESXi.
+    - **HBA logiciel** : émulé dans ESXi, permet de faire de l’iSCSI **sans carte dédiée**.
+- Le HBA permet de **communiquer avec la cible iSCSI**.
+#### **🎯iSCSI Target**
+
+- C’est le **serveur de stockage**, ou l’élément qui fournit le disque distant.
+- Il expose un ou plusieurs **LUNs** via le protocole iSCSI.
+- Il peut être :
+    - Une **baie SAN**
+    - Un **NAS iSCSI**
+    - Un **serveur avec un service iSCSI activé**
+#### **🚀iSCSI Initiator**
+
+- C’est le **client iSCSI**, ici le **serveur ESXi**.
+- Il initie une connexion vers la cible iSCSI pour accéder aux disques (LUNs).
+- L’initiator s’appuie sur un HBA (logiciel ou physique) pour établir la communication.
+<!-- tabs:end -->
+
+#### 🔁 Résumé du **chemin d’accès au stockage**
+
+1. ESXi utilise un **HBA (logiciel ou physique)**
+2. L’**Initiator iSCSI** envoie une requête au **Target iSCSI**
+3. Le **réseau IP** transporte les commandes iSCSI (encapsulées en TCP/IP)
+4. Le **Target** fournit l’accès aux **LUNs**
+5. L’ESXi voit les LUNs comme **disques** (stockage bloc)
+6. Ils sont ensuite formatés (ex : en VMFS) pour accueillir des machines virtuelles

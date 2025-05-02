@@ -41,9 +41,10 @@
 | **NAT**         | Accès Internet via l’hôte (VMnet8)<br>- VM non exposée et donc sécurisée                                         |
 | **Host-only**   | Réseau privé entre hôte et VM (VMnet1)                                                                           |
 | **LAN segment** | Réseau isolé entre VMs déclarées                                                                                 |
-✅ Services associés : **VMware DHCP** pour adresser mes VM en NAT. 
-✅ Les cartes réseaux peuvent être modifiées / mappée dans **edit / Virtual network editor**
-✅ Power / Power on to firmware permet de booter sur le bios directement. 
+
+✅ Services associés : **VMware DHCP** pour adresser mes VM en NAT.   
+✅ Les cartes réseaux peuvent être modifiées / mappée dans **edit / Virtual network editor**  
+✅ Power / Power on to firmware permet de booter sur le bios directement.  
 
 ### ⚠️ Problèmes fréquents & solutions
 

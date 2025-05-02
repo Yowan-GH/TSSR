@@ -21,28 +21,21 @@
       /* Couleur principale utilisée pour le vert */
       --theme-color: #baff39;
   
-      /* ==== Sidebar ==== */
+      /* ================================ SIDEBAR ==================================== */
+
+      /* ==== Theme ==== */
       --sidebar-background: #181818;        /* background sidebar */
       --sidebar-color: #ffffff;
       --sidebar-border-color: #baff39; /* Border Color */
       --sidebar-font-family: 'Segoe UI', sans-serif;
-  
+      --sidebar-nav-link-border-style: solid; /* Barre à coté du titre */
+
       /* Liens de la sidebar */
       --sidebar-nav-link-active-color: #baff39;
-      --sidebar-nav-link-active-background: transparent;
       --sidebar-nav-link-color--hover: #00cc66;
-  
-      /* ==== Markdown principal ==== */
-      --base-background-color: #181818;
-      --base-color: #ffffff;
-      --base-font-family: 'Segoe UI', sans-serif;
-  
-      /* ==== Code (inline et blocs) ==== */
-      --code-inline-background: #434444;
-      --code-block-background: #252525;
-
+      
+      /* ================================ COVER ==================================== */
       /* ==== Boutons cover ==== */
-
       --cover-button-primary-background: var(--theme-color) !important;
       --cover-button-primary-color: #000 !important;
       --cover-button-primary-border: 2px solid #000 !important;
@@ -52,8 +45,15 @@
       --cover-button-primary-color--hover: var(--theme-color) !important;
       --cover-button-primary-border--hover: 2px solid #000 !important;
 
-/*      --docsifytabs-border-color: #ededed; pour le plugin tab*/ 
-/*      --docsifytabs-tab-highlight-color: purple; pour le plugin tab*/
+      /* ================================ MD & Color ==================================== */
+       /* ==== Markdown principal ==== */
+       --base-background-color: #181818;
+      --base-color: #ffffff;
+      --base-font-family: 'Segoe UI', sans-serif;
+  
+      /* ==== Code (inline et blocs) ==== */
+      --code-inline-background: #434444;
+      --code-block-background: #252525;
     }
 
     /*  Fond bruité en arrière-plan */
@@ -138,7 +138,6 @@
 }
 
 /* Round button + black coverpage Docsify */
-
 .cover-main a {
   border-radius: 999px !important;
   padding: 0.6em 2em;
@@ -162,7 +161,11 @@
   color: var(--theme-color) !important; /* Couleur du texte */
   border: 2px solid #000 !important; /* Bordure */
 }
-
+/* Logo sidebar */
+.app-name img {
+    height: 100px; /* ajuste ici selon ta préférence */
+    width: auto;  /* garde les proportions */
+  }
   </style>
   
 </head>
@@ -177,6 +180,7 @@
       name: 'Menu',
       repo: '',
       loadSidebar: true,
+      logo: '/assets/PNJ.png',
       coverpage: true,
       subMaxLevel: 2,
       auto2top: true,
