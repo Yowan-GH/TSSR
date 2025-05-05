@@ -10,7 +10,7 @@
 
 ## 🧩 Pools de ressources
 
-> Objets logiques affectés à un **groupe de VMs**, permettant :
+Objets logiques affectés à un **groupe de VMs**, permettant :
 - Réservation ou restriction de ressources (ex : environnement de test vs production)
 - Application de règles à un **ensemble**, pas juste à une VM
 - Hiérarchisation possible (pool dans un pool)

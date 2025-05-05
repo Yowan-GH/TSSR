@@ -37,8 +37,27 @@ Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes
 	 - PowerShell de base
 
 - 📜 Scripting
-	- **Bash** : Algorithmes, pseudo-code, variables, boucles
-	- **PowerShell** : Cmdlets, modules, sécurité, personnalisation, scripts
+	- **Bash** : 
+		- Bonnes pratiques d’analyse préalable (cahier des charges, algorithme, pseudo-code).
+		- Scripts Bash pour l’automatisation des tâches sous Linux.
+		- Utilisation des **variables**, **boucles** et **structures conditionnelles**.
+		- Lecture de fichiers, saisie utilisateur, gestion des erreurs et retour.
+		- Conception de **fonctions réutilisables**, structuration en modules.
+		- Enchaînements de commandes et usage des **fichiers externes**.
+
+	- **PowerShell** : 
+		- **cmdlets** et **objets** pour l’administration système.
+		- **Scripts structurés** avec conditions, boucles, fonctions et gestion d’erreurs.
+		- Manipulation de fichiers, utilisateurs, services et registres.
+		- Utilisation de **Read-Host**, `Write-Host`, **export CSV/HTML**, et exécution distante.
+		- Travail dans **PowerShell ISE** ou **VS Code**
+		
+- 🧱 Virtualisation – VMware, Hyper-V & infrastructures
+	- **Types d’hyperviseurs** : Type 1 (ESXi, Hyper-V) et Type 2 (Workstation).
+	- Déploiement et gestion de VM : snapshots, stockage et réseaux virtuels.
+	- **vSphere (VMware)** : hyperviseur ESXi, gestion centralisée via vCenter, fonctionnalités avancées (vMotion, HA, DRS, vSAN).
+	- **Hyper-V (Microsoft)** : console Hyper-V Manager, support du Live Migration, snapshots, clustering.
+	- Gestion du stockage (VMFS, iSCSI, NFS), des datastores et des réseaux VLAN au sein de l’environnement virtualisé.
 
 ---
 

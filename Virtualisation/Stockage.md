@@ -196,8 +196,7 @@ Le stockage est directement connecté **au serveur physique (hôte ESXi)**, via 
 
 🔹Caractéristiques :
 - Accessible **uniquement par l’hôte local**.
-- **Aucune mutualisation
-- possible** entre plusieurs serveurs.
+- **Aucune mutualisation possible** entre plusieurs serveurs.
 - Performant mais **non partagé**.
 - Accès en mode bloc.
 
