@@ -6,20 +6,20 @@
 
 ## 🧩 VLAN (Virtual LAN)
 
-### 🧠 Définition :
+### 🧠Définition
 - Un **VLAN** est un **réseau logique indépendant** créé au sein d’une même infrastructure physique.
 - Permet de **segmenter le trafic**, **isoler** les équipements, **prioriser certains flux**.
-### ✅ Avantages :
+### ✅Avantages
 - Sécurité accrue
 - Réduction du domaine de broadcast
 - Meilleure gestion des flux et de la bande passante
-### 🔧 Prise en charge :
+### 🔧Prise en charge
 - Gérée via les **switchs (802.1Q)** ou **les équipements terminaux** (OS, téléphones IP…).
 - 3 niveaux d’affectation au niveau du modèle OSI :
     - **Niveau 1** (couche 2) : par port de switch
     - **Niveau 2** (couche 2) : par adresse MAC
     - **Niveau 3** (couche 3) : par adresse IP
-### 🔄 Trunking :
+### 🔄Trunking
 
 - Permet à un port de transporter **plusieurs VLANs**.
 	- Port en type Access : Pour communiquer avec un equipement terminal (Un VLAN)

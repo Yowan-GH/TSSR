@@ -297,7 +297,7 @@ Dans une infrastructure **VMware vSphere**, le stockage repose sur deux élémen
 |**Banques de données (datastores)**|Espace de stockage **logique et structuré** dans lequel les **VMs sont hébergées** (disques VMDK, ISO, snapshots…).|
 
 ---
-### **Choix d’une solution de stockage**
+### 📦Choix d’une solution de stockage
 
 Ce choix dépend de plusieurs critères : 
 
@@ -308,12 +308,11 @@ Ce choix dépend de plusieurs critères :
 | **Support physique**    | Disque local, NAS, SAN, baie…                                      |
 | **Mode d’accès**        | Bloc ou fichier ?                                                  |
 | **Système de fichiers** | VMFS, NFS, ou autre ?                                              |
-### 📊Synthèse des types de stockage et critères
 
 <img src="Virtualisation/images/Solution_stockage.png" width="600">
 
 
-### Solution de stockage iSCSI
+### 📦Solution de stockage iSCSI
   
 
 <img src="Virtualisation/images/iSCSI.png" width="600">
@@ -352,7 +351,7 @@ Cette illustration montre **comment un hôte ESXi accède à un espace de stocka
 - L’initiator s’appuie sur un HBA (logiciel ou physique) pour établir la communication.
 <!-- tabs:end -->
 
-#### 🔁 Résumé du **chemin d’accès au stockage**
+#### 🔁 **Résumé**
 
 1. ESXi utilise un **HBA (logiciel ou physique)**
 2. L’**Initiator iSCSI** envoie une requête au **Target iSCSI**
@@ -360,3 +359,104 @@ Cette illustration montre **comment un hôte ESXi accède à un espace de stocka
 4. Le **Target** fournit l’accès aux **LUNs**
 5. L’ESXi voit les LUNs comme **disques** (stockage bloc)
 6. Ils sont ensuite formatés (ex : en VMFS) pour accueillir des machines virtuelles
+
+### 💾 Les Datastores
+
+#### 🧱 Qu’est-ce qu’un **datastore** ?
+
+> Un **datastore** est une **unité logique de stockage** dans vSphere.  
+> Il représente un **espace disque formaté** (locale ou distant) que l’hyperviseur **ESXi** peut utiliser pour :
+
+- stocker des **fichiers de VMs** (VMDK, VMX, logs…),
+- monter des **images ISO**,
+- héberger des **snapshots** ou **templates**.
+
+#### 📂 Types de datastores
+
+| Type                           | Description                                                                                                  | Mode d’accès      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------ | ----------------- |
+| **VMFS** (vSphere File System) | Système de fichiers propriétaire VMware utilisé sur les volumes en mode bloc (disques locaux, SAN iSCSI, FC) | **Bloc**          |
+| **NFS** (v3 / v4.1)            | Montage d’un partage réseau (NAS) sur ESXi, en mode fichier                                                  | **Fichier**       |
+| **RDM** (Raw Device Mapping)   | LUN mappé directement à une VM, avec le VMFS                                                                 | **Bloc (direct)** |
+
+#### 📦 VMFS – détails
+
+| Version    | Max volume | Format | Particularités                                      |
+| ---------- | ---------- | ------ | --------------------------------------------------- |
+| **VMFS 3** | 64 To      | MBR    | Obsolète                                            |
+| **VMFS 5** | 64 To      | GPT    | Alignement automatique, recommandé depuis vSphere 5 |
+| **VMFS 6** | 64 To      | GPT    | Auto-defrag, support du 512e, gestion temps réel    |
+
+✅ Le **formatage VMFS est requis sur les disques en mode bloc**.
+
+### 🧊 Les disques de VM
+
+<!-- tabs:start --> 
+#### **📦Le format VMDK**
+
+> Un disque de machine virtuelle dans vSphere est stocké dans un fichier au format **.vmdk**  
+> (**Virtual Machine Disk Format**)
+
+Fonctionnement : 
+- Le disque est représenté par un fichier unique avec pour possibilité de le déplacer, copier ...
+
+Limite : 
+- Taille maximale de 2TO, au dela, il faudra utiliser le format RDM
+
+**🧱 Types de provisionnement (provisioning) du VMDK**
+
+| Mode     | Description                                                      | Avantages               | Inconvénients                |
+| -------- | ---------------------------------------------------------------- | ----------------------- | ---------------------------- |
+| **Thick  | L’espace est alloué et **zéro rempli** dès la création           | Meilleures performances | Long à créer, espace réservé |
+| **Thin** | L’espace est alloué **à la demande**, selon la croissance réelle | Gain de place           | Risque de **sur-allocation** |
+
+#### **📦 Le format RDM (Raw Device Mapping)**
+
+Fonctionnement : 
+-  Accès direct d’une VM à un **LUN SAN**, sans passer par un VMDK.
+
+Utilité : 
+- Accès à un disque SAN spécifique : Clustering Windows, réplication applicative
+- Contournement du système de fichiers ESXi : Stockage de très hautes performances, grande capacité de stockage (>2TO)
+
+<!-- tabs:end --> 
+
+### 🛠️ En Pratique
+
+Pour cette démonstration, les machines suivantes seront utilisées : 
+- ESXi
+- WS2019 avec fonction iSCSI
+
+1. S'assurer que les machines sont sur le même réseau
+2. Créer un vSwitch (VSS) sur l'ESXi
+3. Créer un GP VMKernel relié à ce vSwitch et lui attribuer une adresse IP (dans le réseau réservé à l'échange de bloc de donnés) - @IP1
+4. Tester depuis le WS2019 l'accès à @IP1
+5. Il faut ensuite Créer les Target iSCSI sur le WS. Elles vont permettre aux hyperviseur de venir chercher les périphériques sur ce serveur
+	1. ``File and storage Services``
+	2. ``iSCSI``
+	3. ``Install Target iSCSI``
+		1. Sélectionner la fonctionnalité ``iSCSI target server ``
+	4. ``Create iSCSI virtual disk``
+		1. Définir l'emplacement 
+		2. Le nommer
+		3. Indiquer la taille et la laisser Dynamique 
+		4. New target iSCSI
+		5. Indiquer l'IP de l'ESXi
+		6. Possibilité de rajouter une authentification si nécéssaire
+		7. ``Create ``
+		8. La target est disponible
+6. Retourner sur les ESXi dans ``stockage`` / ``Adaptateur`` / ``iSCSI logiciel`` /`` Activer``
+	1. Ajouter une liaison de port - Ajouter le GP correspondant
+	2. Ajouter la cible dynamique - @IP du WS
+7. ``Actualiser`` puis aller contrôler la découverte du disque dure dans ``Périphériques``
+❗Ne pas tenir compte de l'état dégradé de ce disque.
+
+8. Pour exploiter ce nouveau disque, nous allons ``créer une nouvelle banque de donnée``
+	✅Le faite de créer cette banque de donnée reliée à un ESXi créera cette banque sur tous les ESXi sur le même réseau (et autorisé à y acceder)
+
+9. Je peux ensuite déplacer ma VM de l'ESXi vers le SAN. Pour cela : 
+	1. Eteindre la VM
+	2. Aller dans le Datastore hebergeant la VM
+	3. Cliquer sur Déplacer
+	4. Sélectionner le nouveau DATAstore
+10. La VM n'est donc plus dépendante de l'ESXi mais bien du SAN WS

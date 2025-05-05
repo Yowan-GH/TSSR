@@ -29,6 +29,7 @@
       --sidebar-border-color: #baff39; /* Border Color */
       --sidebar-font-family: 'Segoe UI', sans-serif;
       --sidebar-nav-link-border-style: solid; /* Barre à coté du titre */
+      --sidebar-width: 25rem;
 
       /* Liens de la sidebar */
       --sidebar-nav-link-active-color: #baff39;
@@ -120,23 +121,6 @@
       text-decoration: none;
     }
 
-    /*  Cover image */
-  section.cover.show {
-  background-size: cover !important;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('assets/coverpage.png'); 
-}
-
-/* Center and space */
-.cover-main {
-  max-width: 800px;
-  margin: auto;
-  padding-top: 15vh;
-  padding-bottom: 5vh;
-  text-align: center;
-}
-
 /* Round button + black coverpage Docsify */
 .cover-main a {
   border-radius: 999px !important;
@@ -182,11 +166,11 @@
       loadSidebar: true,
       logo: '/assets/PNJ.png',
       coverpage: true,
-      subMaxLevel: 2,
+      subMaxLevel: 3,
       auto2top: true,
       relativePath: true,
       homepage: 'README.md',
-      sidebarDisplayLevel: 2, // set sidebar display level
+      sidebarDisplayLevel: 3, // set sidebar display level
       
       search: {
         maxAge: 86400000,
