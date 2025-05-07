@@ -76,3 +76,13 @@
 	- [Réseaux virtualisés](/Virtualisation/Reseau.md)
 	- [Gestion du stockage](/Virtualisation/Stockage.md)
 	- [Gestion du DATACENTER](/Virtualisation/Datacenter.md)
+
+- 💾 Sauvegarde et Restauration
+	- [Concepts généraux](/Backup/concepts.md)
+	- [Les Sauvegardes](/Backup/Save.md)
+	- [La restauration](/Backup/Backup.md)
+	- [Le stockage](/Backup/Storage.md)
+	- [La Redondance RAID](/Backup/Raid.md)
+	- [En pratique](/Backup/Practice.md)
+
+-  [Test Page](test.md)

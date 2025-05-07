@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulateur Bash / PowerShell</title>
+  <style>
+    body {
+      background: #181818;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 1rem;
+    }
+    select, textarea, button {
+      display: block;
+      margin: 1rem 0;
+      width: 100%;
+      font-size: 1rem;
+      font-family: monospace;
+    }
+    textarea {
+      background: #1e1e1e;
+      color: #baff39;
+      border: 1px solid #444;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    button {
+      background-color: #baff39;
+      color: #000;
+      border: none;
+      padding: 0.6em;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    pre {
+      background: #181818;
+      padding: 1em;
+      border-radius: 6px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>🧪 Simulateur PowerShell / Bash</h2>
+  <select id="shell-type">
+    <option value="bash">Bash</option>
+    <option value="powershell">PowerShell</option>
+  </select>
+
+  <textarea id="code" rows="6">echo "Hello World"</textarea>
+  <button onclick="runCode()">▶ Exécuter</button>
+  <pre id="output">Résultat...</pre>
+
+  <script>
+    function runCode() {
+      const type = document.getElementById("shell-type").value;
+      const code = document.getElementById("code").value.trim();
+      const output = document.getElementById("output");
+
+      let result = "";
+
+      const bash = {
+        "echo": "Hello World",
+        "ls": "fichier1.txt\nfichier2.sh",
+        "pwd": "/home/user",
+        "whoami": "user",
+        "date": new Date().toString(),
+        "cd": "",
+        "cat": "Contenu du fichier simulé.",
+        "grep": "Ligne contenant le motif.",
+        "find": "./test.txt\n./dossier/fichier.log",
+        "awk": "Ligne 1\nLigne 2",
+        "alias": "ll='ls -la'",
+        "read": "(lecture interactive non simulée)",
+        "chmod": "Aucun retour.",
+        "export": "Variable d'environnement définie.",
+        "unset": "Variable supprimée.",
+        "rm": "Fichier supprimé.",
+        "mkdir": "Dossier créé."
+      };
+
+      const ps = {
+        "Get-Process": "chrome
+explorer
+powershell",
+        "Select-Object": "Nom | ID\n--- | ---\nchrome | 1234",
+        "Where-Object": "chrome",
+        "Measure-Object": "Count: 10 Average: 50",
+        "Format-Table": "Nom | Statut\n----|-------\nchrome | Running",
+        "Get-ChildItem": "file1.txt\nfile2.doc",
+        "Write-Host": "Bonjour !",
+        "Write-Output": "Bonjour !",
+        "Set-Content": "Fichier écrit.",
+        "Add-Content": "Texte ajouté.",
+        "Get-Content": "ligne 1\nligne 2",
+        "Out-File": "Données enregistrées dans le fichier.",
+        "ConvertTo-Json": "{ 'key': 'value' }",
+        "ConvertTo-Html": "<table><tr><td>exemple</td></tr></table>",
+        "Export-Csv": "Nom,Id\nchrome,1234",
+        "Import-Csv": "Objet CSV importé.",
+        "Try": "Bloc Try exécuté.",
+        "Get-Variable": "name value\n---- -----\nvar test"
+      };
+
+      function matchCommand(cmdMap, input) {
+        for (let key in cmdMap) {
+          if (input.includes(key)) return cmdMap[key];
+        }
+        return "[Simulateur] Commande non reconnue.";
+      }
+
+      result = type === "bash" ? matchCommand(bash, code) : matchCommand(ps, code);
+      output.textContent = result;
+    }
+  </script>
+</body>
+</html>
