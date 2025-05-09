@@ -12,8 +12,8 @@ Une route est constituée de :
 
 ## NAT (network adress translation)
 
-![Image](Environnement_MS_29.png)
-![Image](Environnement_MS_21.png)
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_29.png">
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_21.png">
 
 
 

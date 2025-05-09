@@ -39,9 +39,7 @@ Nom du PC dans un domaine = netbios dans un domaine = Name_netbios.domain.local 
 
 Le DNS peut résoudre des FQDN.
 
-
-![Image](Environnement_MS_8.png)
-
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_8.png">
 
 Pour être résolvable, tout hôte doit être identifiable via un nom pleinement qualifié unique à l’échelle mondiale.  
 On peut utiliser des espaces de nom :  
@@ -50,8 +48,7 @@ On peut utiliser des espaces de nom :
 
 ## Hiérarchisation des espaces de nom
 
-![Image](Environnement_MS_45.png)
-
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_45.png">
 
 Dans le DNS, on lit les noms de domaine de droite à gauche car chaque niveau délègue au suivant.
 📌 Décomposition de www.france.education.gouv.fr
@@ -205,7 +202,8 @@ Le contenu d’une zone :
 - Un ou des NS (Name Server) : serveurs faisant autorité pour la zone
 - Serveur maitre ou esclave
 
-Pour une zone directe : 						
+Pour une zone directe : 
+
 | **Type d’enregistrement** | **Contenu**                                                                 |
 |---------------------------|------------------------------------------------------------------------------|
 | **SOA**                   | Nom FQDN du serveur DNS disposant de la zone en **écriture**                |
@@ -217,13 +215,12 @@ Pour une zone directe :
 | **SRV**                   | Services (utilisé pour localiser des services spécifiques dans un domaine)   |
 
 Pour une zone inverse : 
+
 | **Type d’enregistrement** | **Contenu**                                                                 |
 |---------------------------|------------------------------------------------------------------------------|
 | **SOA**                   | Nom FQDN du serveur DNS disposant de la zone en **écriture**                |
 | **NS**                    | Serveur(s) **faisant autorité** pour la zone                                 |
 | **PTR**                   | Pointeur (utilisé pour la résolution **inverse** d’adresse IP → nom DNS)     |
-
-
 ### Les mises à jour et enregistrement dynamique
 Utile pour les postes clients adressé par DHCP
 
@@ -241,6 +238,7 @@ Pour mettre à jour automatique le serveur DNS et incrémenter les nouveaux post
 - Clic droit sur la zone créé et transfert de la nouvelle copie à partir du maitre
 
 En powershell 📜
+
 ```powershell
 # Autoriser la mise à jour dynamique 
 Set-DnsServerPrimaryZone -Name "domaine.local" -DynamicUpdate NonsecureAndSecure
@@ -265,6 +263,7 @@ Pour créer une délégation de zone 🖥️ :
 -  clic droit sur la zone / nouvelle délégation / entrer le domaine délégué puis ajoutez l’ip du serveur DNS enfant.
 
 En powershell 📜
+
 ```powershell
 Add-DnsServerZoneDelegation -Name "sousdomaine" -ZoneName "domaine.local" -NameServer "dns.sousdomaine.domaine.local" -IPAddress "192.168.1.100"
 

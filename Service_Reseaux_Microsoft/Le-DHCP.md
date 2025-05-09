@@ -100,7 +100,7 @@ Les opérations de gestion de la base DHCP :
 
 Le fractionnement d’étendue = Fractionnement automatisé d’une étendue sur deux serveurs.
 
-![Image](Environnement_MS_17.png) 
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_17.png"> 
 
 Répartition de la charge :  
 - Si plusieurs serveurs DHCP sont utilisés dans un réseau, la fragmentation d'étendue permet de répartir la charge entre eux. Par exemple, un serveur peut gérer la moitié des adresses disponibles et un autre serveur l'autre moitié.

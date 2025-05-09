@@ -29,7 +29,7 @@ Possibilité d’installer WS :
 
 ## Installation OS
 
-![Image](Environnement_MS_23.png)  
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_23.png">  
 Lors de l’installation :
 Standard = Mode core
 Standard (Expérience de bureau) = Mode graphique

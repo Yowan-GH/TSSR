@@ -111,7 +111,9 @@ wwww    CNAME   www.eni-ecole.bzh.
 @       MX 10   smtp.eni-ecole.bzh.
 @       MX 20   mx0.mail.ovh.net.
 ```
+
 Avec 
+
 | Type d’enregistrement |     Contenu                                                              |
 |------------------------|----------------------------------------------------------------------|
 | SOA                    | nom FQDN du serveur DNS disposant de la zone en **écriture**         |
@@ -126,7 +128,9 @@ Avec
 Commencer par les correspondances avec nos serveur DNS (ici 1 et 2).  
 Pour les @MX, le chiffre indique le poids. Le plus petit sera interrogé en premier. Smtp = mail  
 
-![Image](Environnement_Linux_2.png)
+<img src="Service_Reseaux_Linux/images/Environnement_Linux_2.png">
+
+
 
 ## En pratique
 
@@ -144,17 +148,17 @@ Protocole complet :
 
 1. Creation de la zone dans /etc/binf/named.conf.local
 
-![Image](Environnement_Linux_11.png)
+<img src="Service_Reseaux_Linux/images/Environnement_Linux_11.png">
 
 2. Creation du fichier db.tssr.eni dans /var/cache/bind
 
-![Image](Environnement_Linux_7.png)
+<img src="Service_Reseaux_Linux/images/Environnement_Linux_7.png">
 
 3. Test de la syntaxe de la configuration de zone
-![Image](Environnement_Linux_3.png)
+<img src="Service_Reseaux_Linux/images/Environnement_Linux_3.png">
 
 4. Reload de la zone
-![Image](Environnement_Linux_14.png)
+<img src="Service_Reseaux_Linux/images/Environnement_Linux_14.png">
 
 En cas d’erreur, vérifier dans le service bind9 avec systemctl status bind9.service.  
 Sur le serveur DHCP, ajouter le suffixe DNS via « option domain-name ‘’tssr.eni’’  

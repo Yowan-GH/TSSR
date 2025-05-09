@@ -16,9 +16,10 @@
 | **C**  | 192.0.0.0 à 223.255.255.255 | 255.255.255.0 (/24) | 2⁸ - 2 = **254**         |
 | **D**  | 224.0.0.0 à 239.255.255.255 | —                   | Non applicable           |
 | **E**  | 240.0.0.0 à 255.255.255.255 | —                   | Non applicable           |
-📌 Pourquoi **-2** dans les calculs ? ➔ On retire **1 adresse réseau** (ex : 192.168.1.0) et **1 adresse de diffusion** (ex : 192.168.1.255).
-📌 Les adresses en **127.x.x.x** sont réservées à la **boucle locale** (loopback).
-📌 Les adresses en 169.254.0.0/16 sont des adresses APIPA (Automatic Private IP Addressing) assigné automatiquement par Windows si aucun DHCP n'est trouvé.
+
+📌 Pourquoi **-2** dans les calculs ? ➔ On retire **1 adresse réseau** (ex : 192.168.1.0) et **1 adresse de diffusion** (ex : 192.168.1.255).  
+📌 Les adresses en **127.x.x.x** sont réservées à la **boucle locale** (loopback).  
+📌 Les adresses en 169.254.0.0/16 sont des adresses APIPA (Automatic Private IP Addressing)   assigné automatiquement par Windows si aucun DHCP n'est trouvé.  
 
 ## 🖊️ Notation CIDR
 
@@ -32,11 +33,13 @@ Nombre de bits à 1 ➔ Compléter avec des 0 en binaire sur 32 bits.
 
 ## 📚 Calcul d'adresse 
 
-### 🛠️ **Adresse Réseau**
+<!-- tabs:start --> 
+###  **🛠️ Adresse Réseau**
 
-On fait un **ET logique** (`AND`) entre l’**adresse IP** et le **masque de sous-réseau** en binaire.
+On fait un **ET logique** (`AND`) entre l’**adresse IP** et le **masque de sous-réseau** en binaire.  
 
-```
+
+```code
 IP      :    192  .  168   .   1   .    10
 Masque  :    255  .  255   .  255  .    0
 
@@ -45,29 +48,29 @@ Masque  : 11111111.11111111.11111111.00000000
 ET (AND): 11000000.10101000.00000001.00000000 ➔ 192.168.1.0
 ```
 
-### 📢 **Adresse de Diffusion** (Broadcast)
+###  **📢 Adresse de Diffusion (Broadcast)**
 
 On prend **l’adresse réseau** et on **met tous les bits hôtes à 1**.
 
-```
+```code
 IP : 192.168.1.0
 Masque : 255.255.255.0 ou /24 -> Il reste les 8 derniers bits à mettre à 1
 Broadcast : 192.168.1.255
 ```
 
-### 👥 **Adresses d’Hôtes**
+###  **👥 Adresses d’Hôtes**
 
 Les adresses d’hôtes sont toutes les adresses **entre** l’adresse réseau et l’adresse de diffusion.
 - 1er hôte : Adresse réseau + 1
 - Dernier hôte : Adresse de diffusion - 1
-```
+```code
 Adresse réseau 192.168.1.0
   -> 1er hôte 192.168.1.1
   -> Dernier hôte 192.168.1.254
 Adresse de diffusion 192.168.1.255
 ```
 
-### 🧠 **Nombre d'hôtes possibles**
+###  **🧠 Nombre d'hôtes possibles**
 
 - Formule : **2ⁿ – 2** (n = nb de bits pour les hôtes)
 -
@@ -75,7 +78,7 @@ Adresse de diffusion 192.168.1.255
 - 32 bits (adresse IP totale) - 24 bits (réseau) = **8 bits pour les hôtes**.
 - Nombre d'hôtes = 28−2=2542^8 - 2 = 25428−2=254 hôtes utilisables.
 
-### 🧠 Calcul de sous-réseau à partir d'un `/X`
+###  **🧠Calcul de sous-réseau à partir d'un `/X`**
 
 | Étape | Description                                                                                                                                                                                                                                                                                                                                               |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -94,3 +97,5 @@ Adresse de diffusion 192.168.1.255
 - De **/24** ➔ **/28** ➔ **16 sous-réseaux**
 - De **/24** ➔ **/29** ➔ **32 sous-réseaux**
 - De **/24** ➔ **/30** ➔ **64 sous-réseaux**
+
+<!-- tabs:end --> 

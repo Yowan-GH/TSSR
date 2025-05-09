@@ -14,7 +14,8 @@
 
 ## 🛠️ Types d'adresses IPv6
 
-### 📬 Monodiffusion (Unicast)
+<!-- tabs:start --> 
+### **📬 Monodiffusion (Unicast)**
 
 |Type d'adresse|Préfixe|Utilisation|Routable ?|
 |---|---|---|---|
@@ -22,18 +23,19 @@
 |**Lien-local**|`FE80::/10`|Auto-configuration locale (équivalent APIPA IPv4).|❌|
 |**Locale unique**|`FD00::/8`|Réseaux internes, manuelles (équivalent IPv4 privé 192.168.x.x).|❌|
 |**Globale unique**|`2000::/3`|Routable sur Internet.|✅|
-### 📢 Multidiffusion (Multicast)
+### **📢 Multidiffusion (Multicast)**
 
 |Plage|Exemples|Utilisation|
 |---|---|---|
 |`FF00::/8`|`FF02::1`, `FF02::2`|Tous les nœuds (FF02::1) / Tous les routeurs (FF02::2) sur le lien local.|
 |`FF02::1:2`|—|Tous les serveurs DHCP sur lien local.|
 |`FF01::FB`|—|Multicast DNS (mDNS).|
-### 🛤️ Anycast (rappel rapide)
+### **🛤️ Anycast (rappel rapide)**
 
 - **Anycast** = même adresse affectée à plusieurs hôtes ➔ l'**hôte le plus proche** répond.
 - **Utilisé pour** : équilibrage de charge, redondance (ex: serveurs DNS publics Anycast).
 
+<!-- tabs:end --> 
 ### 📬 Types spéciaux d'adresses IPv6
 
 | Adresse                   | Utilité                                                           | Exemple     |

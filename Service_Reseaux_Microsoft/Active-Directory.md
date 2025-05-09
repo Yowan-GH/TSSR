@@ -15,8 +15,7 @@ Il repose sur 3 protocoles :
 - Kerberos : protocole d’identification reposant sur un mécanisme de clés secrètes et l’utilisation de tickets
 
 ### La forêt Active Directory
-
-![Image](Environnement_MS_24.png)
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_24.png">
 
 ## Le domaine Active Directory et ses composantes
 
@@ -37,8 +36,6 @@ Avant de promouvoir un serveur en contrôleur de domaine, ces prérequis doivent
 | **Domaine**   | **Maître RID**                     | Alloue les blocs d’**Identificateurs Relatifs (RID)** aux autres CD, pour générer les **SID**        |
 |               | **Maître d’infrastructure**        | Gère les objets référencés entre **domaines différents** de la forêt                                 |
 |               | **Maître émulateur PDC**           | - Gère les **mots de passe**<br>- Gère les **GPO**<br>- **Synchronise les horloges**<br>- Joue le rôle de **contrôleur principal** dans les anciens domaines |
-![alt text](TSSR/Scripting_powershell/images/image.png)
-
 ### ✅ Prérequis pour l’ajout d’un contrôleur de domaine (DC)
 | 🧩 Prérequis                             | 📝 Description                                                                 |
 |-----------------------------------------|--------------------------------------------------------------------------------|
@@ -57,9 +54,7 @@ Avant de promouvoir un serveur en contrôleur de domaine, ces prérequis doivent
 ```powershell
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 ```
-
-![Image](Environnement_MS_34.png)  
-
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_34.png">
 
 Lors du retour sur le dashboard, **une notification nous indique de promouvoir le serveur en contrôleur de domaine**.
 
@@ -91,11 +86,11 @@ Apres le redémarrage, les infos visibles sur les users, groups, domain controll
 Après avoir installé le contrôleur de domaine, entrer dans les ordinateurs et serveurs (future membre de l'AD)   
 Puis changer le nom de l’ordinateur pour rejoindre le domaine :
 Indiquer un Nom de user en domain\***** et le mot de passe correspondant (admin du CD)
-
-![Image](Environnement_MS_2.png)![Image](Environnement_MS_19.png)
-
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_2.png">
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_19.png">
 
 ou 📜En powershell via la commande :
+
 ```powershell
 
 Add-Computer `
@@ -234,19 +229,14 @@ Lorsqu’un user se connecte sur un dossier partagé, il est soumis :
 
 **Il est indispensable de publier le partage dans l’AD afin de pouvoir le retrouver facilement**
 
-![Image](Environnement_MS_36.png)
-
-
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_36.png">
 
 ## Stratégie d’imbrication des groupes
 
 Afin de gérer efficacement l’accès aux ressources partagés, Microsoft préconise l’imbrication des groupes globaux et locaux
 
 
-![Image](Environnement_MS_6.png)
-
-
-
+<img src="Service_Reseaux_Microsoft/images/Environnement_MS_6.png">
 
 Les groupes locaux servent à définir les autorisations.  
 Exemple :
