@@ -80,14 +80,36 @@ Adresse de diffusion 192.168.1.255
 
 ###  **🧠Calcul de sous-réseau à partir d'un `/X`**
 
-| Étape | Description                                                                                                                                                                                                                                                                                                                                               |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1     | Calculer le nombre de bits pour les hôtes : 32 - valeur CIDR <br>(ex: /26 ➔ 32-26 = 6 bits pour les hôtes)                                                                                                                                                                                                                                                |
-| 2     | Calculer le nombre total d'adresses : 2 puissance nombre de bits hôtes <br>(ex: 2⁶ = 64 adresses)                                                                                                                                                                                                                                                         |
-| 3     | Calculer le nombre d'hôtes utilisables : nombre total d'adresses - 2 <br>ex: 2⁶ = 64 adresses - 2 = 62 adresses).                                                                                                                                                                                                                                         |
-| 4     | Déterminer la taille d'un sous-réseau : 256 ÷ nombre total de sous réseaux<br>ex: 256 ÷ 64 = 4 sous réseaux                                                                                                                                                                                                                                               |
-| 5     | Lister les plages d'adresses : <br>SSR 192.168.1.0/26      de 192.168.1.1     à 192.168.1.62 -   BC 192.168.1.63<br>SSR 192.168.1.64/26    de 192.168.1.65   à 192.168.1.126 - BC 192.168.1.127<br>SSR 192.168.1.128/26  de 192.168.1.129 à 192.168.1.190 - BC 192.168.1.191<br>SSR 192.168.1.192/26  de 192.168.1.193 à 192.168.1.254 - BC 192.168.1.255 |
-| 6     | Identifier : adresse réseau, premier hôte, dernier hôte, adresse de broadcast                                                                                                                                                                                                                                                                             |
+🧩 Découpage du réseau `192.168.128.0/17` en 32 sous-réseaux
+
+> 🎯 Objectif : Identifier le **8ᵉ sous-réseau** sur les 32 créés à partir du réseau de base.
+
+| Élément                   | Valeur                                      |
+| ------------------------- | ------------------------------------------- |
+| Réseau de base            | `192.168.128.0/17`                          |
+| Nombre total d'adresses   | `2^15 = 32 768`                             |
+| Nombre de sous-réseaux    | `32`                                        |
+| Bits supplémentaires      | `log2(32) = 5` ➜ nouveau masque `/22`       |
+| Taille d’un sous-réseau   | `2^(32 - 22) = 1024 adresses`               |
+| Incrément par sous-réseau | `1024 adresses = 4 × 256` ➜ saut de 4 blocs |
+
+---
+
+✅ Détail du 8ᵉ sous-réseau (`/22`)
+
+| Élément                   | Valeur                        |
+|--------------------------|-------------------------------|
+| Numéro du sous-réseau    | 8                             |
+| Adresse réseau           | `192.168.156.0/22`            |
+| Masque                   | `255.255.252.0`               |
+| Adresse de broadcast     | `192.168.159.255`             |
+| Plage d’hôtes valides    | `192.168.156.1 - 192.168.159.254` |
+
+Suite de l'adressage avec plan d'adressage : 
+
+<img src="Les-Bases-Reseaux/Images/image-1.png">
+
+
 **Règle simple :**
 👉 À chaque fois que **tu ajoutes 1 bit** (donc que tu passes de `/X` ➔ `/X+1`),  
 ➡️ **le nombre de sous-réseaux double**.

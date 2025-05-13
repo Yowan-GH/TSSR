@@ -55,4 +55,4 @@ Convention utilisé pour définir un algorithme sous forme graphique :
 | ◇ **DÉCISION**        | Le losange est utilisé pour représenter une décision à prendre ; ou la vérification d’une condition. Il est parfois utile d’utiliser des formes plus complexes quand on a plus de 3 décisions à prendre. |
 | ⬒ **ENTRÉE / SORTIE** | Entrée / Sortie                                                                                                                                                                                          |
 *Exemple de pseudo code au format schématique :*
-![[image-1.png]]
+![[TSSR/Les-Bases-Reseaux/Images/image-1.png]]

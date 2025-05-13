@@ -62,6 +62,7 @@ Write-Host "Bonjour $a"
 ### `[math]` en PowerShell
 
 - Il permet d’utiliser **des fonctions mathématiques** directement sans devoir tout reprogrammer.
+
 ```powershell
 [Math]::Méthode(paramètres)
 ```
