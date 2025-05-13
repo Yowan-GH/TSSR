@@ -86,7 +86,7 @@
 	- [En pratique](/Backup/Practice.md)
 
 - 🌐 Réseaux et Sécurité 
-	- [Découverte et installation de serveurs web](/Service_Web_Security/Web_server.md)
+	- [Les serveurs WEB](/Service_Web_Security/Web_Server.md)
 	- [Apache](/Service_Web_Security/Apache.md)
 
 -  [Test Page](test.md)
