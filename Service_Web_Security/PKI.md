@@ -100,8 +100,36 @@ L'AD CS permet de générer des certificats qu'on pourra utiliser pour tous les 
 - IIS génère un fichier CSR (``.req``)
 
 🎯 Tu dois ensuite :
-- **Envoyer la CSR** à une **autorité de certification (interne ou publique)**
+- **Envoyer la CSR** à une **autorité de certification (interne ou publique)** via : 
+
+<!-- tabs:start --> 
+##### **Interface Web Certsrv**
+
+> Requiert que le **service "Service Web de l’autorité de certification"** soit installé sur le serveur PKI.
+
+ Étapes :
+
+1. Ouvre ton navigateur sur **SRV_IIS**
+2. Accède à l'URL suivante : http://SRV_PKI/certsrv
+3. Identifie-toi avec un compte AD autorisé
+4. Clique sur **"Demander un certificat"**
+5. Clique sur **"Soumettre une requête avancée"**
+6. Ouvre la CSR générée par IIS (fichier `.req` ou `.txt`) avec Notepad
+7. Copie-colle le contenu dans le champ de saisie
+8. Sélectionne un **modèle de certificat** (si requis)
+9. Clique sur **Soumettre**
+
+➡️ La PKI te délivre le **certificat `.cer`** immédiatement ou après validation par un administrateur.
+##### **Méthode manuelle**
+
+- Transférer la CSR à un admin PKI par **email**
+- Déposer la CSR sur un **partage réseau**
+- Utiliser une clé USB (sur réseau isolé)
+
+<!-- tabs:end --> 
+
 - Puis **revenir dans IIS** → **Terminer la demande** avec le fichier `.cer` reçu
+
 <!-- tabs:end --> 
 
 ## **🔒 Liaison dans IIS**
