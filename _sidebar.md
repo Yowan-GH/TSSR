@@ -92,6 +92,8 @@
 	- [PKI](/Service_Web_Security/PKI.md)
 	- [VPN](/Service_Web_Security/VPN.md)
 
-
+- ☁️ Le cloud 
+	- [Cloud](/M_365/cloud.md)
+	- [Administration Microsoft 365](/M_365/Administration_365.md)
 
 -  [Test Page](test.md)

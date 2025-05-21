@@ -154,8 +154,28 @@
     height: 100px; /* ajuste ici selon ta préférence */
     width: auto;  /* garde les proportions */
   }
+
+  /* -------------------------------------------------------- Collapse --------------------------------------------------------- */
+  .collapsible-content.collapsed {
+  display: none;
+}
+
+.collapsible {
+  position: relative;
+}
+
+.collapse-hint-inline {
+  font-size: 0.55em;
+  font-style: normal;
+  color: #999;
+  display: block;
+  margin-top: -2em;
+  text-align: right;
+  margin-bottom: 0.5em;
+  padding-right: 0.2em;
+}
   </style>
-  
+
 </head>
 <body>
   <div id="app">
@@ -216,10 +236,57 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
     
     
-    <!-- Docsify Collapse + Fleche -->
+    <!-- Docsify Collapse sidebar + Fleche -->
     <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
 
+    <!-- Docsify Collapse pour le contenu (non pas la sidebar) -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify-collapse@1.2.0/dist/docsify-collapse.min.js"></script>
+
+    <!-- Script perso de Collapse des titres H2 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new MutationObserver(() => {
+          const sections = document.querySelectorAll('.markdown-section h2');
+    
+          sections.forEach(h2 => {
+            if (!h2.classList.contains('collapsible') && h2.nextElementSibling) {
+              h2.classList.add('collapsible');
+              h2.style.cursor = 'pointer';
+    
+              // 🆕 Ajouter un petit texte DANS le titre
+              const hint = document.createElement('span');
+              hint.className = 'collapse-hint-inline';
+              hint.textContent = '🔽';
+              h2.appendChild(document.createElement('br'));
+              h2.appendChild(hint);
+    
+              const container = document.createElement('div');
+              container.classList.add('collapsible-content', 'collapsed');
+    
+              let sibling = h2.nextElementSibling;
+              while (sibling && sibling.tagName !== 'H2') {
+                const next = sibling.nextElementSibling;
+                container.appendChild(sibling);
+                sibling = next;
+              }
+    
+              h2.after(container);
+    
+              h2.addEventListener('click', () => {
+                container.classList.toggle('collapsed');
+                h2.classList.toggle('open');
+              });
+            }
+          });
+        });
+    
+        observer.observe(document.getElementById('main'), {
+          childList: true,
+          subtree: true
+        });
+      });
+    </script>
     
 
 
