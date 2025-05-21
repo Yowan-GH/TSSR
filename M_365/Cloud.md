@@ -105,5 +105,5 @@ Le Cloud (nuage 🌥️) désigne l’**accès à des ressources informatiques v
 2. Création du tenant `@votreentreprise.onmicrosoft.com`
 3. Ajout d’un domaine personnalisé (ex : `votreentreprise.fr`) : Domaines / Ajouter un domaine
 4. Enregistrements DNS (TXT, MX, CNAME…)
-5. Vérification & test
+5. Vérification & test.
 
