@@ -95,5 +95,6 @@
 - ☁️ Le cloud 
 	- [Cloud](/M_365/cloud.md)
 	- [Administration Microsoft 365](/M_365/Administration_365.md)
-
+	- [Sécurité et conformité](/M_365/security.md)
+	- [Services supplémentaires](/M_365/deamon.md)
 -  [Test Page](test.md)
