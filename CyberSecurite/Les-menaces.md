@@ -1,89 +1,168 @@
 # Les Menaces
 
 <!-- tabs:start -->
-#### **🎣 Phishing**
 
-📌 Définition :  
-Le phishing (hameçonnage) est une technique où un attaquant usurpe une identité (banque, entreprise, service en ligne) pour tromper la victime et lui voler des informations sensibles (identifiants, mots de passe, numéros de carte bancaire).  
+### **🦠Virus**
 
-🎭 Méthodes utilisées :  
-Email frauduleux (ex. : "Votre compte PayPal est bloqué, cliquez ici pour le réactiver").  
-Faux sites web imitant des pages officielles pour récupérer des identifiants.  
-SMS ou appels téléphoniques (smishing et vishing).  
-#### **🧠 Ingénierie Sociale**
+✅ **Définition**  
+Un virus est un programme malveillant qui s’attache à des fichiers (comme un `.exe` ou un document Word avec macro) pour se propager et endommager un système.
 
-📌 Définition :  
-L’ingénierie sociale est une technique de manipulation psychologique utilisée par les hackers pour pousser une personne à révéler des informations sensibles ou à exécuter une action compromettante.  
+⚙️ **Méthode utilisée / Fonctionnement**  
+Il se diffuse quand l’utilisateur exécute le fichier infecté. Il peut supprimer des fichiers, ralentir le système ou ouvrir des portes à d'autres attaques.
 
-🎭 Méthodes utilisées :  
-Prétexte convaincant : Se faire passer pour un collègue ou un technicien IT.  
-Exploitation de la peur ou de l’urgence : "Votre compte va être désactivé si vous ne répondez pas immédiatement".  
-Attaque en personne : Un individu entre dans une entreprise en prétendant être un technicien et branche une clé USB infectée.  
-#### **⚓ Attaque par Tête de Pont**
+🛡️ **Détection / Prévention**
+- **Antivirus** (ex : Windows Defender, Avast)
+- **EDR** pour surveiller les comportements anormaux
+- Éviter d’ouvrir des pièces jointes douteuses ou des exécutables inconnus
+### **🪱 Ver (worm)**
 
-📌 Définition :  
-L’attaque par tête de pont consiste à compromettre un premier système faible, puis à l’utiliser comme un point d’accès pour attaquer d’autres parties du réseau.  
+✅ **Définition**  
+Un ver est un programme qui se **propage automatiquement** d’un ordinateur à l’autre sans action de l’utilisateur.
 
-🔍 Fonctionnement :  
-Compromission d’une machine peu sécurisée (ex. un PC mal protégé).  
-Prise de contrôle par un attaquant qui installe un malware ou un outil d’accès distant.  
-Déplacement latéral : Il explore et attaque d’autres systèmes internes (serveurs, bases de données).  
-## **🕵️ Fraude Interne**
+⚙️ **Méthode utilisée / Fonctionnement**  
+Il utilise des failles réseau (comme SMB ou RDP) pour se copier sur d'autres machines. Il peut bloquer un réseau entier en quelques minutes (ex : **WannaCry**).
 
-La fraude interne désigne les actes malveillants commis par un employé, un prestataire ou une personne interne à l’organisation pour détourner des ressources, manipuler des informations ou compromettre la sécurité.  
+🛡️ **Détection / Prévention**
+- IDS réseau pour détecter des flux anormaux
+- Patchs de sécurité à jour
+- Isolation des machines sensibles (VLAN)
+### **🐴Cheval de Troie (Trojan)**
 
-🚨 Pourquoi est-elle dangereuse ?  
-Contrairement aux cyberattaques externes, la fraude interne est plus difficile à détecter car l’attaquant a déjà des accès légitimes au système.  
+✅ **Définition**  
+Un cheval de Troie est un programme qui semble utile ou inoffensif mais qui **cache un logiciel malveillant**.
 
-1️⃣ Types de Fraudes Internes  
+⚙️ **Méthode utilisée / Fonctionnement**  
+Souvent intégré à un faux outil, il permet à un attaquant d’installer un espion, un enregistreur de frappe, ou d’ouvrir une porte dérobée (backdoor).
 
-Facteurs Favorisant la Fraude Interne  
-✅ Accès trop larges : Les employés ont plus de droits que nécessaire.  
-✅ Absence de surveillance : Pas de journalisation ou d’audit des actions sensibles.  
-✅ Manque de formation : Les employés ignorent les règles de cybersécurité.  
-✅ Motivations personnelles : Revanche, besoin d’argent, pression externe (chantage).  
+🛡️ **Détection / Prévention**
+- EDR et antivirus
+- Vérification des sources des logiciels installés
+- Restreindre les droits utilisateurs
+### **🔐Ransomware**
 
-- **80%** des domaines Active Directory sont compromis en 2 heures
-- **75%** des domaines Active Directory contiennent au moins 1 compte privilégié avec un mot de passe trivial
-- **50%** des entreprises sont affectées par un défaut de cloisonnement de ses réseaux
-- **80%** des tests d’intrusion ne sont pas détectés par les équipes IT
+✅ **Définition**  
+Un ransomware **chiffre les fichiers** de la victime et demande une rançon (souvent en Bitcoin) pour les déverrouiller.
 
----
-## **🦠 Virus Informatique**
+⚙️ **Méthode utilisée / Fonctionnement**  
+Se propage via mails frauduleux ou RDP mal sécurisé. Ex : **Locky**, **Ryuk**. Il chiffre `.docx`, `.jpg`, `.sql`, etc. en rendant les données inaccessibles.
 
-Un virus informatique est un programme malveillant conçu pour infecter, endommager ou perturber un système informatique. Il se propage en s’attachant à des fichiers ou programmes légitimes et s’active lorsque l’utilisateur exécute l’hôte infecté.  
-🚨 Différence avec un malware ?  
-🔹 Un malware (malicious software) est un terme général pour tous les logiciels malveillants (virus, ransomware, trojan, etc.).  
-🔹 Un virus est un type spécifique de malware qui se réplique en infectant des fichiers.
+🛡️ **Détection / Prévention**
+- EDR avec détection de chiffrement massif
+- Sauvegardes régulières **déconnectées**
+- MFA + désactivation des ports RDP inutilisés
+### **🌐 DDoS (Déni de service distribué)**
 
+✅ **Définition**  
+Le DDoS vise à **saturer un service ou un serveur** avec un très grand nombre de requêtes pour le rendre indisponible.
 
-Caractéristiques d’un Virus Informatique  
-✅ Se propage en infectant des fichiers légitimes (ex. documents, exécutables).  
-✅ S’active lorsque l’utilisateur exécute le fichier infecté.  
-✅ Peut modifier, supprimer ou chiffrer des fichiers.  
-✅ Peut ralentir un système ou le rendre inutilisable.  
+⚙️ **Méthode utilisée / Fonctionnement**  
+L’attaquant utilise un **botnet** (réseau de machines zombies) pour surcharger une cible (ex : site web, serveur de jeu).
 
-### Types de Virus Informatiques  
+🛡️ **Détection / Prévention**
+- Mitigation DDoS (Cloudflare, OVH, firewall UTM)
+- Limitation de débit (rate limiting)
+- Surveillance de bande passante
+### **🎣Phishing**
 
-Comment un Virus se Propage ?  
-📂 Fichiers infectés (ex. un email contenant un fichier malveillant).  
-💾 Supports amovibles (ex. clé USB contaminée).  
-🌐 Sites web compromis (ex. téléchargement d’un faux logiciel).  
-📩 Emails et pièces jointes (ex. document Word contenant un virus macro).  
-🔗 Réseaux P2P et torrents (ex. faux cracks de logiciels).  
-## **🌊 Attaque DDoS**
+✅ **Définition**  
+Le phishing vise à **tromper un utilisateur** pour lui voler ses identifiants ou données confidentielles.
 
-Une attaque DDoS (Déni de Service Distribué) vise à saturer un serveur, un réseau ou un site web en générant un trafic massif et artificiel, empêchant les utilisateurs légitimes d’y accéder.  
+⚙️ **Méthode utilisée / Fonctionnement**  
+Mail frauduleux imitant un site connu (banque, Microsoft) avec un lien vers une **fausse page de connexion**. Ex : “Votre compte est bloqué, cliquez ici !”
 
-🚨 Différence entre DoS et DDoS  
-- DoS (Denial of Service) : Attaque provenant d’une seule machine.
-- DDoS (Distributed Denial of Service) : Attaque menée par plusieurs machines infectées (réseau de bots ou botnet).
+🛡️ **Détection / Prévention**
+- Antispam + analyse des liens (sandbox)
+- Sensibilisation des utilisateurs
+- Activation du **MFA**
+### **👥Ingénierie sociale**
 
-### Fonctionnement d’une Attaque DDoS 
+✅ **Définition**  
+C’est une attaque qui cible **l’humain plutôt que la machine**, en jouant sur la confiance ou la peur.
 
-🔗 Étapes d’une attaque DDoS :  
-1️. Création d’un Botnet 🦠 : L’attaquant infecte des milliers d’ordinateurs/objets connectés (IoT, PC, serveurs) avec un malware.  
-2️. Commande d’attaque 📡 : L’attaquant envoie un ordre aux machines infectées (zombies).  
-3️. Saturation de la cible 🔥 : Le botnet envoie des millions de requêtes pour épuiser les ressources du serveur cible.  
+⚙️ **Méthode utilisée / Fonctionnement**  
+Exemples :
+- **Faux président** : usurpation d’un dirigeant pour ordonner un virement
+- **Faux support IT** : demander un mot de passe par téléphone
+    
+
+🛡️ **Détection / Prévention**
+- Formation des salariés
+- Procédures de vérification d’identité
+- Politique de double validation (ex : appels de confirmation)
+### **👀Man-in-the-middle (MITM)**
+
+✅ **Définition**  
+L’attaquant **intercepte une communication** entre deux parties pour espionner ou modifier les données.
+
+⚙️ **Méthode utilisée / Fonctionnement**  
+Il s’interpose entre un utilisateur et un serveur (ex : sur un Wi-Fi public non chiffré) et capture les identifiants ou modifie les réponses.
+
+🛡️ **Détection / Prévention**
+- VPN sur les réseaux publics
+- HTTPS obligatoire
+- IDS réseau
+### **💉Injection SQL**
+
+✅ **Définition**  
+C’est une attaque qui permet à un pirate d’**exécuter des requêtes SQL** non autorisées dans une base de données via une application web.
+
+⚙️ **Méthode utilisée / Fonctionnement**  
+Il insère du code malveillant dans un champ (ex : login) pour afficher ou modifier des données (ex : `' OR 1=1 --`).
+
+🛡️ **Détection / Prévention**
+- Validation des champs utilisateur
+- Requêtes préparées (PDO, ORM)
+- WAF (Web Application Firewall)
+
+### **🖼️ Défiguration de site**
+
+✅ **Définition**  
+Une attaque qui modifie l’apparence ou le contenu d’un site web.
+
+⚙️ **Méthode utilisée / Fonctionnement**  
+Le pirate remplace la page d’accueil d’un site par un message politique, religieux ou moqueur (souvent via FTP ou CMS vulnérable).
+
+🛡️ **Détection / Prévention**
+- CMS et plugins à jour
+- Accès FTP restreint + journalisé
+- WAF + vérification d'intégrité des fichiers
+### **📶Attaque Wi-Fi**
+
+✅ **Définition**  
+Un attaquant tente de s’introduire dans un réseau Wi-Fi, souvent public ou mal sécurisé.
+
+⚙️ **Méthode utilisée / Fonctionnement**  
+Rogue AP (faux point d’accès), attaque brute-force sur WPA, écoute de paquets via sniffer Wi-Fi (Wireshark, Aircrack).
+
+🛡️ **Détection / Prévention**
+- WPA3 + mot de passe fort
+- Isolation des clients
+- Tunnel VPN obligatoire sur Wi-Fi public
+  
+
+### **🧠Attaque par tête de pont**
+
+✅ **Définition**  
+L’attaquant pénètre une machine peu protégée pour **étendre son accès vers des cibles plus sensibles** dans le réseau.
+
+⚙️ **Méthode utilisée / Fonctionnement**  
+Ex : un poste utilisateur est compromis → l’attaquant **pivote** pour atteindre les serveurs (mouvement latéral).
+
+🛡️ **Détection / Prévention**
+- EDR (analyse des mouvements sur le réseau)
+- Segmentation réseau (DMZ, VLAN)
+- Pare-feux internes
+### **🧑‍💻 Fraude interne**
+
+✅ **Définition**  
+Un collaborateur légitime utilise ses droits d’accès pour **voler, modifier ou supprimer des données**.
+
+⚙️ **Méthode utilisée / Fonctionnement**  
+Vol de données clients, sabotage, revente d’infos, installation de portes dérobées. Souvent lié à des conflits internes.
+
+🛡️ **Détection / Prévention**
+- SIEM (analyse centralisée des logs)
+- Séparation des privilèges
+- Journalisation + alertes sur actions sensibles
 
 <!-- tabs:end -->

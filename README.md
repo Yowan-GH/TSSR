@@ -5,81 +5,73 @@ Bienvenue sur mon espace de documentation dédié à la formation **TSSR** (Tech
 Ce site regroupe des **résumés de cours**, **fiches pratiques** et **commandes essentielles**, couvrant l’ensemble des compétences clés du métier.
 
 ---
+🧭 **Sommaire des contenus principaux**
 
- 🧭 Sommaire des contenus
+- 🌐 **Les bases des réseaux**
+  - Modèle OSI, adressage IPv4 & IPv6, communication réseau
+  - Unités informatiques, commandes de base
 
- - 📡 Réseaux & Cisco
-	 - IOS Cisco — Généralités, Modes, Sécurité
-	 - VLAN, Trunking, Routage Inter-VLAN
-	 - NAT, VTY, RIP…
+- 📡 **IOS Cisco**
+  - Généralités IOS, VLAN, Trunking, Routage inter-VLAN
+  - RIP, NAT, configuration des switchs
 
-- 🐧 Commandes Linux essentielles
-	- Commandes de base (`ip`, `who`, `date`, `ls`, `mkdir`…)
-	- Navigation, redirections, `jobs`, `fg/bg`, `tee`, etc.
-	- Compression (`tar`, `gzip`…), recherche (`grep`, `find`)
-	- Scripts, permissions, processus
+- 🐧 **Linux – Bases**
+  - Commandes essentielles, alias, variables, processus
+  - GREP, FIND, AWK, SED, VIM, métacaractères
 
-- 🔐 Cybersécurité
-	- DICP : Disponibilité, Intégrité, Confidentialité, Preuve
-	- Vulnérabilités, Menaces, Attaques
-	- Outils de protection, SIEM, PRA/PCA
+- 🐚 **Scripting Bash**
+  - Analyse du langage, écriture de scripts, automatisation
 
-- 🐧 Environnement Linux
-	- Interfaces réseau, DNS, DHCP
-	- Fichiers systèmes, hostname, resolv.conf
-	- Administration à distance (SSH, SCP)
-	- Routage, firewall, DNS bind9
+- 💠 **Scripting PowerShell**
+  - Cmdlets, objets, structures, variables, fonctions
+  - Gestion des fichiers, services, utilisateurs, registres
 
- - 🪟 Environnement Microsoft
-	 - Windows Server : rôles et fonctionnalités
-	 - Active Directory, GPO, DNS, DHCP
-	 - Gestion des disques, RAID
-	 - PowerShell de base
+- 🪟 **Systèmes Microsoft (Client & Serveur)**
+  - Windows, gestion de disque, rôles serveur
+  - Active Directory, GPO, DNS, DHCP, Routage
 
-- 📜 Scripting
-	- **Bash** : 
-		- Bonnes pratiques d’analyse préalable (cahier des charges, algorithme, pseudo-code).
-		- Scripts Bash pour l’automatisation des tâches sous Linux.
-		- Utilisation des **variables**, **boucles** et **structures conditionnelles**.
-		- Lecture de fichiers, saisie utilisateur, gestion des erreurs et retour.
-		- Conception de **fonctions réutilisables**, structuration en modules.
-		- Enchaînements de commandes et usage des **fichiers externes**.
+- 🌐 **Services Réseaux**
+  - 🐧 Linux : DHCP, DNS (autoritaire & résolveur), routage, SSH
+  - 🛡️ Microsoft : DNS, DHCP, GPO, AD, administration
 
-	- **PowerShell** : 
-		- **cmdlets** et **objets** pour l’administration système.
-		- **Scripts structurés** avec conditions, boucles, fonctions et gestion d’erreurs.
-		- Manipulation de fichiers, utilisateurs, services et registres.
-		- Utilisation de **Read-Host**, `Write-Host`, **export CSV/HTML**, et exécution distante.
-		- Travail dans **PowerShell ISE** ou **VS Code**
-		
-- 🧱 Virtualisation – VMware, Hyper-V & infrastructures
-	- **Types d’hyperviseurs** : Type 1 (ESXi, Hyper-V) et Type 2 (Workstation).
-	- Déploiement et gestion de VM : snapshots, stockage et réseaux virtuels.
-	- **vSphere (VMware)** : hyperviseur ESXi, gestion centralisée via vCenter, fonctionnalités avancées (vMotion, HA, DRS, vSAN).
-	- **Hyper-V (Microsoft)** : console Hyper-V Manager, support du Live Migration, snapshots, clustering.
-	- Gestion du stockage (VMFS, iSCSI, NFS), des datastores et des réseaux VLAN au sein de l’environnement virtualisé.
+- 🖥️ **Virtualisation**
+  - Présentation, applications, Hyper-V & VMware vSphere
+  - Réseaux virtuels, stockage, datacenter
+
+- 💾 **Sauvegarde & Restauration**
+  - Concepts, pratiques, RAID, stockage, restauration
+
+- 🔐 **Cybersécurité**
+  - DICP, menaces, attaques, vulnérabilités
+
+- 🌐 **Réseaux et Sécurité avancée**
+  - NAT, pare-feu, DMZ, proxy, VPN
+  - Serveurs Web (Apache, IIS), certificats, PKI
+
+- ☁️ **Cloud & Microsoft 365**
+  - Administration M365, sécurité, conformité, services
 
 ---
 
-🎯 Objectifs
+🎯 **Objectifs de ce site**
 
 - Structurer mes acquis de formation
 - Centraliser mes notes de révision, TP & projets
 - Créer une **vitrine professionnelle** à jour de mes compétences
 - Fournir une base utile pour étudiants et techniciens IT
 
+
 ---
 
-🔄 Mises à jour
+🔄 **Mises à jour**
 
-🗓️ Le site est régulièrement enrichi avec :
+🗓️ Ce site est enrichi régulièrement avec :
 - Nouveaux chapitres
 - Retours de TP
-- Astuces & pratiques pro
-
+- Astuces & pratiques professionnelles
 ---
 
-📬 Contact
+📬 **Contact**
 
 📧 [yohann.mineau@yahoo.fr]  
 💼 [Mon profil LinkedIn](https://www.linkedin.com/in/ymn/)

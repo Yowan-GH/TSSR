@@ -86,15 +86,21 @@
 	- [En pratique](/Backup/Practice.md)
 
 - 🌐 Réseaux et Sécurité 
+	- [Commandes Réseaux](/Service_Web_Security/Reseau.md)
+	- [Le Pare-Feu](/Service_Web_Security/Firewall.md)
+	- [Le NAT](/Service_Web_Security/NAT.md)
+	- [DMZ et Sécurité](/Service_Web_Security/DMZ.md)
+	- [Le proxy](/Service_Web_Security/Proxy.md)
 	- [Les serveurs WEB](/Service_Web_Security/Web_Server.md)
 	- [Apache](/Service_Web_Security/Apache.md)
 	- [IIS](/Service_Web_Security/IIS.md)
-	- [PKI](/Service_Web_Security/PKI.md)
+	- [Certificat et PKI](/Service_Web_Security/PKI.md)
 	- [VPN](/Service_Web_Security/VPN.md)
 
-- ☁️ Le cloud 
+- ☁️ Cloud et Microsoft 365
 	- [Cloud](/M_365/cloud.md)
 	- [Administration Microsoft 365](/M_365/Administration_365.md)
 	- [Sécurité et conformité](/M_365/security.md)
 	- [Services supplémentaires](/M_365/deamon.md)
+	
 -  [Test Page](test.md)

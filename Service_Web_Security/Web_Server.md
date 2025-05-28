@@ -18,6 +18,10 @@ Un serveur web est une machine qui :
 2. Le **navigateur** interroge un **serveur DNS** pour résoudre l'adresse IP 🕵️♂️
 3. Le **navigateur** interroge le serveur web via l'adresse IP
 4. Le **serveur web** renvoie la page demandée (ex: `index.html`) 📄  
+5. On peux acceder à un site via : 
+	- FQDN
+	- IP
+	- FQDN ou IP + Port
 
 ---
 
