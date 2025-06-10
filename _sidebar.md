@@ -96,6 +96,7 @@
 	- [IIS](/Service_Web_Security/IIS.md)
 	- [Certificat et PKI](/Service_Web_Security/PKI.md)
 	- [VPN](/Service_Web_Security/VPN.md)
+	- [ECF](/Service_Web_Security/ECF.md)
 
 - ☁️ Cloud et Microsoft 365
 	- [Cloud](/M_365/cloud.md)
@@ -103,4 +104,24 @@
 	- [Sécurité et conformité](/M_365/security.md)
 	- [Services supplémentaires](/M_365/deamon.md)
 	
+- 🖥️ Supervision et Exploitation d'infrastructure
+	- [La Supervision](/Supervision_Exploitation/Supervision.md)
+	- [SNMP et NRPE](/Supervision_Exploitation/SNMP_NRPE.md)
+	- [Centreon](/Supervision_Exploitation/Centreon.md)
+	- [Commandes de supervision](/Supervision_Exploitation/Commandes.md)
+	 - [Action d'exploitation](/Supervision_Exploitation/Action_exploitation.md)
+	 - [Supervision ditribuée](/Supervision_Exploitation/Superv_distrib.md)
+
+- 🎯 RDS / WDS / MDT – Services Transverses Microsoft
+	-  [Rappel Infrastructure](/Services_transverses/Mise_en_place_infra.md)
+	- RDS
+		- [RDS - Bureau distant](/Services_transverses/RDS.md)
+		- [RDS - Publication d'application](/Services_transverses/RDS_APP.md)
+	- WDS
+		-  [Déploiement d'OS](/Services_transverses/OS.md)
+		-  [WDS](/Services_transverses/WDS.md)
+	- MDT
+		- [MDT](/Services_transverses/MDT.md)
+
+
 -  [Test Page](test.md)
