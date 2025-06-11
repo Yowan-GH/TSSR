@@ -104,6 +104,10 @@
 	- [Sécurité et conformité](/M_365/security.md)
 	- [Services supplémentaires](/M_365/deamon.md)
 	
+- ☁️ Administration Microsoft 365 By Microsoft
+	- [Exploration et configuration de votre Microsoft 365](/M_365_by_M/Configuration.md)
+	- [Gestion des utilisateurs, licences, invités et contacts](/M_365_by_M/gestion.md)
+	
 - 🖥️ Supervision et Exploitation d'infrastructure
 	- [La Supervision](/Supervision_Exploitation/Supervision.md)
 	- [SNMP et NRPE](/Supervision_Exploitation/SNMP_NRPE.md)
