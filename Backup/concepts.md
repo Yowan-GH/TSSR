@@ -50,7 +50,7 @@ Une bonne stratégie de sauvegarde repose sur **3 copies, 2 supports, 1 emplacem
 
 <!-- tabs:start --> 
 
-### **PCA**
+### **PCA/PCI**
 
 - **Plan de Continuité d’Activité** : Il regroupe les **mesures mises en place avant, pendant et après une crise** pour garantir le **maintien minimal de l'activité**.
 
@@ -64,7 +64,7 @@ Une bonne stratégie de sauvegarde repose sur **3 copies, 2 supports, 1 emplacem
 🎯 Objectif : maintenir **le fonctionnement critique de l’organisation**, même en mode dégradé
 - Exemple : serveurs redondants, double connexion internet, haute dispo (HA).
 
-### **PRA**
+### **PRA/PRI**
 
 - **Plan de Reprise d’Activité** : Ensemble des procédures pour **restaurer l’activité après un incident majeur**.
 
