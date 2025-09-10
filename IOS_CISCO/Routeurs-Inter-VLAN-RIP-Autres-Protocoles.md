@@ -1,5 +1,6 @@
 # Routeurs - Inter-VLAN, RIP & Autres Protocoles
 
+Un routeur est un appareil qui permet le transport de données d'un réseau à un autre.
 ## Inter-VLAN Routing (Routage entre VLANs)
 Un switch ne peut pas faire communiquer plusieurs VLANs.  
 Solution :

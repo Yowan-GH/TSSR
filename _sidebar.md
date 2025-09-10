@@ -1,6 +1,11 @@
 - [🏠 Accueil](/README.md)
 
-
+- 📊 Microsoft Office 365
+	- [Découverte](/Office365/decouverte.md)
+	- [Word](/Office365/word.md)
+	- [Excel](/Office365/excel.md)
+	- [Outlook](/Office365/outlook.md)
+	- [Onedrive, Teams et Sharepoint](/Office365/onedrive-teams-sharepoint.md)
 -  🌐 Les bases des réseaux
 	- [Le modèle OSI](/Les-Bases-Reseaux/OSI.md)
 	- [L'adressage IPV4](/Les-Bases-Reseaux/IPV4.md)
@@ -8,45 +13,62 @@
 	- [La communication réseau](/Les-Bases-Reseaux/Communication-reseau.md)
 	- [Les unités informatique](/Les-Bases-Reseaux/Unite-informatique.md)
 	- [Les principales commandes](/Les-Bases-Reseaux/Les-commandes.md)
-
 - 🪟 Système Client Microsoft
-	- [L'OS](/Systeme-client-Microsoft/OS.md)
-	- [Microsoft Windows](/Systeme-client-Microsoft/Windows.md)
-	- [La Gestion de Disque](/Systeme-client-Microsoft/Disques.md)
-	
-- 🔐 CyberSécurité
-	- [Les DICP](/CyberSecurite/Les-DICP.md)
-	- [Les menaces](/CyberSecurite/Les-menaces.md)
-	- [Vulnerabilite Menace et Attaque en Cybersecurite](/CyberSecurite/Vulnerabilite-Menace-et-Attaque-en-Cybersecurite.md)
-	
+	- [OS](/Systèmes-clients-microsoft/OS.md)
+	- [Gestion réseau et pare-feu](/Systèmes-clients-microsoft/gestion-réseau-et-pare-feu.md)
+	- [Gestion stockage](/Systèmes-clients-microsoft/gestion-stockage.md)
+	- [Installation](/Systèmes-clients-microsoft/installation.md)
+	- [Interagir avec Windows](/Systèmes-clients-microsoft/interagir-avec-windows.md)
+	- [Introduction capture et déploiement d'images](/Systèmes-clients-microsoft/images.md)
+	- [Maintenance système](/Systèmes-clients-microsoft/maintenance.md)
+	- [Partage de ressources](/Systèmes-clients-microsoft/partage-de-ressources.md)
+	- [Pilotes et périphériques](/Systèmes-clients-microsoft/pilotes.md)
+	- [Sécurité NTFS et ACL](/Systèmes-clients-microsoft/sécurité-ntfs-et-acl.md)
+	- [Stratégies groupe local](/Systèmes-clients-microsoft/stratégies-groupe-local.md)
+	- [Utilisateurs et groupes](/Systèmes-clients-microsoft/utilisateurs-et-groupes.md)
+- 🐧 Système Client Linux
+	- [Découverte de l'OS Linux](/Linux_Bases/Utilisation-linux/découverte-os-linux.md)
+	- [Découverte du shell](/Linux_Bases/Utilisation-linux/découverte-shell.md)
+	- [Fichiers et dossiers](/Linux_Bases/Utilisation-linux/fichiers-et-dossiers.md)
+	- [Les Alias et Variables](/Linux_Bases/Les-Alias-et-Variables.md)
+	- [Les commandes indispensables](/Linux_Bases/Les-commandes-indispensables.md)
+	- [AWK Anaylser de texte](/Linux_Bases/AWK-Analyseur-de-texte.md)
+	- [FIND Recherche de fichier](/Linux_Bases/FIND-Recherche-de-fichier.md)
+	- [GREP Recherche dans un fichier](/Linux_Bases/GREP-Recherche-dans-un-fichier.md)
+	- [Gestion des processus](/Linux_Bases/Gestion-des-processus.md)
+	- [Les METACARACTERES](/Linux_Bases/Les-METACARACTERES.md)
+	- [SED Stream EDitor](/Linux_Bases/SED-Stream-EDitor.md)
+	- [VI ou VIM](/Linux_Bases/VI-ou-VIM.md)
+- 🐧 Administration Linux
+	- [Présentation Debian GNU/Linux](/administration_linux/présentation-debian-gnulinux.md)
+	- [Installation distribution Debian](/administration_linux/installation-distribution-debian.md)
+	- [Démarrage distribution Debian](/administration_linux/démarrage-distribution-debian.md)
+	- [Debian mode maintenance](/administration_linux/debian-mode-maintenance.md)
+	- [Gestion réseau](/administration_linux/gestion-réseau.md)
+	- [Gestion des paquets logiciels](/administration_linux/gestion-des-paquets-logiciels.md)
+	-  [Gestion des espaces de stockage](/administration_linux/gestion-des-espaces-de-stockage.md)
+	- [Gestion des espaces de stockage file system](/administration_linux/gestion-des-espaces-de-stockage-file-system.md)
+	- [Gestion des espaces de stockage LVM](/administration_linux/gestion-des-espaces-de-stockage-lvm.md)
+	- [Droits sur les fichiers et répertoires](/administration_linux/droits-sur-les-fichiers-et-répertoires.md)
+	- [Gestion des utilisateurs et groupes](/administration_linux/gestion-des-utilisateurs-et-groupes.md)
+	- [Maintenance système en production](/administration_linux/maintenance-système-en-production.md)
+- 📝 ITIL
+	- [Présentation](/ITIL/présentation.md)
+	- [Amélioration continue des services](/ITIL/amélioration-continue-des-services.md)
+	- [Exploitation des services](/ITIL/exploitation-des-services.md)
+	- [Gestion des services](/ITIL/gestion-des-services.md)
+	- [Savoir, savoir-faire, savoir-être](/ITIL/savoir-savoir-faire-savoir-être.md)
+	- [Stratégie et conception des services](/ITIL/stratégie-et-conception-des-services.md)
+	- [Transition des services](/ITIL/transition-des-services.md)
+- 📞 ToIP
+	- [VoIP et ToIP](/TOIP/toip.md)
+- 📋GLPI
+	-  [Découverte de GLPI](/GLPI/découverte-glpi.md)
+	-  [Assistance avec GLPI](/GLPI/assistance-glpi.md)
 - 📡 IOS Cisco
 	- [IOS CISCO Generalites](/IOS_CISCO/IOS-CISCO-Generalites.md)
 	- [Routeurs Inter VLAN RIP Autres Protocoles](/IOS_CISCO/Routeurs-Inter-VLAN-RIP-Autres-Protocoles.md)
 	- [Switches VLAN Trunk](/IOS_CISCO/Switches-VLAN-Trunk.md)
-
-- 🐧 Linux - Bases
-	- [AWK Anaylser de texte](/Linux_Bases/AWK-Analyseur-de-texte.md)
-	- [FIND Recherche de fichier](/Linux_Bases/FIND-Recherche-de-fichier.md)
-	- [Gestion des processus](/Linux_Bases/Gestion-des-processus.md)
-	- [GREP Recherche dans un fichier](/Linux_Bases/GREP-Recherche-dans-un-fichier.md)
-	- [Les Alias et Variables](/Linux_Bases/Les-Alias-et-Variables.md)
-	- [Les commandes indispensables](/Linux_Bases/Les-commandes-indispensables.md)
-	- [Les METACARACTERES](/Linux_Bases/Les-METACARACTERES.md)
-	- [SED Stream EDitor](/Linux_Bases/SED-Stream-EDitor.md)
-	- [VI ou VIM](/Linux_Bases/VI-ou-VIM.md)
- 
-- 💠 Scripting PowerShell
-	- [Les premières commandes](/Scripting_powershell/Les-premieres-commandes.md)
-	- [Manipulation des objets](/Scripting_powershell/Manipulation-des-objets.md)
-	- [Présentation](/Scripting_powershell/Presentation.md)
-	- [Structures et variables](/Scripting_powershell/Structures-et-variables.md)
-	- [L'écriture du script](/Scripting_powershell/Ecriture.md)
-	- [Pour aller plus loin](/Scripting_powershell/Pour-aller-plus-loin.md)
-
-- 🐚Scripting Bash 
-	- [Analyse du Langage](/Scripting_Bash/Analyse-du-Langage.md)
-	- [Ecriture des scriptes](/Scripting_Bash/Ecriture-des-scriptes.md)
-
 - 🌐Service Réseaux
 	- 🐧  Linux
 		- [Administration a distance](/Service_Reseaux_Linux/Administration-a-distance.md)
@@ -62,7 +84,16 @@
 		- [Le DHCP](/Service_Reseaux_Microsoft/Le-DHCP.md)
 		- [Le routage](/Service_Reseaux_Microsoft/Le-routage.md)
 		- [Le service DNS](/Service_Reseaux_Microsoft/Le-service-DNS.md)
-		
+- 💠 Scripting PowerShell
+	- [Les premières commandes](/Scripting_powershell/Les-premieres-commandes.md)
+	- [Manipulation des objets](/Scripting_powershell/Manipulation-des-objets.md)
+	- [Présentation](/Scripting_powershell/Presentation.md)
+	- [Structures et variables](/Scripting_powershell/Structures-et-variables.md)
+	- [L'écriture du script](/Scripting_powershell/Ecriture.md)
+	- [Pour aller plus loin](/Scripting_powershell/Pour-aller-plus-loin.md)
+- 🐚Scripting Bash 
+	- [Analyse du Langage](/Scripting_Bash/Analyse-du-Langage.md)
+	- [Ecriture des scriptes](/Scripting_Bash/Ecriture-des-scriptes.md)
 - 🖥️ La virtualisation
 	- [Présentation](/Virtualisation/Presentation.md)
 	- [Les Applications de virtualisation](/Virtualisation/Application.md)
@@ -76,7 +107,6 @@
 	- [Réseaux virtualisés](/Virtualisation/Reseau.md)
 	- [Gestion du stockage](/Virtualisation/Stockage.md)
 	- [Gestion du DATACENTER](/Virtualisation/Datacenter.md)
-
 - 💾 Sauvegarde et Restauration
 	- [Concepts généraux](/Backup/concepts.md)
 	- [Les Sauvegardes](/Backup/Save.md)
@@ -84,7 +114,6 @@
 	- [Le stockage](/Backup/Storage.md)
 	- [La Redondance RAID](/Backup/Raid.md)
 	- [En pratique](/Backup/Practice.md)
-
 - 🌐 Réseaux et Sécurité 
 	- [Commandes Réseaux](/Service_Web_Security/Reseau.md)
 	- [Le Pare-Feu](/Service_Web_Security/Firewall.md)
@@ -97,17 +126,19 @@
 	- [Certificat et PKI](/Service_Web_Security/PKI.md)
 	- [VPN](/Service_Web_Security/VPN.md)
 	- [ECF](/Service_Web_Security/ECF.md)
-
+- 🔐 CyberSécurité
+	- [Les DICP](/CyberSecurite/Les-DICP.md)
+	- [Les menaces](/CyberSecurite/Les-menaces.md)
+	- [Vulnerabilite Menace et Attaque en Cybersecurite](/CyberSecurite/Vulnerabilite-Menace-et-Attaque-en-Cybersecurite.md)
+	-  [Hygiène informatique](/CyberSecurite/Hygiene.md)
 - ☁️ Cloud et Microsoft 365
 	- [Cloud](/M_365/cloud.md)
 	- [Administration Microsoft 365](/M_365/Administration_365.md)
 	- [Sécurité et conformité](/M_365/security.md)
 	- [Services supplémentaires](/M_365/deamon.md)
-	
 - ☁️ Administration Microsoft 365 By Microsoft
 	- [Exploration et configuration de votre Microsoft 365](/M_365_by_M/Configuration.md)
 	- [Gestion des utilisateurs, licences, invités et contacts](/M_365_by_M/gestion.md)
-	
 - 🖥️ Supervision et Exploitation d'infrastructure
 	- [La Supervision](/Supervision_Exploitation/Supervision.md)
 	- [SNMP et NRPE](/Supervision_Exploitation/SNMP_NRPE.md)
@@ -115,7 +146,6 @@
 	- [Commandes de supervision](/Supervision_Exploitation/Commandes.md)
 	 - [Action d'exploitation](/Supervision_Exploitation/Action_exploitation.md)
 	 - [Supervision ditribuée](/Supervision_Exploitation/Superv_distrib.md)
-
 - 🎯 RDS / WDS / MDT – Services Transverses Microsoft
 	-  [Rappel Infrastructure](/Services_transverses/Mise_en_place_infra.md)
 	- RDS
@@ -126,6 +156,4 @@
 		-  [WDS](/Services_transverses/WDS.md)
 	- MDT
 		- [MDT](/Services_transverses/MDT.md)
-
-
--  [Tools](/Tools/Tools.md)
+- [🎓 Passage du titre](/TSSR/TSSR.md)
